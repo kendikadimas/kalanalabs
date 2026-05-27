@@ -1,0 +1,33 @@
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
+import HeroSection from '@/components/sections/HeroSection'
+import AboutSection from '@/components/sections/AboutSection'
+import ServicesSection from '@/components/sections/ServicesSection'
+import ProjectsSection from '@/components/sections/ProjectsSection'
+import PricingSection from '@/components/sections/PricingSection'
+import ProcessSection from '@/components/sections/ProcessSection'
+import TestimonialsSection from '@/components/sections/TestimonialsSection'
+import FAQSection from '@/components/sections/FAQSection'
+import CtaSection from '@/components/sections/CtaSection'
+import ContactSection from '@/components/sections/ContactSection'
+
+export default function HomePage() {
+  return (
+    <>
+      <Navbar />
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <ServicesSection />
+        <ProjectsSection />
+        <PricingSection />
+        <ProcessSection />
+        <TestimonialsSection />
+        <FAQSection />
+        <CtaSection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </>
+  )
+}

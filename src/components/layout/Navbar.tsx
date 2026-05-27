@@ -46,16 +46,13 @@ export default function Navbar() {
               className="flex items-center gap-2.5 group"
               aria-label="Kalana Labs — Beranda"
             >
-              <svg
-                viewBox="0 0 221 294"
-                width="24"
+              <img
+                src="/logo.svg"
+                alt="Kalana Labs"
+                width="32"
                 height="32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className={`w-6 h-8 transition-colors duration-500 ${scrolled ? 'text-[#1441A5]' : 'text-white'}`}
-              >
-                <path d="M0 270V104L75.3408 58.5V104L135.385 0H220.256L135.385 147L220 293.557H135L75.5 190.5V226.41L0 270Z" fill="currentColor"/>
-              </svg>
+                className="w-8 h-8 rounded-lg"
+              />
               <span className={`text-xl font-bold tracking-tight transition-colors duration-500 ${scrolled ? 'text-[#1e2547]' : 'text-white'}`}>
                 Kalana Labs
               </span>

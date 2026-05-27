@@ -106,10 +106,14 @@ export default function CtaSection() {
                   {/* Sidebar */}
                   <div className="w-16 border-r border-white/8 bg-white/[0.03] flex flex-col items-center pt-5 gap-3">
                     {/* Brand icon */}
-                    <div className="w-7 h-7 rounded-lg bg-[#2152cf]/60 border border-[#2152cf]/30 flex items-center justify-center mb-2">
-                      <svg viewBox="0 0 221 294" width="16" height="20" className="w-4 h-5 text-white" fill="currentColor">
-                        <path d="M0 270V104L75.3408 58.5V104L135.385 0H220.256L135.385 147L220 293.557H135L75.5 190.5V226.41L0 270Z" />
-                      </svg>
+                    <div className="w-7 h-7 rounded-lg overflow-hidden mb-2">
+                      <img
+                        src="/logo.svg"
+                        alt="Logo"
+                        width="28"
+                        height="28"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     {[1, 2, 3, 4].map((i) => (
                       <div key={i} className={`w-6 h-1.5 rounded-full ${i === 1 ? 'bg-[#d9ff42]/60' : 'bg-white/15'}`} />

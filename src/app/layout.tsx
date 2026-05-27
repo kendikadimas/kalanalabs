@@ -35,11 +35,24 @@ export const metadata: Metadata = {
     'jasa pembuatan aplikasi purwokerto',
     'software house purwokerto'
   ],
+  icons: {
+    icon: '/logo.svg',
+    shortcut: '/logo.svg',
+    apple: '/logo.svg',
+  },
   openGraph: {
     title: 'Kalana Labs — Jasa Pembuatan Website Purwokerto Murah & Profesional',
     description:
       'Partner teknologi terpercaya untuk pembuatan website kustom, aplikasi mobile Android & iOS, serta riset desain UI/UX di Purwokerto.',
     type: 'website',
+    images: [
+      {
+        url: 'https://kalanalabs.com/logo.svg',
+        width: 1500,
+        height: 1500,
+        alt: 'Kalana Labs Logo',
+      }
+    ],
   },
 }
 
@@ -51,7 +64,8 @@ const jsonLd = {
   "url": "https://kalanalabs.com",
   "telephone": "+6285707736885",
   "priceRange": "Rp 299.000 - Rp 39.999.000",
-  "image": "https://kalanalabs.com/logo.png",
+  "image": "https://kalanalabs.com/logo.svg",
+  "logo": "https://kalanalabs.com/logo.svg",
   "description": "Jasa pembuatan website Purwokerto murah & profesional. Hubungi Kalana Labs untuk pembuatan landing page, company profile, e-commerce, sistem informasi, dan aplikasi mobile.",
   "address": {
     "@type": "PostalAddress",

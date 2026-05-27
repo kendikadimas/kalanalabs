@@ -25,7 +25,7 @@ export default function ServicesSection() {
         {/* 3 Main Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Card 1: Web Development (Lime Gradient Background) */}
-          <div className="flex flex-col justify-between h-[470px] sm:h-[500px] rounded-3xl bg-gradient-to-br from-[#d9ff42] to-[#b4d622] p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-[#d9ff42] to-[#b4d622] p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
             {/* Top Info */}
             <div className="flex flex-col gap-3">
               <h3 className="text-2xl sm:text-3xl font-bold text-[#0d1230] tracking-tight">
@@ -51,15 +51,13 @@ export default function ServicesSection() {
               </Button>
             </div>
 
-            {/* Empty Image Space (Dashboard Mockup in dark green glassmorphism) */}
+            {/* Empty Image Space Archived
             <div className="w-full mt-auto bg-[#0d1230]/5 border border-[#0d1230]/10 rounded-xl overflow-hidden h-[150px] flex flex-col pointer-events-none">
-              {/* Browser Header */}
               <div className="h-6 border-b border-[#0d1230]/10 px-3 flex items-center gap-1.5 shrink-0 bg-[#0d1230]/5">
                 <div className="w-1.5 h-1.5 rounded-full bg-red-500/60" />
                 <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/60" />
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500/60" />
               </div>
-              {/* Content Space */}
               <div className="flex-1 p-3 flex flex-col gap-1.5 bg-[#0d1230]/10">
                 <div className="w-1/3 h-3 rounded bg-[#0d1230]/15" />
                 <div className="grid grid-cols-2 gap-2 mt-1">
@@ -69,10 +67,11 @@ export default function ServicesSection() {
                 <div className="w-full h-8 rounded bg-[#0d1230]/5 border border-[#0d1230]/5 mt-auto" />
               </div>
             </div>
+            */}
           </div>
 
           {/* Card 2: Mobile Apps (Blue-Navy Gradient Background) */}
-          <div className="flex flex-col justify-between h-[470px] sm:h-[500px] rounded-3xl bg-gradient-to-br from-[#2152cf] to-[#122d78] p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-[#2152cf] to-[#122d78] p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
             {/* Top Info */}
             <div className="flex flex-col gap-3">
               <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -98,21 +97,20 @@ export default function ServicesSection() {
               </Button>
             </div>
 
-            {/* Empty Image Space (Mobile Screen Mockup in glassmorphism) */}
+            {/* Empty Image Space Archived
             <div className="w-[120px] mx-auto mt-auto bg-white/10 border border-white/20 rounded-t-2xl overflow-hidden h-[150px] flex flex-col pointer-events-none p-2 pb-0">
-              {/* Speaker / Notch */}
               <div className="w-10 h-2.5 rounded-full bg-white/20 mx-auto mb-2 shrink-0" />
-              {/* Screen Content */}
               <div className="flex-1 p-2 flex flex-col gap-1.5 bg-white/5 border border-white/10 rounded-t-xl">
                 <div className="w-2/3 h-2 rounded bg-white/20" />
                 <div className="w-full h-8 rounded bg-white/5 border border-white/10" />
                 <div className="w-full h-10 rounded bg-white/5 border border-white/10 mt-auto" />
               </div>
             </div>
+            */}
           </div>
 
           {/* Card 3: UI/UX Design (White Gradient Background) */}
-          <div className="flex flex-col justify-between h-[470px] sm:h-[500px] rounded-3xl bg-gradient-to-br from-white to-[#f8f9fc] border border-[#e4e8f2] p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-white to-[#f8f9fc] border border-[#e4e8f2] p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
             {/* Top Info */}
             <div className="flex flex-col gap-3">
               <h3 className="text-2xl sm:text-3xl font-bold text-[#1e2547] tracking-tight">
@@ -138,9 +136,8 @@ export default function ServicesSection() {
               </Button>
             </div>
 
-            {/* Empty Image Space (Figma-style editor mockup) */}
+            {/* Empty Image Space Archived
             <div className="w-full mt-auto bg-white border border-[#e4e8f2] rounded-xl overflow-hidden h-[150px] flex flex-col pointer-events-none">
-              {/* Figma Header */}
               <div className="h-6 border-b border-[#e4e8f2] px-3 flex items-center justify-between shrink-0 bg-[#f1f3f9]">
                 <div className="flex gap-1">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#2152cf]" />
@@ -148,7 +145,6 @@ export default function ServicesSection() {
                 </div>
                 <div className="w-8 h-2 rounded bg-gray-300" />
               </div>
-              {/* Figma Sidebar & Canvas */}
               <div className="flex-1 flex bg-[#f8f9fc]">
                 <div className="w-12 border-r border-[#e4e8f2] p-1.5 flex flex-col gap-1 bg-[#f1f3f9]">
                   <div className="w-full h-2 rounded bg-gray-200" />
@@ -161,6 +157,7 @@ export default function ServicesSection() {
                 </div>
               </div>
             </div>
+            */}
           </div>
         </div>
       </div>

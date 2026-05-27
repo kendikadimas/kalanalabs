@@ -94,15 +94,14 @@ export default function HeroSection() {
               <div className="w-2 h-2 rounded-full bg-green-500/60" />
               <div className="mx-auto w-32 sm:w-48 h-3.5 rounded bg-white/5 border border-white/10" />
             </div>
-            {/* Empty Content Space */}
-            <div className="flex-1 p-4 flex flex-col gap-4">
-              <div className="w-1/3 h-5 rounded bg-white/10 animate-pulse" />
-              <div className="grid grid-cols-3 gap-3">
-                <div className="h-24 rounded-lg bg-white/5 border border-white/10" />
-                <div className="h-24 rounded-lg bg-white/5 border border-white/10" />
-                <div className="h-24 rounded-lg bg-white/5 border border-white/10" />
-              </div>
-              <div className="w-full h-32 rounded-lg bg-white/5 border border-white/10" />
+            {/* Content Space */}
+            <div className="flex-1 overflow-hidden relative bg-[#05081c]">
+              <img
+                src="/assets/images/anggana.png"
+                alt="Anggana Project Mockup"
+                className="w-full h-full object-cover object-top"
+                loading="eager"
+              />
             </div>
           </div>
 
@@ -114,11 +113,14 @@ export default function HeroSection() {
               <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
               <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
             </div>
-            {/* Empty Content Space */}
-            <div className="flex-1 p-4 flex flex-col gap-3">
-              <div className="w-1/2 h-4 rounded bg-white/10" />
-              <div className="w-full h-20 rounded bg-white/5" />
-              <div className="w-2/3 h-16 rounded bg-white/5" />
+            {/* Content Space */}
+            <div className="flex-1 overflow-hidden relative bg-[#05081c]">
+              <img
+                src="/assets/images/furniture.png"
+                alt="Furniture Project Mockup"
+                className="w-full h-full object-cover object-top"
+                loading="eager"
+              />
             </div>
           </div>
 
@@ -130,14 +132,14 @@ export default function HeroSection() {
               <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
               <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
             </div>
-            {/* Empty Content Space */}
-            <div className="flex-1 p-4 flex flex-col gap-3">
-              <div className="w-2/5 h-4 rounded bg-white/10" />
-              <div className="w-full h-16 rounded bg-white/5" />
-              <div className="grid grid-cols-2 gap-2">
-                <div className="h-16 rounded bg-white/5" />
-                <div className="h-16 rounded bg-white/5" />
-              </div>
+            {/* Content Space */}
+            <div className="flex-1 overflow-hidden relative bg-[#05081c]">
+              <img
+                src="/assets/images/tourtravel.png"
+                alt="Tour & Travel Project Mockup"
+                className="w-full h-full object-cover object-top"
+                loading="eager"
+              />
             </div>
           </div>
         </div>

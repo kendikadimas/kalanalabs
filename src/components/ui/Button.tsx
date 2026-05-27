@@ -79,7 +79,7 @@ export default function Button({
   if (href) {
     return (
       <Link href={href} className={baseClasses} onClick={handleAnchorClick}>
-        <span>{children}</span>
+        {children}
         {arrowIcon}
       </Link>
     )
@@ -92,7 +92,7 @@ export default function Button({
       disabled={disabled}
       className={baseClasses}
     >
-      <span>{children}</span>
+      {children}
       {arrowIcon}
     </button>
   )

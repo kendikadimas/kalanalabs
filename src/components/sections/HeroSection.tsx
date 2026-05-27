@@ -83,7 +83,7 @@ export default function HeroSection() {
           </Button>
         </div>
 
-        {/* Empty Mockups Area (Just spaces/skeletons styled elegantly at the bottom) */}
+        {false && (
         <div className="w-full max-w-5xl mt-16 lg:mt-20 relative h-[180px] sm:h-[300px] lg:h-[380px] overflow-hidden animate-fade-in-up animation-delay-400">
           {/* Main Mockup (Center) */}
           <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[75%] sm:w-[65%] rounded-2xl border border-white/20 shadow-2xl z-20 overflow-hidden bg-[#05081c]">
@@ -117,6 +117,7 @@ export default function HeroSection() {
             />
           </div>
         </div>
+        )}
       </div>
     </section>
   )

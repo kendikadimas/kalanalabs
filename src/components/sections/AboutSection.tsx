@@ -42,19 +42,17 @@ export default function AboutSection() {
           </div>
 
           {/* Right: Image placeholder */}
-          <div className="relative">
-            <div className="bg-white border border-[#e4e8f2] rounded-2xl aspect-[4/3] flex items-center justify-center overflow-hidden relative">
-              {/* Decorative background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#f1f3f9] to-white" />
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#d9ff42]/10 rounded-bl-full" />
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#2152cf]/5 rounded-tr-full" />
-
-              <div className="relative text-center">
-                <div className="w-20 h-20 rounded-2xl bg-[#2152cf]/10 flex items-center justify-center mx-auto mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#2152cf]/20" />
-                </div>
-                <span className="text-[#8a96b8] text-sm font-medium">[ Tambahkan Gambar ]</span>
-              </div>
+          <div className="relative group">
+            <div className="bg-[#1441a5] border border-[#e4e8f2] rounded-2xl aspect-[4/3] flex items-center justify-center overflow-hidden relative shadow-lg shadow-[#2152cf]/5">
+              {/* Subtle radial glow to add depth */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_70%)] pointer-events-none" />
+              
+              <img
+                src="/logo.svg"
+                alt="Kalana Labs Logo"
+                className="w-[45%] h-[45%] object-contain transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
             </div>
 
             {/* Accent dot decoration */}

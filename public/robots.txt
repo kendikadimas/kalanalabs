@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kalanalabs.com
+
+# Sitemaps
+Sitemap: https://kalanalabs.com/sitemap.xml

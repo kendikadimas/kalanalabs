@@ -51,7 +51,7 @@ export default function HeroSection() {
         </div>
 
         {/* Heading */}
-        <div className="animate-fade-in-up animation-delay-100 max-w-4xl mb-6">
+        <div className=" max-w-4xl mb-6">
           <h1 className="text-[2.25rem] sm:text-[3.5rem] lg:text-[4.25rem] font-bold text-white leading-[1.15] tracking-tight">
             Bikin Website Profesional, Biar Bisnis{' '}
             <span className="font-script text-[#d9ff42] italic text-[2.6rem] sm:text-[4rem] lg:text-[5rem] tracking-normal inline-block">
@@ -61,7 +61,7 @@ export default function HeroSection() {
         </div>
 
         {/* Subheading */}
-        <div className="animate-fade-in-up animation-delay-200 max-w-2xl mb-8">
+        <div className=" max-w-2xl mb-8">
           <p className="text-[0.95rem] sm:text-base text-white/75 leading-relaxed">
             Kalana Labs adalah partner teknologi yang membantu bisnis Anda merancang, membangun,
             dan meluncurkan produk digital — dari UI/UX hingga sistem yang skalabel.

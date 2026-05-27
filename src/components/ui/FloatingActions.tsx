@@ -60,6 +60,8 @@ export default function FloatingActions() {
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 448 512" 
+          width="28"
+          height="28"
           fill="currentColor"
           className="w-7 h-7"
         >

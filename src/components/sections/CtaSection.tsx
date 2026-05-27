@@ -107,7 +107,7 @@ export default function CtaSection() {
                   <div className="w-16 border-r border-white/8 bg-white/[0.03] flex flex-col items-center pt-5 gap-3">
                     {/* Brand icon */}
                     <div className="w-7 h-7 rounded-lg bg-[#2152cf]/60 border border-[#2152cf]/30 flex items-center justify-center mb-2">
-                      <svg viewBox="0 0 221 294" className="w-4 h-5 text-white" fill="currentColor">
+                      <svg viewBox="0 0 221 294" width="16" height="20" className="w-4 h-5 text-white" fill="currentColor">
                         <path d="M0 270V104L75.3408 58.5V104L135.385 0H220.256L135.385 147L220 293.557H135L75.5 190.5V226.41L0 270Z" />
                       </svg>
                     </div>
@@ -164,7 +164,7 @@ export default function CtaSection() {
               {/* Floating notification card */}
               <div className="absolute -top-5 -right-8 bg-white rounded-2xl shadow-2xl px-4 py-3 flex items-center gap-3 border border-gray-100 z-10">
                 <div className="w-8 h-8 rounded-full bg-[#d9ff42] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-[#1e2547]" viewBox="0 0 16 16" fill="none">
+                  <svg className="w-4 h-4 text-[#1e2547]" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M3 8l4 4 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>

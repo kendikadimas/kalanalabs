@@ -48,6 +48,8 @@ export default function Navbar() {
             >
               <svg
                 viewBox="0 0 221 294"
+                width="24"
+                height="32"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className={`w-6 h-8 transition-colors duration-500 ${scrolled ? 'text-[#1441A5]' : 'text-white'}`}

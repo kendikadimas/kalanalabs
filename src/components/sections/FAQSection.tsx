@@ -59,6 +59,8 @@ export default function FAQSection() {
                     }`}>
                       <svg
                         className={`w-3 h-3 transition-all duration-300 ${isOpen ? 'rotate-45 text-white' : 'text-[#4f5b7d] group-hover:text-[#2152cf]'}`}
+                        width="12"
+                        height="12"
                         viewBox="0 0 12 12"
                         fill="none"
                         aria-hidden

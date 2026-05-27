@@ -1,13 +1,16 @@
+import dynamic from 'next/dynamic'
 import HeroSection from '@/components/sections/HeroSection'
 import AboutSection from '@/components/sections/AboutSection'
 import ServicesSection from '@/components/sections/ServicesSection'
-import ProjectsSection from '@/components/sections/ProjectsSection'
-import PricingSection from '@/components/sections/PricingSection'
-import ProcessSection from '@/components/sections/ProcessSection'
-import TestimonialsSection from '@/components/sections/TestimonialsSection'
-import FAQSection from '@/components/sections/FAQSection'
-import CtaSection from '@/components/sections/CtaSection'
-import ContactSection from '@/components/sections/ContactSection'
+
+// Dynamically import below-the-fold sections to optimize initial bundle size and TBT
+const ProjectsSection = dynamic(() => import('@/components/sections/ProjectsSection'), { ssr: true })
+const PricingSection = dynamic(() => import('@/components/sections/PricingSection'), { ssr: true })
+const ProcessSection = dynamic(() => import('@/components/sections/ProcessSection'), { ssr: true })
+const TestimonialsSection = dynamic(() => import('@/components/sections/TestimonialsSection'), { ssr: true })
+const FAQSection = dynamic(() => import('@/components/sections/FAQSection'), { ssr: true })
+const CtaSection = dynamic(() => import('@/components/sections/CtaSection'), { ssr: true })
+const ContactSection = dynamic(() => import('@/components/sections/ContactSection'), { ssr: true })
 
 export default function HomePage() {
   return (

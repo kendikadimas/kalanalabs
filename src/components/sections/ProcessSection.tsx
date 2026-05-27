@@ -27,6 +27,8 @@ export default function ProcessSection() {
                   <div className="w-5 h-5 rounded-full bg-[#d9ff42] flex items-center justify-center flex-shrink-0">
                     <svg
                       className="w-3 h-3 text-[#1e2547]"
+                      width="12"
+                      height="12"
                       viewBox="0 0 12 12"
                       fill="none"
                       aria-hidden

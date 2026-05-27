@@ -1,11 +1,18 @@
-import PageHeader from '@/components/ui/PageHeader'
-import { Rocket, ShieldCheck, Handshake, Users, Eye, Target, Sparkles } from 'lucide-react'
-import Button from '@/components/ui/Button'
+import ComingSoon from '@/components/ui/ComingSoon'
 
 export const metadata = {
   title: 'Tentang Kami — Kalana Labs | Jasa Pembuatan Website Purwokerto',
   description: 'Kenali Kalana Labs lebih dekat. Kami adalah studio teknologi di Purwokerto yang berkomitmen menghadirkan jasa pembuatan website murah & profesional, aplikasi mobile kustom, dan riset desain UI/UX.',
 }
+
+export default function AboutPage() {
+  return <ComingSoon pageName="Tentang Kami" />
+}
+
+/* Original AboutPage content for future reference:
+import PageHeader from '@/components/ui/PageHeader'
+import { Rocket, ShieldCheck, Handshake, Users, Eye, Target, Sparkles } from 'lucide-react'
+import Button from '@/components/ui/Button'
 
 const values = [
   {
@@ -66,12 +73,9 @@ export default function AboutPage() {
         description="Kami adalah studio produk digital yang memadukan keahlian teknik pemrograman dengan desain estetis untuk memecahkan masalah bisnis nyata." 
       />
 
-      {/* ── SEKSI 1: STORY & VISION (CERITA KAMI) ── */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
-            {/* Left: Description Story */}
             <div className="lg:col-span-7 space-y-6">
               <span className="text-xs font-black text-[#2152cf] uppercase tracking-widest block">Cerita Kami</span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#1e2547] tracking-tight leading-tight">
@@ -90,9 +94,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Right: Vision & Mission Cards */}
             <div className="lg:col-span-5 space-y-6">
-              {/* Vision Card */}
               <div className="bg-white border border-[#e4e8f2] rounded-3xl p-8 shadow-xl shadow-[#2152cf]/[0.01] relative overflow-hidden group hover:border-[#2152cf]/20 transition-all duration-300">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-[#2152cf]/5 rounded-bl-full pointer-events-none" />
                 <div className="flex gap-4 items-start">
@@ -108,7 +110,6 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              {/* Mission Card */}
               <div className="bg-white border border-[#e4e8f2] rounded-3xl p-8 shadow-xl shadow-[#2152cf]/[0.01] relative overflow-hidden group hover:border-[#2152cf]/20 transition-all duration-300">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-[#d9ff42]/10 rounded-bl-full pointer-events-none" />
                 <div className="flex gap-4 items-start">
@@ -124,12 +125,10 @@ export default function AboutPage() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* ── SEKSI 2: CORE VALUES (NILAI-NILAI KAMI) ── */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -166,9 +165,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── SEKSI 3: TIM DI BALIK LAYAR (TEAM ROLES) ── */}
       <section className="py-20 bg-[#0d1230] relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0d1230 0%, #122070 60%, #0d1230 100%)' }}>
-        {/* Decorative elements */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-white/5 blur-2xl" />
           <div className="absolute bottom-10 right-10 w-[500px] h-[500px] rounded-full bg-[#2152cf] opacity-10 blur-[120px]" />
@@ -191,7 +188,6 @@ export default function AboutPage() {
                 key={i}
                 className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-md hover:border-white/20 transition-all duration-300"
               >
-                {/* Visual Initials Avatar */}
                 <div 
                   className={`w-14 h-14 rounded-2xl flex items-center justify-center font-black text-xl mb-6 bg-gradient-to-br ${member.gradient} ${member.initials === 'UX' ? 'text-[#1e2547]' : 'text-white'}`}
                 >
@@ -209,7 +205,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── SEKSI 4: CTA ── */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#1e2547] tracking-tight leading-tight">
@@ -233,3 +228,5 @@ export default function AboutPage() {
     </main>
   )
 }
+*/
+

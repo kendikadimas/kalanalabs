@@ -1,5 +1,12 @@
 'use client'
 
+import ComingSoon from '@/components/ui/ComingSoon'
+
+export default function LayananPage() {
+  return <ComingSoon pageName="Layanan Kami" />
+}
+
+/* Original LayananPage content for future reference:
 import { useState } from 'react'
 import PageHeader from '@/components/ui/PageHeader'
 import { 
@@ -130,23 +137,17 @@ export default function LayananPage() {
         description="Layanan terintegrasi dari hulu ke hilir untuk membantu bisnis Anda memimpin di era digital dengan teknologi dan desain berstandar industri." 
       />
 
-      {/* ── SEKSI 1: DETAIL LAYANAN (ALTERNATING GRID) ── */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col gap-24 lg:gap-32">
             
-            {/* SERVICE 1: Pembuatan Website & Sistem Informasi (WITH SWITCH TABS) */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              {/* Visual Left */}
               <div className="lg:col-span-5 lg:order-1">
                 <div className="relative group">
-                  {/* Decorative Background Glow - Subtle & solid color */}
                   <div className="absolute inset-0 bg-[#2152cf]/5 rounded-[2.5rem] blur-xl pointer-events-none" />
                   
-                  {/* Premium Card Display */}
                   <div className="relative bg-white border border-[#e4e8f2] rounded-[2.5rem] p-8 md:p-10 shadow-xl shadow-[#2152cf]/[0.02] overflow-hidden">
-                    {/* Upper Solid Accent Line */}
                     <div className="absolute top-0 left-0 right-0 h-2 bg-[#2152cf]" />
                     
                     <div className="w-16 h-16 rounded-2xl bg-[#2152cf]/10 flex items-center justify-center text-[#2152cf] mb-8">
@@ -192,7 +193,6 @@ export default function LayananPage() {
                 </div>
               </div>
 
-              {/* Content Right */}
               <div className="lg:col-span-7 flex flex-col gap-6 lg:order-2">
                 <div className="space-y-4">
                   <span className="text-xs font-black text-[#2152cf] uppercase tracking-widest">
@@ -206,7 +206,6 @@ export default function LayananPage() {
                   </p>
                 </div>
 
-                {/* Subcategory Switch Tabs */}
                 <div className="border-y border-[#e4e8f2] py-4 my-2">
                   <span className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block mb-3">Pilih Kategori Web:</span>
                   <div className="flex flex-wrap gap-2">
@@ -226,9 +225,7 @@ export default function LayananPage() {
                   </div>
                 </div>
 
-                {/* Dynamic Web Subcategory Details */}
                 <div className="space-y-6 animate-fade-in">
-                  {/* Tech Badges */}
                   <div>
                     <h4 className="text-xs font-bold text-[#1e2547] uppercase tracking-wider mb-3">Teknologi &amp; Tools Utama:</h4>
                     <div className="flex flex-wrap gap-2">
@@ -243,7 +240,6 @@ export default function LayananPage() {
                     </div>
                   </div>
 
-                  {/* Features List */}
                   <div>
                     <h4 className="text-xs font-bold text-[#1e2547] uppercase tracking-wider mb-4">Apa yang Anda Dapatkan:</h4>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
@@ -259,9 +255,7 @@ export default function LayananPage() {
               </div>
             </div>
 
-            {/* SERVICE 2: Pembuatan Aplikasi Mobile */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              {/* Visual Right */}
               <div className="lg:col-span-5 lg:order-2">
                 <div className="relative group">
                   <div className="absolute inset-0 bg-[#2152cf]/5 rounded-[2.5rem] blur-xl pointer-events-none" />
@@ -312,7 +306,6 @@ export default function LayananPage() {
                 </div>
               </div>
 
-              {/* Content Left */}
               <div className="lg:col-span-7 flex flex-col gap-6 lg:order-1">
                 <div className="space-y-4">
                   <span className="text-xs font-black text-[#2152cf] uppercase tracking-widest">
@@ -326,7 +319,6 @@ export default function LayananPage() {
                   </p>
                 </div>
 
-                {/* Tech Badges */}
                 <div>
                   <h4 className="text-xs font-bold text-[#1e2547] uppercase tracking-wider mb-3">Teknologi &amp; Tools Utama:</h4>
                   <div className="flex flex-wrap gap-2">
@@ -341,7 +333,6 @@ export default function LayananPage() {
                   </div>
                 </div>
 
-                {/* Features List */}
                 <div className="pt-2">
                   <h4 className="text-xs font-bold text-[#1e2547] uppercase tracking-wider mb-4">Apa yang Anda Dapatkan:</h4>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
@@ -363,9 +354,7 @@ export default function LayananPage() {
               </div>
             </div>
 
-            {/* SERVICE 3: Riset & Desain UI/UX */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              {/* Visual Left */}
               <div className="lg:col-span-5 lg:order-1">
                 <div className="relative group">
                   <div className="absolute inset-0 bg-[#2152cf]/5 rounded-[2.5rem] blur-xl pointer-events-none" />
@@ -416,7 +405,6 @@ export default function LayananPage() {
                 </div>
               </div>
 
-              {/* Content Right */}
               <div className="lg:col-span-7 flex flex-col gap-6 lg:order-2">
                 <div className="space-y-4">
                   <span className="text-xs font-black text-[#2152cf] uppercase tracking-widest">
@@ -430,7 +418,6 @@ export default function LayananPage() {
                   </p>
                 </div>
 
-                {/* Tech Badges */}
                 <div>
                   <h4 className="text-xs font-bold text-[#1e2547] uppercase tracking-wider mb-3">Teknologi &amp; Tools Utama:</h4>
                   <div className="flex flex-wrap gap-2">
@@ -445,7 +432,6 @@ export default function LayananPage() {
                   </div>
                 </div>
 
-                {/* Features List */}
                 <div className="pt-2">
                   <h4 className="text-xs font-bold text-[#1e2547] uppercase tracking-wider mb-4">Apa yang Anda Dapatkan:</h4>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
@@ -471,7 +457,6 @@ export default function LayananPage() {
         </div>
       </section>
 
-      {/* ── SEKSI 2: VALUE PROPOSITION (KENAPA PILIH KAMI - SOLID DARK COLOR) ── */}
       <section className="py-20 bg-[#0d1230] relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#2152cf] opacity-10 blur-[130px]" />
@@ -512,7 +497,6 @@ export default function LayananPage() {
         </div>
       </section>
 
-      {/* ── SEKSI 3: KONSULTASI INTERAKTIF CALLOUT (SOLID BORDER, NO GLASS) ── */}
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-[#f8f9fc] border border-[#e4e8f2] rounded-[3rem] p-8 md:p-14 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 relative overflow-hidden">
@@ -544,3 +528,4 @@ export default function LayananPage() {
     </main>
   )
 }
+*/

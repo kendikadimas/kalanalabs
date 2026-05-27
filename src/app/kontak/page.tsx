@@ -1,5 +1,12 @@
 'use client'
 
+import ComingSoon from '@/components/ui/ComingSoon'
+
+export default function KontakPage() {
+  return <ComingSoon pageName="Kontak Kami" />
+}
+
+/* Original KontakPage content for future reference:
 import { useState, type FormEvent } from 'react'
 import PageHeader from '@/components/ui/PageHeader'
 import { Mail, Phone, MapPin, Send, CheckCircle2, ChevronDown, Sparkles } from 'lucide-react'
@@ -91,11 +98,9 @@ export default function KontakPage() {
         description="Ada ide besar yang ingin diwujudkan atau pertanyaan mengenai layanan kami? Sampaikan pesan Anda, kami siap berkolaborasi." 
       />
 
-      {/* ── SEKSI 1: DUA KOLOM INFORMASI KONTAK + FORM ── */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Quick Contact Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 md:mb-24">
             {CONTACT_CARDS.map((card, i) => {
               const CardIcon = card.icon
@@ -124,7 +129,6 @@ export default function KontakPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
-            {/* Left: Commitments & Copy */}
             <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-28">
               <div className="space-y-4">
                 <span className="text-xs font-black text-[#2152cf] uppercase tracking-widest block">Konsultasi Terbuka</span>
@@ -136,7 +140,6 @@ export default function KontakPage() {
                 </p>
               </div>
 
-              {/* Service commitment list */}
               <div className="bg-white border border-[#e4e8f2] rounded-3xl p-6 space-y-5">
                 <h4 className="text-sm font-bold text-[#1e2547] border-b border-[#e4e8f2] pb-3 flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#2152cf]" />
@@ -168,7 +171,6 @@ export default function KontakPage() {
               </div>
             </div>
 
-            {/* Right: Modern Contact Form */}
             <div className="lg:col-span-7">
               <div className="bg-white border border-[#e4e8f2] rounded-[2.5rem] p-8 md:p-10 shadow-xl shadow-[#2152cf]/[0.01]">
                 {submitted ? (
@@ -196,7 +198,6 @@ export default function KontakPage() {
                       <p className="text-xs text-[#4f5b7d]">Mohon isi detail di bawah ini agar kami dapat memetakan rencana proyek Anda.</p>
                     </div>
 
-                    {/* Layanan pills */}
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block">Layanan yang Dibutuhkan *</label>
                       <div className="flex flex-wrap gap-2">
@@ -218,7 +219,6 @@ export default function KontakPage() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {/* Nama */}
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block">Nama Lengkap *</label>
                         <input
@@ -232,7 +232,6 @@ export default function KontakPage() {
                         />
                       </div>
                       
-                      {/* WhatsApp */}
                       <div className="space-y-2">
                         <label htmlFor="phone" className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block">Nomor WhatsApp *</label>
                         <input
@@ -247,7 +246,6 @@ export default function KontakPage() {
                       </div>
                     </div>
 
-                    {/* Email */}
                     <div className="space-y-2">
                       <label htmlFor="email" className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block">Alamat Email</label>
                       <input
@@ -260,7 +258,6 @@ export default function KontakPage() {
                       />
                     </div>
 
-                    {/* Pesan detail */}
                     <div className="space-y-2">
                       <label htmlFor="message" className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block">Gambaran Rencana Proyek *</label>
                       <textarea
@@ -297,7 +294,6 @@ export default function KontakPage() {
         </div>
       </section>
 
-      {/* ── SEKSI 2: CURATED FAQ GRID (TAMPILAN KOLOM GANDA) ── */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -342,4 +338,6 @@ export default function KontakPage() {
     </main>
   )
 }
+*/
+
 

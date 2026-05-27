@@ -1,35 +1,10 @@
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import { Metadata } from 'next'
-import { 
-  Laptop, 
-  Building2, 
-  ShoppingBag, 
-  Database, 
-  User, 
-  Palette, 
-  Smartphone,
-  Check,
-  ArrowLeft,
-  CheckCircle2,
-  HelpCircle
-} from 'lucide-react'
-import Button from '@/components/ui/Button'
 import { SERVICES_DETAIL } from '@/lib/servicesData'
-import { PRICING_CATEGORIES } from '@/lib/data'
+import ComingSoon from '@/components/ui/ComingSoon'
 
 interface PageProps {
   params: Promise<{ slug: string }>
-}
-
-const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
-  Laptop,
-  Building2,
-  ShoppingBag,
-  Database,
-  User,
-  Palette,
-  Smartphone
 }
 
 export function generateStaticParams() {
@@ -66,15 +41,53 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     notFound()
   }
 
+  return <ComingSoon pageName={service.title} />
+}
+
+/* Original ServiceDetailPage content for future reference:
+import Link from 'next/link'
+import { 
+  Laptop, 
+  Building2, 
+  ShoppingBag, 
+  Database, 
+  User, 
+  Palette, 
+  Smartphone,
+  Check,
+  ArrowLeft,
+  CheckCircle2,
+  HelpCircle
+} from 'lucide-react'
+import Button from '@/components/ui/Button'
+import { PRICING_CATEGORIES } from '@/lib/data'
+
+const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
+  Laptop,
+  Building2,
+  ShoppingBag,
+  Database,
+  User,
+  Palette,
+  Smartphone
+}
+
+export default async function ServiceDetailPage({ params }: PageProps) {
+  const { slug } = await params
+  const service = SERVICES_DETAIL.find(s => s.id === slug)
+  
+  if (!service) {
+    notFound()
+  }
+
   const pricingCategory = PRICING_CATEGORIES.find(cat => cat.id === slug)
   const IconComponent = iconMap[service.iconName] || Laptop
 
   return (
     <main className="bg-[#f8f9fc] min-h-screen">
-      {/* ── HERO SECTION ── */}
       <section 
         className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-[#0d1230]"
-        style={{ background: 'linear-gradient(135deg, #0d1230 0%, #151d42 100%)' }} // Single tone gradient
+        style={{ background: 'linear-gradient(135deg, #0d1230 0%, #151d42 100%)' }}
       >
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-white/5 blur-3xl" />
@@ -105,7 +118,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── DEFINISI & DESKRIPSI LAYANAN ── */}
       <section className="py-16 md:py-20 bg-white border-b border-[#e4e8f2]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
@@ -126,7 +138,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── MANFAAT BISNIS ── */}
       <section className="py-16 md:py-24 bg-[#f8f9fc] border-b border-[#e4e8f2]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -160,7 +171,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── KEGUNAAN & FITUR UTAMA ── */}
       <section className="py-16 md:py-24 bg-white border-b border-[#e4e8f2]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -196,7 +206,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── COCOK UNTUK SIAPA (TARGET AUDIENCE) ── */}
       <section className="py-16 md:py-20 bg-[#f8f9fc] border-b border-[#e4e8f2]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white border border-[#e4e8f2] rounded-3xl p-8 md:p-10 shadow-sm">
@@ -215,7 +224,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── PAKET HARGA & INVESTASI (FLAT DESIGN) ── */}
       {pricingCategory && (
         <section className="py-16 md:py-24 bg-white border-b border-[#e4e8f2]">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -231,7 +239,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
               {pricingCategory.packages.map((pkg, idx) => {
-                // Style presets: Tier 1 & 3 are white/gray solid, Tier 2 is navy highlight (solid, no glassmorphism)
                 const isFeatured = pkg.bestValue
                 
                 const cardStyle = isFeatured
@@ -310,7 +317,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* ── KONSULTASI CALLOUT ── */}
       <section className="py-20 bg-[#f8f9fc]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-[#1e2547] text-white rounded-3xl p-8 md:p-12 shadow-md relative overflow-hidden">
@@ -338,3 +344,5 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     </main>
   )
 }
+*/
+

@@ -1,5 +1,12 @@
 'use client'
 
+import ComingSoon from '@/components/ui/ComingSoon'
+
+export default function PortofolioPage() {
+  return <ComingSoon pageName="Karya & Portofolio" />
+}
+
+/* Original PortofolioPage content for future reference:
 import { useState } from 'react'
 import PageHeader from '@/components/ui/PageHeader'
 import { ArrowUpRight, Code, Smartphone, Palette, ShoppingBag, Eye } from 'lucide-react'
@@ -98,11 +105,9 @@ export default function PortofolioPage() {
         description="Jelajahi portofolio studi kasus produk digital rancangan kami. Kami memadukan kode berkualitas tinggi dengan pengalaman visual yang memikat." 
       />
 
-      {/* ── SEKSI 1: PORTFOLIO FILTER & GRID ── */}
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Category Filter Buttons */}
           <div className="flex justify-center mb-12 sm:mb-16">
             <div className="flex overflow-x-auto max-w-full gap-2 bg-white border border-[#e4e8f2] p-1.5 rounded-2xl shadow-sm md:flex-wrap md:justify-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {CATEGORIES.map((cat) => (
@@ -121,7 +126,6 @@ export default function PortofolioPage() {
             </div>
           </div>
 
-          {/* Project Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => {
               const ProjectIcon = project.icon
@@ -132,12 +136,10 @@ export default function PortofolioPage() {
                   key={project.id}
                   className="group bg-white border border-[#e4e8f2] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#2152cf]/[0.03] hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full"
                 >
-                  {/* Dynamic Gradient Header Visual */}
                   <div 
                     className="aspect-video relative overflow-hidden flex items-center justify-center p-6"
                     style={{ background: project.gradient }}
                   >
-                    {/* Grid Pattern overlay */}
                     <div 
                       className="absolute inset-0 opacity-[0.1] pointer-events-none"
                       style={{
@@ -149,21 +151,17 @@ export default function PortofolioPage() {
                       }}
                     />
 
-                    {/* Glow effect */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-white/20 blur-xl pointer-events-none" />
 
-                    {/* Icon wrapper */}
                     <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white relative z-10 transition-transform duration-300 group-hover:scale-110">
                       <ProjectIcon className="w-8 h-8" strokeWidth={1.5} />
                     </div>
 
-                    {/* Category Label Overlay */}
                     <div className="absolute top-4 left-4 bg-white/15 border border-white/10 text-white text-[10px] font-bold rounded-full px-3 py-1 backdrop-blur-sm">
                       {project.category}
                     </div>
                   </div>
 
-                  {/* Body Content */}
                   <div className="p-6 flex flex-col flex-grow">
                     <h3 className="text-xl font-bold text-[#1e2547] mb-2 group-hover:text-[#2152cf] transition-colors duration-200">
                       {project.title}
@@ -173,7 +171,6 @@ export default function PortofolioPage() {
                       {project.description}
                     </p>
 
-                    {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tags.map((tag) => (
                         <span 
@@ -185,7 +182,6 @@ export default function PortofolioPage() {
                       ))}
                     </div>
 
-                    {/* Action Button */}
                     <div className="border-t border-[#e4e8f2] pt-4 mt-auto">
                       <a
                         href={`https://wa.me/6285707736885?text=${waText}`}
@@ -201,7 +197,6 @@ export default function PortofolioPage() {
             })}
           </div>
 
-          {/* Empty State */}
           {filteredProjects.length === 0 && (
             <div className="text-center py-20 bg-white border border-[#e4e8f2] rounded-3xl">
               <p className="text-base text-[#8a96b8]">Belum ada proyek dalam kategori ini.</p>
@@ -211,7 +206,6 @@ export default function PortofolioPage() {
         </div>
       </section>
 
-      {/* ── SEKSI 2: PORTFOLIO STATS BANNER ── */}
       <section className="py-16 bg-[#0d1230] relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0d1230 0%, #122070 60%, #0d1230 100%)' }}>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -235,7 +229,6 @@ export default function PortofolioPage() {
         </div>
       </section>
 
-      {/* ── SEKSI 3: CTA TO START A PROJECT ── */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <span className="text-xs font-black text-[#2152cf] uppercase tracking-widest block bg-[#2152cf]/5 px-4 py-2 rounded-full w-fit mx-auto">
@@ -262,3 +255,5 @@ export default function PortofolioPage() {
     </main>
   )
 }
+*/
+

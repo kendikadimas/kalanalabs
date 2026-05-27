@@ -14,18 +14,18 @@ export default function ComingSoon({ pageName }: ComingSoonProps) {
       className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-[#f8f9fc] py-20 px-4"
     >
       {/* Decorative Background Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
+      {/* <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
         {/* Soft blue glow top right */}
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-[#2152cf]/5 blur-[100px]" />
+        {/* <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-[#2152cf]/5 blur-[100px]" /> */}
         {/* Soft blue glow bottom left */}
-        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#2152cf]/5 blur-[100px]" />
-      </div>
+        {/* <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#2152cf]/5 blur-[100px]" /> */}
+      {/* </div> */} 
 
       <div className="relative max-w-xl w-full text-center space-y-8 z-10">
         {/* Icon container */}
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-[#2152cf]/5 border border-[#2152cf]/10 text-[#2152cf] animate-bounce">
+        {/* <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-[#2152cf]/5 border border-[#2152cf]/10 text-[#2152cf] animate-bounce">
           <Hammer className="w-10 h-10" strokeWidth={1.5} />
-        </div>
+        </div> */}
 
         {/* Text */}
         <div className="space-y-4">

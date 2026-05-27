@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { type ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type ButtonVariant = 'primary' | 'outline' | 'accent'
 type ButtonSize = 'sm' | 'md' | 'lg'
@@ -44,7 +45,10 @@ export default function Button({
   disabled = false,
   showArrow = true,
 }: ButtonProps) {
-  const baseClasses = `inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#2152cf]/50 focus:ring-offset-2 group ${sizeClasses[size]} ${variantClasses[variant]} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`
+  const baseClasses = twMerge(
+    `inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#2152cf]/50 focus:ring-offset-2 group ${sizeClasses[size]} ${variantClasses[variant]} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`,
+    className
+  )
 
   const arrowIcon = showArrow ? (
     <svg

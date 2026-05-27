@@ -9,7 +9,7 @@ const iconMap: Record<string, LucideIcon> = {
 }
 
 // Kalana Labs K-Logo path
-const KALANA_LOGO_PATH = 'M 411.859375 1126.382812 L 411.859375 618.410156 L 642.40625 479.179688 L 642.40625 618.410156 L 826.148438 300.164062 L 1085.859375 300.164062 L 826.148438 749.996094 L 1085.074219 1198.46875 L 824.96875 1198.46875 L 642.894531 883.105469 L 642.894531 992.996094 Z'
+const KALANA_LOGO_PATH = 'M0 270V104L75.3408 58.5V104L135.385 0H220.256L135.385 147L220 293.557H135L75.5 190.5V226.41L0 270Z'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -24,9 +24,9 @@ export default function Footer() {
         <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-[#d9ff42] opacity-5 blur-[100px]" />
         {/* Giant K watermark */}
         <svg
-          viewBox="0 0 1500 1500"
+          viewBox="0 0 221 294"
           width="300"
-          height="300"
+          height="400"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="absolute -right-10 top-1/2 -translate-y-1/2 w-[300px] opacity-[0.02] select-none"
@@ -42,13 +42,18 @@ export default function Footer() {
           {/* ── Brand & Info (Col Span 4) ── */}
           <div className="lg:col-span-4 lg:pr-10">
             <Link href="/" className="flex items-center gap-3 mb-6 group w-fit">
-              <img
-                src="/logo.svg"
-                alt="Kalana Labs"
-                width="36"
-                height="36"
-                className="w-9 h-9 rounded-lg"
-              />
+              <div className="w-9 h-9 rounded-lg bg-[#2152cf] flex items-center justify-center group-hover:bg-[#1a3fa3] transition-colors">
+                <svg
+                  viewBox="0 0 221 294"
+                  width="16"
+                  height="20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-5"
+                >
+                  <path d={KALANA_LOGO_PATH} fill="white" />
+                </svg>
+              </div>
               <span className="text-2xl font-bold tracking-tight text-white group-hover:text-[#d9ff42] transition-colors">
                 Kalana Labs
               </span>

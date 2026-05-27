@@ -45,6 +45,7 @@ export default function ComingSoon({ pageName }: ComingSoonProps) {
           <Button 
             href="/" 
             variant="primary" 
+            showArrow={false}
             className="w-full sm:w-auto shadow-md"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -53,6 +54,7 @@ export default function ComingSoon({ pageName }: ComingSoonProps) {
           <Button 
             href="https://wa.me/6285707736885?text=Halo%20Kalana%20Labs%2C%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20kalian." 
             variant="outline" 
+            showArrow={false}
             className="w-full sm:w-auto border-[#1e2547] text-[#1e2547] hover:bg-[#1e2547] hover:text-white"
           >
             <MessageSquare className="w-4 h-4 mr-2" />

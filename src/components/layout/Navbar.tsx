@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS } from '@/lib/data'
 import Button from '@/components/ui/Button'
@@ -9,40 +10,11 @@ import Button from '@/components/ui/Button'
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
-
-      // Find which section is currently active
-      const scrollPosition = window.scrollY + 120 // offset for navbar height
-      
-      if (window.scrollY < 120) {
-        setActiveSection('')
-        return
-      }
-
-      const sections = NAV_LINKS.map(link => {
-        const id = link.href.replace('#', '')
-        const el = document.getElementById(id)
-        if (el) {
-          return {
-            id: link.href,
-            top: el.offsetTop,
-            bottom: el.offsetTop + el.offsetHeight
-          }
-        }
-        return null
-      }).filter(Boolean) as Array<{ id: string; top: number; bottom: number }>
-
-      const current = sections.find(
-        section => scrollPosition >= section.top && scrollPosition < section.bottom
-      )
-
-      if (current) {
-        setActiveSection(current.id)
-      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -61,14 +33,14 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm shadow-[#2152cf]/5 border-b border-[#e4e8f2]'
-            : 'bg-transparent'
+            ? 'top-4 max-w-5xl w-[92%] mx-auto rounded-full bg-white/95 backdrop-blur-md shadow-lg shadow-[#2152cf]/8 border border-[#e4e8f2]'
+            : 'top-0 max-w-full w-full rounded-none bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
+        <div className={`mx-auto transition-all duration-300 ${scrolled ? 'px-6' : 'max-w-7xl px-4 sm:px-6 lg:px-8'}`}>
+          <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14 md:h-16' : 'h-16 md:h-20'}`}>
             <Link
               href="/"
               className="flex items-center gap-2.5 group"
@@ -90,10 +62,13 @@ export default function Navbar() {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-2" aria-label="Navigasi utama">
               {NAV_LINKS.map((link) => {
-                const isActive = activeSection === link.href
+                // For Beranda (/), we only highlight if pathname is exactly '/'
+                // For others like /layanan, we highlight if pathname matches
+                const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href.split('#')[0] || link.href)
+                
                 return (
                   <Link
-                    key={link.href}
+                    key={link.label}
                     href={link.href}
                     className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
                       scrolled
@@ -115,7 +90,7 @@ export default function Navbar() {
             <div className="hidden md:block">
               <Button
                 href="#kontak"
-                variant={scrolled ? 'primary' : 'accent'}
+                variant="accent"
                 size="sm"
               >
                 Mulai Konsultasi

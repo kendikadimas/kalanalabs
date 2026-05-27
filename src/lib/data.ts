@@ -11,12 +11,11 @@ import type {
 } from './types'
 
 export const NAV_LINKS: NavLink[] = [
-  { label: 'Beranda', href: '#hero' },
-  { label: 'Layanan', href: '#layanan' },
-  { label: 'Harga', href: '#harga' },
-  { label: 'Portofolio', href: '#project' },
-  { label: 'Kontak', href: '#kontak' },
-  { label: 'About', href: '#tentang' },
+  { label: 'Beranda', href: '/' },
+  { label: 'Layanan', href: '/layanan' },
+  { label: 'Portofolio', href: '/portofolio' },
+  { label: 'Kontak', href: '/kontak' },
+  { label: 'About', href: '/about' },
 ]
 
 export const SERVICES: Service[] = [
@@ -158,17 +157,21 @@ export const STATS: Stat[] = [
 ]
 
 export const FOOTER_NAV: FooterLink[] = [
-  { label: 'Tentang Kami', href: '#tentang' },
-  { label: 'Layanan', href: '#layanan' },
-  { label: 'Portofolio', href: '#project' },
-  { label: 'Proses Kerja', href: '#proses' },
-  { label: 'Kontak', href: '#kontak' },
+  { label: 'Tentang Kami', href: '/about' },
+  { label: 'Layanan', href: '/layanan' },
+  { label: 'Portofolio', href: '/portofolio' },
+  { label: 'Proses Kerja', href: '/#proses' }, // Keeping proses on homepage
+  { label: 'Kontak', href: '/kontak' },
 ]
 
 export const FOOTER_SERVICES: FooterLink[] = [
-  { label: 'UI/UX Design', href: '#layanan' },
-  { label: 'Web Development', href: '#layanan' },
-  { label: 'Mobile Apps', href: '#layanan' },
+  { label: 'Landing Page', href: '/layanan/landing-page' },
+  { label: 'Company Profile', href: '/layanan/company-profile' },
+  { label: 'E-Commerce', href: '/layanan/ecommerce' },
+  { label: 'Sistem Informasi', href: '/layanan/sistem-informasi' },
+  { label: 'Website Portofolio', href: '/layanan/website-portofolio' },
+  { label: 'Desain UI/UX', href: '/layanan/ui-ux-design' },
+  { label: 'Mobile Apps', href: '/layanan/mobile-app' },
 ]
 
 export const CONTACT_INFO: ContactInfo[] = [

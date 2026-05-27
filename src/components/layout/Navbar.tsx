@@ -32,15 +32,15 @@ export default function Navbar() {
 
   return (
     <>
-      <header
-        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'top-4 max-w-5xl w-[92%] mx-auto rounded-full bg-white/95 backdrop-blur-md shadow-lg shadow-[#2152cf]/8 border border-[#e4e8f2]'
-            : 'top-0 max-w-full w-full rounded-none bg-transparent'
-        }`}
-      >
-        <div className={`mx-auto transition-all duration-300 ${scrolled ? 'px-6' : 'max-w-7xl px-4 sm:px-6 lg:px-8'}`}>
-          <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14 md:h-16' : 'h-16 md:h-20'}`}>
+      <header className="fixed top-0 left-0 right-0 z-50 w-full bg-transparent flex justify-center pointer-events-none">
+        <div
+          className={`pointer-events-auto transition-all duration-500 ease-in-out border ${
+            scrolled
+              ? 'mt-4 w-[92%] max-w-5xl rounded-full bg-white/95 backdrop-blur-md shadow-lg shadow-[#2152cf]/8 border-[#e4e8f2] px-6 h-14 md:h-16'
+              : 'mt-0 w-full max-w-7xl rounded-none bg-transparent border-transparent px-4 sm:px-6 lg:px-8 h-16 md:h-20'
+          }`}
+        >
+          <div className="flex items-center justify-between h-full w-full">
             <Link
               href="/"
               className="flex items-center gap-2.5 group"
@@ -50,11 +50,11 @@ export default function Navbar() {
                 viewBox="0 0 221 294"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className={`w-6 h-8 transition-colors duration-300 ${scrolled ? 'text-[#1441A5]' : 'text-white'}`}
+                className={`w-6 h-8 transition-colors duration-500 ${scrolled ? 'text-[#1441A5]' : 'text-white'}`}
               >
                 <path d="M0 270V104L75.3408 58.5V104L135.385 0H220.256L135.385 147L220 293.557H135L75.5 190.5V226.41L0 270Z" fill="currentColor"/>
               </svg>
-              <span className={`text-xl font-bold tracking-tight transition-colors duration-300 ${scrolled ? 'text-[#1e2547]' : 'text-white'}`}>
+              <span className={`text-xl font-bold tracking-tight transition-colors duration-500 ${scrolled ? 'text-[#1e2547]' : 'text-white'}`}>
                 Kalana Labs
               </span>
             </Link>
@@ -70,7 +70,7 @@ export default function Navbar() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-500 ${
                       scrolled
                         ? isActive
                           ? 'bg-[#1e2547] text-white shadow-sm'
@@ -100,7 +100,7 @@ export default function Navbar() {
             {/* Mobile Hamburger */}
             <button
               id="mobile-menu-toggle"
-              className={`md:hidden p-2 rounded-lg transition-colors ${
+              className={`md:hidden p-2 rounded-lg transition-colors duration-500 ${
                 scrolled
                   ? 'text-[#1e2547] hover:bg-[#f1f3f9]'
                   : 'text-white hover:bg-white/10'

@@ -86,7 +86,7 @@ export default function HeroSection() {
         {/* Empty Mockups Area (Just spaces/skeletons styled elegantly at the bottom) */}
         <div className="w-full max-w-5xl mt-16 lg:mt-20 relative h-[180px] sm:h-[300px] lg:h-[380px] overflow-hidden animate-fade-in-up animation-delay-400">
           {/* Main Mockup (Center) */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[75%] sm:w-[65%] h-[350px] sm:h-[450px] rounded-t-2xl border border-white/20 bg-white/5 backdrop-blur-md shadow-2xl z-20 overflow-hidden flex flex-col">
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[75%] sm:w-[65%] rounded-t-2xl border border-white/20 bg-white/5 backdrop-blur-md shadow-2xl z-20 overflow-hidden flex flex-col">
             {/* Browser Header */}
             <div className="h-8 border-b border-white/10 px-4 flex items-center gap-1.5 shrink-0 bg-white/5">
               <div className="w-2 h-2 rounded-full bg-red-500/60" />
@@ -95,18 +95,18 @@ export default function HeroSection() {
               <div className="mx-auto w-32 sm:w-48 h-3.5 rounded bg-white/5 border border-white/10" />
             </div>
             {/* Content Space */}
-            <div className="flex-1 overflow-hidden relative bg-[#05081c]">
+            <div className="w-full overflow-hidden relative bg-[#05081c]">
               <img
                 src="/assets/images/anggana.png"
                 alt="Anggana Project Mockup"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-auto block"
                 loading="eager"
               />
             </div>
           </div>
 
           {/* Left Mockup (Behind left) */}
-          <div className="absolute left-[5%] sm:left-[10%] top-8 sm:top-12 w-[45%] h-[280px] sm:h-[380px] rounded-t-2xl border border-white/10 bg-[#0d1230]/40 backdrop-blur-md shadow-xl z-10 overflow-hidden flex flex-col">
+          <div className="absolute left-[5%] sm:left-[10%] top-8 sm:top-12 w-[45%] rounded-t-2xl border border-white/10 bg-[#0d1230]/40 backdrop-blur-md shadow-xl z-10 overflow-hidden flex flex-col">
             {/* Browser Header */}
             <div className="h-8 border-b border-white/10 px-4 flex items-center gap-1.5 shrink-0 bg-white/5">
               <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
@@ -114,18 +114,18 @@ export default function HeroSection() {
               <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
             </div>
             {/* Content Space */}
-            <div className="flex-1 overflow-hidden relative bg-[#05081c]">
+            <div className="w-full overflow-hidden relative bg-[#05081c]">
               <img
                 src="/assets/images/furniture.png"
                 alt="Furniture Project Mockup"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-auto block"
                 loading="eager"
               />
             </div>
           </div>
 
           {/* Right Mockup (Behind right) */}
-          <div className="absolute right-[5%] sm:right-[10%] top-8 sm:top-12 w-[45%] h-[280px] sm:h-[380px] rounded-t-2xl border border-white/10 bg-[#0d1230]/40 backdrop-blur-md shadow-xl z-10 overflow-hidden flex flex-col">
+          <div className="absolute right-[5%] sm:right-[10%] top-8 sm:top-12 w-[45%] rounded-t-2xl border border-white/10 bg-[#0d1230]/40 backdrop-blur-md shadow-xl z-10 overflow-hidden flex flex-col">
             {/* Browser Header */}
             <div className="h-8 border-b border-white/10 px-4 flex items-center gap-1.5 shrink-0 bg-white/5">
               <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
@@ -133,11 +133,11 @@ export default function HeroSection() {
               <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
             </div>
             {/* Content Space */}
-            <div className="flex-1 overflow-hidden relative bg-[#05081c]">
+            <div className="w-full overflow-hidden relative bg-[#05081c]">
               <img
                 src="/assets/images/tourtravel.png"
                 alt="Tour & Travel Project Mockup"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-auto block"
                 loading="eager"
               />
             </div>

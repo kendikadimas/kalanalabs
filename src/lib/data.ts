@@ -55,28 +55,49 @@ export const SERVICES: Service[] = [
 
 export const PROJECTS: Project[] = [
   {
-    id: 'hrm-platform',
-    category: 'Web App',
-    title: 'Platform Manajemen SDM',
+    id: 'anggana-project',
+    category: 'Company Profile',
+    title: 'Anggana Project',
     description:
-      'Sistem HR digital untuk perusahaan manufaktur dengan 500+ karyawan — meningkatkan efisiensi operasional 40%.',
-    tags: ['React', 'Node.js', 'PostgreSQL'],
+      'Website event organizer di Purwokerto yang ahli dalam menangani berbagai event penting seperti wedding, graduation, dan corporate event.',
+    tags: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
+    image: '/assets/images/Anggana Project.png',
   },
   {
-    id: 'logistics-app',
-    category: 'Mobile App',
-    title: 'Aplikasi Logistik Real-time',
+    id: 'beresin',
+    category: 'Company Profile',
+    title: 'Beresin',
     description:
-      'Solusi tracking pengiriman end-to-end untuk perusahaan distribusi regional.',
-    tags: ['Flutter', 'Firebase', 'Maps API'],
+      'Website company profile profesional yang menyajikan informasi jasa perbaikan rumah dan layanan kebersihan lingkungan terpadu.',
+    tags: ['React', 'Node.js', 'Tailwind CSS'],
+    image: '/assets/images/Beresin.png',
   },
   {
-    id: 'ecommerce',
-    category: 'E-Commerce',
-    title: 'Toko Online Premium',
+    id: 'dapoer-niknik',
+    category: 'Landing Page',
+    title: 'Dapoer Niknik',
     description:
-      'Platform e-commerce fashion lokal dengan konversi naik 3x setelah redesign.',
-    tags: ['Next.js', 'Shopify', 'Figma'],
+      'Landing page UMKM kuliner yang menyajikan layanan katering dengan katalog menu makanan khas dan kontak pemesanan cepat.',
+    tags: ['HTML5', 'CSS3', 'JavaScript'],
+    image: '/assets/images/Dapoer Niknik.png',
+  },
+  {
+    id: 'desa-kalisabuk',
+    category: 'Company Profile',
+    title: 'Desa Kalisabuk',
+    description:
+      'Website company profile desa yang terintegrasi dengan Content Management System (CMS) untuk kemudahan pengelolaan berita dan informasi publik.',
+    tags: ['Next.js', 'Tailwind CSS', 'Prisma', 'CMS'],
+    image: '/assets/images/Desa Kalisabuk.png',
+  },
+  {
+    id: 'seeo',
+    category: 'Company Profile',
+    title: 'SEEO',
+    description:
+      'Website company profile resmi organisasi SEEO Universitas Jenderal Soedirman sebagai wadah informasi, riset, dan dokumentasi kegiatan.',
+    tags: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
+    image: '/assets/images/SEEO.png',
   },
 ]
 

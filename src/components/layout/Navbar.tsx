@@ -59,7 +59,7 @@ export default function Navbar() {
               >
                 <path d="M0 270V104L75.3408 58.5V104L135.385 0H220.256L135.385 147L220 293.557H135L75.5 190.5V226.41L0 270Z" fill="currentColor"/>
               </svg>
-              <span className={`text-xl font-bold tracking-tight transition-colors duration-500 ${isNavbarScrolled ? 'text-[#1e2547]' : 'text-white'}`}>
+              <span className={`text-xl font-bold tracking-tight font-logo transition-colors duration-500 ${isNavbarScrolled ? 'text-[#1e2547]' : 'text-white'}`}>
                 Kalana Labs
               </span>
             </Link>
@@ -141,8 +141,8 @@ export default function Navbar() {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-[#e4e8f2]">
-            <span className="text-xl font-bold text-[#1e2547]">
-              Kalana <span className="font-script text-[#2152cf] italic text-2xl">Labs</span>
+            <span className="text-xl font-bold text-[#1e2547] font-logo">
+              Kalana Labs
             </span>
             <button
               onClick={() => setIsOpen(false)}

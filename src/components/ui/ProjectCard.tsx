@@ -8,10 +8,20 @@ interface ProjectCardProps {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="group bg-white border border-[#e4e8f2] rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-[#2152cf]/10 hover:-translate-y-1">
-      {/* Image placeholder */}
-      <div className="aspect-video bg-[#f1f3f9] flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#2152cf]/5 to-[#d9ff42]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        <span className="text-[#8a96b8] text-sm font-medium">[ Tambahkan Gambar ]</span>
+      {/* Image container */}
+      <div className="aspect-[3/2] bg-[#0b0c10] flex items-center justify-center relative overflow-hidden">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#2152cf]/5 to-[#d9ff42]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="text-[#8a96b8] text-sm font-medium">[ Tambahkan Gambar ]</span>
+          </>
+        )}
       </div>
 
       {/* Content */}

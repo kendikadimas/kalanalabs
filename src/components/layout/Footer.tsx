@@ -54,7 +54,7 @@ export default function Footer() {
                   <path d={KALANA_LOGO_PATH} fill="white" />
                 </svg>
               </div>
-              <span className="text-2xl font-bold tracking-tight text-white group-hover:text-[#d9ff42] transition-colors">
+              <span className="text-2xl font-bold tracking-tight text-white group-hover:text-[#d9ff42] transition-colors font-logo">
                 Kalana Labs
               </span>
             </Link>
@@ -163,7 +163,7 @@ export default function Footer() {
         {/* ── Divider & Bottom ── */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-xs sm:text-sm font-medium">
-            &copy; {currentYear} Kalana Labs. All rights reserved.
+            &copy; {currentYear} <span className="font-logo">Kalana Labs</span>. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             {/* <Link href="#" className="text-white/40 hover:text-white text-xs transition-colors">

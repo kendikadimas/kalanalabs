@@ -39,7 +39,7 @@ export default function ServicesSection() {
             {/* Price and CTA */}
             <div className="my-4 flex flex-col gap-3">
               <div className="text-xs text-[#0d1230]/80">
-                Mulai dari <span className="text-base font-bold text-[#122d78]">Rp 4.999.000</span>
+                Mulai dari <span className="text-base font-bold text-[#122d78]">Rp 299.000</span>
               </div>
               <Button
                 href="#harga"
@@ -85,7 +85,7 @@ export default function ServicesSection() {
             {/* Price and CTA */}
             <div className="my-4 flex flex-col gap-3">
               <div className="text-xs text-white/70">
-                Mulai dari <span className="text-base font-bold text-[#d9ff42]">Rp 9.999.000</span>
+                Mulai dari <span className="text-base font-bold text-[#d9ff42]">Rp 1.999.000</span>
               </div>
               <Button
                 href="#harga"
@@ -124,7 +124,7 @@ export default function ServicesSection() {
             {/* Price and CTA */}
             <div className="my-4 flex flex-col gap-3">
               <div className="text-xs text-[#4f5b7d]">
-                Mulai dari <span className="text-base font-bold text-[#2152cf]">Rp 2.999.000</span>
+                Mulai dari <span className="text-base font-bold text-[#2152cf]">Rp 199.000</span>
               </div>
               <Button
                 href="#harga"

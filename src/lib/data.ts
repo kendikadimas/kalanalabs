@@ -171,10 +171,10 @@ export const PROCESS_STEPS: ProcessStep[] = [
 ]
 
 export const STATS: Stat[] = [
-  { value: '30+', label: 'Proyek Selesai' },
-  { value: '98%', label: 'Klien Puas' },
-  { value: '3 Tahun', label: 'Pengalaman' },
-  { value: '15+', label: 'Tim Profesional' },
+  { value: '100%', label: 'Garansi Handover' },
+  { value: '1-3 Hari', label: 'Rilis Landing Page' },
+  { value: 'Gratis', label: 'Domain & Hosting' },
+  { value: 'Respon Cepat', label: 'Dukungan Siaga' },
 ]
 
 export const FOOTER_NAV: FooterLink[] = [

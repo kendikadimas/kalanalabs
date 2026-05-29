@@ -34,13 +34,13 @@ export default function AboutSection() {
             {/* Bottom Stats Card */}
             <div className="bg-gradient-to-br from-[#2152cf] to-[#122d78] border border-[#2152cf]/20 p-8 rounded-3xl flex items-center justify-around shadow-lg shadow-[#122d78]/5 min-h-[130px] flex-grow">
               <div className="text-center">
-                <p className="text-4xl font-extrabold text-[#d9ff42] mb-1 font-logo">30+</p>
-                <p className="text-xs uppercase tracking-wider text-white/60 font-semibold">Proyek Selesai</p>
+                <p className="text-4xl font-extrabold text-[#d9ff42] mb-1 font-logo">100%</p>
+                <p className="text-xs uppercase tracking-wider text-white/60 font-semibold">Garansi Handover</p>
               </div>
               <div className="w-[1px] h-12 bg-white/10" />
               <div className="text-center">
-                <p className="text-4xl font-extrabold text-white mb-1 font-logo">98%</p>
-                <p className="text-xs uppercase tracking-wider text-white/60 font-semibold">Klien Puas</p>
+                <p className="text-4xl font-extrabold text-white mb-1 font-logo">Respon</p>
+                <p className="text-xs uppercase tracking-wider text-white/60 font-semibold">Dukungan Siaga</p>
               </div>
             </div>
           </div>

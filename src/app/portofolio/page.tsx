@@ -4,7 +4,7 @@ import { useState } from 'react'
 import PageHeader from '@/components/ui/PageHeader'
 import ProjectCard from '@/components/ui/ProjectCard'
 import Button from '@/components/ui/Button'
-import { PROJECTS } from '@/lib/data'
+import { PROJECTS, STATS } from '@/lib/data'
 
 export default function PortofolioPage() {
   const [activeCategory, setActiveCategory] = useState('Semua')
@@ -74,30 +74,16 @@ export default function PortofolioPage() {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <p className="text-4xl md:text-5xl font-black text-[#d9ff42] mb-2">30+</p>
-              <p className="text-xs md:text-sm text-white/70 font-semibold uppercase tracking-wider">
-                Proyek Terselesaikan
-              </p>
-            </div>
-            <div>
-              <p className="text-4xl md:text-5xl font-black text-white mb-2">98%</p>
-              <p className="text-xs md:text-sm text-white/70 font-semibold uppercase tracking-wider">
-                Tingkat Kepuasan Klien
-              </p>
-            </div>
-            <div>
-              <p className="text-4xl md:text-5xl font-black text-[#d9ff42] mb-2">3 Tahun</p>
-              <p className="text-xs md:text-sm text-white/70 font-semibold uppercase tracking-wider">
-                Pengalaman Industri
-              </p>
-            </div>
-            <div>
-              <p className="text-4xl md:text-5xl font-black text-white mb-2">15+</p>
-              <p className="text-xs md:text-sm text-white/70 font-semibold uppercase tracking-wider">
-                Klien Korporat & UMKM
-              </p>
-            </div>
+            {STATS.map((stat, idx) => (
+              <div key={stat.label}>
+                <p className={`text-4xl md:text-5xl font-black mb-2 ${idx % 2 === 0 ? 'text-[#d9ff42]' : 'text-white'}`}>
+                  {stat.value}
+                </p>
+                <p className="text-xs md:text-sm text-white/70 font-semibold uppercase tracking-wider">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

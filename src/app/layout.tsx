@@ -43,9 +43,9 @@ export const metadata: Metadata = {
     'software house purwokerto'
   ],
   icons: {
-    icon: '/logo.svg',
-    shortcut: '/logo.svg',
-    apple: '/logo.svg',
+    icon: '/logo-kalana.svg',
+    shortcut: '/logo-kalana.svg',
+    apple: '/logo-kalana.svg',
   },
   openGraph: {
     title: 'Kalana Labs — Jasa Pembuatan Website Purwokerto Murah & Profesional',
@@ -65,29 +65,94 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Kalana Labs",
-  "alternateName": "KalanaLabs",
-  "url": "https://kalanalabs.com",
-  "telephone": "+6285707736885",
-  "priceRange": "Rp 299.000 - Rp 39.999.000",
-  "image": "https://kalanalabs.com/logo.svg",
-  "logo": "https://kalanalabs.com/logo.svg",
-  "description": "Jasa pembuatan website Purwokerto murah & profesional. Hubungi Kalana Labs untuk pembuatan landing page, company profile, e-commerce, sistem informasi, dan aplikasi mobile.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Purwokerto",
-    "addressRegion": "Jawa Tengah",
-    "addressCountry": "ID"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "-7.4244",
-    "longitude": "109.2300"
-  },
-  "sameAs": [
-    "https://www.instagram.com/kalana.labs",
-    "https://www.tiktok.com/@kalana__labs"
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://kalanalabs.com/#business",
+      "name": "Kalana Labs",
+      "alternateName": "KalanaLabs",
+      "url": "https://kalanalabs.com",
+      "telephone": "+6285196811722",
+      "priceRange": "Rp 299.000 - Rp 39.999.000",
+      "image": "https://kalanalabs.com/logo.svg",
+      "logo": "https://kalanalabs.com/logo.svg",
+      "description": "Jasa pembuatan website Purwokerto murah & profesional. Landing page, company profile, e-commerce, sistem informasi, UI/UX design, dan aplikasi mobile.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Purwokerto",
+        "addressRegion": "Jawa Tengah",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-7.4244",
+        "longitude": "109.2300"
+      },
+      "sameAs": [
+        "https://www.instagram.com/kalana.labs",
+        "https://www.tiktok.com/@kalana__labs"
+      ],
+      "areaServed": "Purwokerto",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Jasa Pembuatan Website",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landing Page", "description": "Halaman web tunggal untuk kampanye iklan dan promosi produk." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Company Profile", "description": "Website resmi perusahaan multi-halaman dengan CMS." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "E-Commerce", "description": "Toko online dengan payment gateway dan manajemen stok." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sistem Informasi", "description": "Aplikasi web kustom untuk manajemen data internal." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aplikasi Mobile", "description": "Aplikasi Android & iOS cross-platform." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desain UI/UX", "description": "Wireframe, prototipe Figma, dan design system." } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://kalanalabs.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Berapa biaya jasa pembuatan website di Purwokerto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Biaya pembuatan website mulai dari Rp 299.000 untuk landing page, Rp 1.299.000 untuk company profile, Rp 1.999.000 untuk e-commerce, hingga Rp 9.999.000 untuk aplikasi mobile."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Berapa lama proses pembuatan website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Estimasi pengerjaan: Landing page 3 hari, company profile 7 hari, e-commerce 14 hari, dan aplikasi mobile hingga 30 hari kerja."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah domain dan hosting termasuk dalam paket?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya, domain .com dan hosting 1 tahun gratis untuk paket Basic Company Profile dan E-Commerce."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah Kalana Labs menerima jasa pembuatan website di Purwokerto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tentu. Kalana Labs melayani jasa pembuatan website untuk bisnis di Purwokerto, Banyumas, dan seluruh Indonesia. Konsultasi gratis via WhatsApp."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://kalanalabs.com/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Beranda", "item": "https://kalanalabs.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Layanan", "item": "https://kalanalabs.com/layanan/" },
+        { "@type": "ListItem", "position": 3, "name": "Kontak", "item": "https://kalanalabs.com/kontak/" }
+      ]
+    }
   ]
 }
 

@@ -29,6 +29,21 @@
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 32px;
+
+  /* Semantic surface tokens (default = light) */
+  --color-surface: #ffffff;
+  --color-surface-alt: #f8f9fc;
+  --color-surface-muted: #f1f3f9;
+  --color-surface-elevated: #ffffff;
+  --color-border: #e4e8f2;
+  --color-text-primary: #1e2547;
+  --color-text-secondary: #4f5b7d;
+  --color-text-tertiary: #8a96b8;
+  --color-text-muted: #c8d0e5;
+  --color-accent-subtle: #eef1ff;
+  --color-accent-subtler: #dce5fc;
+  --color-lime-subtle: rgba(217, 255, 66, 0.2);
+  --color-navy-soft: rgba(33, 82, 207, 0.1);
 }
 
 @layer base {
@@ -38,8 +53,8 @@
 
   body {
     font-family: var(--font-sans);
-    background-color: #ffffff;
-    color: #1e2547;
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

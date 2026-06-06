@@ -52,7 +52,7 @@ export default function ComingSoon({ pageName }: ComingSoonProps) {
             Kembali ke Beranda
           </Button>
           <Button 
-            href="https://wa.me/6285707736885?text=Halo%20Kalana%20Labs%2C%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20kalian." 
+            href="https://wa.me/6285196811722?text=Halo%20Kalana%20Labs%2C%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20kalian." 
             variant="outline" 
             showArrow={false}
             className="w-full sm:w-auto border-[#1e2547] text-[#1e2547] hover:bg-[#1e2547] hover:text-white"

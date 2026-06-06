@@ -36,7 +36,7 @@ export default function ContactSection() {
     )
     
     // Open WhatsApp in new tab
-    window.open(`https://wa.me/6285707736885?text=${waMessage}`, '_blank')
+    window.open(`https://wa.me/6285196811722?text=${waMessage}`, '_blank')
     
     setSubmitted(true)
   }

@@ -205,8 +205,8 @@ export const CONTACT_INFO: ContactInfo[] = [
   {
     icon: 'Phone',
     label: 'WhatsApp',
-    value: '+62 857 0773 6885',
-    href: 'https://wa.me/6285707736885',
+    value: '+62 851 9681 1722',
+    href: 'https://wa.me/6285196811722',
   },
   {
     icon: 'MapPin',

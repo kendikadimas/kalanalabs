@@ -116,7 +116,7 @@ export default function PricingSection() {
                 `Harga: Rp ${pkg.price} ${pkg.suffix}\n\n` +
                 `Mohon info selengkapnya untuk memulai proyek ini.`
               )
-              const waUrl = `https://wa.me/6285707736885?text=${waMessage}`
+              const waUrl = `https://wa.me/6285196811722?text=${waMessage}`
 
               return (
                 <div

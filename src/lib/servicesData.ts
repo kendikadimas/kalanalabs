@@ -343,20 +343,20 @@ export const SERVICES_DETAIL: ServiceDetail[] = [
     ],
     useCases: [
       {
-        title: 'Aplikasi On-Demand & Layanan Jasa',
-        description: 'Membangun aplikasi pemesanan layanan kurir, ojek online, pesan antar makanan, layanan kebersihan, dengan tracking GPS.'
+        title: 'Otentikasi & Manajemen Pengguna',
+        description: 'Sistem login multi-metode (email, Google, Apple), pendaftaran pengguna, manajemen profil, dan kontrol akses berbasis peran yang aman dan mudah digunakan.'
       },
       {
-        title: 'Mobile Commerce & Loyalti Pelanggan',
-        description: 'Toko online seluler eksklusif bagi brand Anda dengan fitur poin keanggotaan (membership), kupon promo, dan checkout cepat.'
+        title: 'Notifikasi Push & Pembaruan Real-time',
+        description: 'Mengirim pemberitahuan langsung ke perangkat pengguna untuk pengingat, promo, pembaruan status, atau informasi penting lainnya secara instan dan real-time.'
       },
       {
-        title: 'Sistem Tracking & Logistik Lapangan',
-        description: 'Aplikasi internal bagi kurir atau staf lapangan untuk memutakhirkan status pengiriman barang dan mengambil foto bukti terima.'
+        title: 'Dashboard & Analitik Internal',
+        description: 'Pantau aktivitas pengguna, data penjualan, dan metrik bisnis utama melalui dashboard visual yang interaktif dan informatif.'
       },
       {
-        title: 'Aplikasi Komunitas & Sosial',
-        description: 'Portal interaksi bagi anggota komunitas, forum diskusi digital, sistem belajar online (LMS), atau aplikasi pemantau kesehatan.'
+        title: 'Pengaturan & Manajemen Konten',
+        description: 'Kelola konten aplikasi, preferensi pengguna, pengaturan notifikasi, dan konfigurasi aplikasi secara mandiri melalui panel admin yang intuitif.'
       }
     ],
     targetAudience: [

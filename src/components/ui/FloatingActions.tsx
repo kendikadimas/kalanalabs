@@ -29,7 +29,7 @@ export default function FloatingActions() {
 
   // Pre-filled WhatsApp message
   const waMessage = encodeURIComponent('Halo Kalana Labs, saya tertarik untuk konsultasi mengenai pembuatan website/aplikasi.')
-  const waLink = `https://wa.me/6285707736885?text=${waMessage}`
+  const waLink = `https://wa.me/6285196811722?text=${waMessage}`
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">

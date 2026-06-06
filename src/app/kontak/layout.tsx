@@ -1,22 +1,22 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Hubungi Kalana Labs | Jasa Pembuatan Website Purwokerto Murah',
-  description: 'Diskusikan proyek pembuatan website kustom, sistem informasi, atau aplikasi mobile Anda bersama tim analis Kalana Labs Purwokerto. Sesi konsultasi gratis.',
-  keywords: [
-    'hubungi kalana labs',
-    'kontak kalanalabs',
-    'jasa pembuatan website purwokerto',
-    'jasa pembuatan website murah',
-    'konsultasi website purwokerto',
-    'alamat software house purwokerto'
-  ]
+  title: 'Kontak Jasa Pembuatan Website Purwokerto | Kalana Labs',
+  description:
+    'Hubungi Kalana Labs untuk konsultasi gratis jasa pembuatan website Purwokerto. Diskusikan kebutuhan landing page, company profile, e-commerce, atau aplikasi mobile Anda.',
+  openGraph: {
+    title: 'Kontak Jasa Pembuatan Website Purwokerto | Kalana Labs',
+    description:
+      'Hubungi Kalana Labs untuk konsultasi gratis pembuatan website Purwokerto. Landing page, company profile, e-commerce & aplikasi mobile.',
+    url: 'https://kalanalabs.com/kontak/',
+    locale: 'id_ID',
+    type: 'website',
+  },
+  alternates: {
+    canonical: 'https://kalanalabs.com/kontak/',
+  },
 }
 
-export default function KontakLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function KontakLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }

@@ -1,23 +1,11 @@
 'use client'
 
-import ComingSoon from '@/components/ui/ComingSoon'
-
-export default function KontakPage() {
-  return <ComingSoon pageName="Kontak Kami" />
-}
-
-/* Original KontakPage content for future reference:
 import { useState, type FormEvent } from 'react'
+import { Mail, Phone, MapPin, CheckCircle2, ChevronDown, Sparkles, Send, ArrowRight } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import PageHeader from '@/components/ui/PageHeader'
-import { Mail, Phone, MapPin, Send, CheckCircle2, ChevronDown, Sparkles } from 'lucide-react'
-import Button from '@/components/ui/Button'
 
-const SERVICE_OPTIONS = [
-  'UI/UX Design',
-  'Web Development',
-  'Mobile Apps',
-  'Lainnya',
-]
+const SERVICE_OPTIONS = ['UI/UX Design', 'Web Development', 'Mobile Apps', 'Lainnya']
 
 const CONTACT_CARDS = [
   {
@@ -26,15 +14,13 @@ const CONTACT_CARDS = [
     value: 'kalanalabs@gmail.com',
     href: 'mailto:kalanalabs@gmail.com',
     actionText: 'Tulis Email',
-    color: 'from-[#2152cf] to-[#122d78]'
   },
   {
     icon: Phone,
     title: 'Mulai Chat WhatsApp',
-    value: '+62 857 0773 6885',
-    href: 'https://wa.me/6285707736885',
+    value: '+62 851 9681 1722',
+    href: 'https://wa.me/6285196811722',
     actionText: 'Kirim Pesan',
-    color: 'from-[#10b981] to-[#064e3b]'
   },
   {
     icon: MapPin,
@@ -42,7 +28,6 @@ const CONTACT_CARDS = [
     value: 'Purwokerto, Jawa Tengah',
     href: 'https://maps.google.com/?q=Purwokerto',
     actionText: 'Lihat Peta',
-    color: 'from-[#ec4899] to-[#831843]'
   }
 ]
 
@@ -86,130 +71,137 @@ export default function KontakPage() {
       `*Layanan:* ${form.service}\n\n` +
       `*Detail Proyek:*\n${form.message}`
     )
-    window.open(`https://wa.me/6285707736885?text=${waMessage}`, '_blank')
+    window.open(`https://wa.me/6285196811722?text=${waMessage}`, '_blank')
     setSubmitted(true)
   }
 
   return (
-    <main className="bg-[#f8f9fc]">
-      <PageHeader 
-        title="Hubungi" 
+    <main className="bg-surface">
+      <PageHeader
+        title="Hubungi"
         accentWord="Kami"
-        description="Ada ide besar yang ingin diwujudkan atau pertanyaan mengenai layanan kami? Sampaikan pesan Anda, kami siap berkolaborasi." 
+        description="Ada ide besar yang ingin diwujudkan atau pertanyaan mengenai layanan kami? Sampaikan pesan Anda, kami siap berkolaborasi."
       />
 
+      {/* CONTACT CARDS */}
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 md:mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 md:mb-24">
             {CONTACT_CARDS.map((card, i) => {
               const CardIcon = card.icon
               return (
-                <a
+                <motion.a
                   key={i}
                   href={card.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white border border-[#e4e8f2] rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-[#2152cf]/[0.02] hover:-translate-y-1.5 transition-all duration-300 group flex items-center gap-5"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  className="bg-surface border border-border rounded-xl p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group flex items-center gap-5"
                 >
-                  <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${card.color} flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                    <CardIcon className="w-5 h-5" />
+                  <div className="w-12 h-12 rounded-lg bg-navy-soft flex items-center justify-center text-navy shrink-0 group-hover:bg-navy group-hover:text-white transition-all duration-300">
+                    <CardIcon className="w-5 h-5" strokeWidth={1.5} />
                   </div>
-                  <div className="flex-1 overflow-hidden">
-                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#8a96b8] mb-0.5">{card.title}</p>
-                    <p className="text-[#1e2547] font-bold text-sm sm:text-base truncate mb-1">{card.value}</p>
-                    <span className="text-xs font-semibold text-[#2152cf] group-hover:text-[#1a3fa3] transition-colors inline-flex items-center gap-1">
-                      {card.actionText} →
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-text-tertiary mb-0.5">{card.title}</p>
+                    <p className="text-text-primary font-bold text-sm truncate mb-1">{card.value}</p>
+                    <span className="text-xs font-bold text-navy group-hover:text-navy-dark transition-colors inline-flex items-center gap-1">
+                      {card.actionText}
+                      <ArrowRight className="w-3 h-3" strokeWidth={2.5} />
                     </span>
                   </div>
-                </a>
+                </motion.a>
               )
             })}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             
+            {/* LEFT: Copy + Commitments */}
             <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-28">
               <div className="space-y-4">
-                <span className="text-xs font-black text-[#2152cf] uppercase tracking-widest block">Konsultasi Terbuka</span>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-[#1e2547] tracking-tight leading-tight">
-                  Ceritakan Rencana Besar <span className="text-[#2152cf] font-script italic text-3xl md:text-4xl">Bisnis Anda</span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-text-primary tracking-tight leading-tight">
+                  Ceritakan Rencana Besar{' '}
+                  <span className="font-script italic text-navy">Bisnis Anda</span>
                 </h2>
-                <p className="text-[#4f5b7d] text-base leading-relaxed">
+                <p className="text-text-secondary text-sm md:text-base leading-relaxed">
                   Kami percaya produk digital yang hebat berawal dari pemahaman mendalam tentang masalah yang ingin diselesaikan. Isi formulir konsultasi dan tim kami akan segera menghubungi Anda.
                 </p>
               </div>
 
-              <div className="bg-white border border-[#e4e8f2] rounded-3xl p-6 space-y-5">
-                <h4 className="text-sm font-bold text-[#1e2547] border-b border-[#e4e8f2] pb-3 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-[#2152cf]" />
-                  Komitmen Pelayanan Kami:
+              <div className="bg-surface border border-border rounded-xl p-6 space-y-4">
+                <h4 className="text-sm font-bold text-text-primary border-b border-border pb-3 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-navy" strokeWidth={1.5} />
+                  Komitmen Pelayanan Kami
                 </h4>
                 <ul className="space-y-3.5">
                   <li className="flex gap-3 items-start">
-                    <CheckCircle2 className="w-5 h-5 text-[#d9ff42] fill-[#2152cf] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-accent fill-navy shrink-0 mt-0.5" strokeWidth={2} />
                     <div>
-                      <h5 className="text-xs font-bold text-[#1e2547] mb-0.5">Waktu Respon Cepat</h5>
-                      <p className="text-xs text-[#4f5b7d] leading-relaxed">Balasan via WhatsApp/Email dalam waktu kurang dari 2 jam kerja.</p>
+                      <h5 className="text-xs font-bold text-text-primary mb-0.5">Waktu Respon Cepat</h5>
+                      <p className="text-xs text-text-secondary leading-relaxed">Balasan via WhatsApp dalam waktu kurang dari 2 jam kerja.</p>
                     </div>
                   </li>
                   <li className="flex gap-3 items-start">
-                    <CheckCircle2 className="w-5 h-5 text-[#d9ff42] fill-[#2152cf] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-accent fill-navy shrink-0 mt-0.5" strokeWidth={2} />
                     <div>
-                      <h5 className="text-xs font-bold text-[#1e2547] mb-0.5">Estimasi Biaya Transparan</h5>
-                      <p className="text-xs text-[#4f5b7d] leading-relaxed">Rincian biaya sesuai modul fitur tanpa ada markup siluman.</p>
+                      <h5 className="text-xs font-bold text-text-primary mb-0.5">Estimasi Biaya Transparan</h5>
+                      <p className="text-xs text-text-secondary leading-relaxed">Rincian biaya sesuai modul fitur tanpa markup siluman.</p>
                     </div>
                   </li>
                   <li className="flex gap-3 items-start">
-                    <CheckCircle2 className="w-5 h-5 text-[#d9ff42] fill-[#2152cf] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-accent fill-navy shrink-0 mt-0.5" strokeWidth={2} />
                     <div>
-                      <h5 className="text-xs font-bold text-[#1e2547] mb-0.5">Kerahasiaan Ide Terjamin</h5>
-                      <p className="text-xs text-[#4f5b7d] leading-relaxed">Kami menghormati kerahasiaan konsep dengan opsional penandatanganan NDA.</p>
+                      <h5 className="text-xs font-bold text-text-primary mb-0.5">Kerahasiaan Ide Terjamin</h5>
+                      <p className="text-xs text-text-secondary leading-relaxed">Kami menghormati kerahasiaan konsep dengan opsional penandatanganan NDA.</p>
                     </div>
                   </li>
                 </ul>
               </div>
             </div>
 
+            {/* RIGHT: Form */}
             <div className="lg:col-span-7">
-              <div className="bg-white border border-[#e4e8f2] rounded-[2.5rem] p-8 md:p-10 shadow-xl shadow-[#2152cf]/[0.01]">
+              <div className="bg-surface border border-border rounded-xl p-8 md:p-10 shadow-lg">
                 {submitted ? (
                   <div className="text-center py-16 space-y-6">
-                    <div className="w-20 h-20 bg-[#d9ff42]/20 text-[#2152cf] rounded-full flex items-center justify-center mx-auto animate-bounce-slow">
-                      <CheckCircle2 className="w-10 h-10" />
+                    <div className="w-20 h-20 bg-accent/20 text-navy rounded-full flex items-center justify-center mx-auto">
+                      <CheckCircle2 className="w-10 h-10" strokeWidth={1.5} />
                     </div>
                     <div className="space-y-2">
-                      <h3 className="text-2xl font-black text-[#1e2547]">Pesan Siap Dikirim!</h3>
-                      <p className="text-sm text-[#4f5b7d] max-w-sm mx-auto leading-relaxed">
+                      <h3 className="text-2xl font-black text-text-primary">Pesan Siap Dikirim!</h3>
+                      <p className="text-sm text-text-secondary max-w-sm mx-auto leading-relaxed">
                         Anda akan diarahkan ke WhatsApp untuk mengirim detail konsultasi ini ke tim kami. Terimakasih!
                       </p>
                     </div>
                     <button
-                      onClick={() => setSubmitted(false)}
-                      className="text-sm font-bold text-[#2152cf] hover:text-[#1a3fa3] transition-colors"
+                      onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', service: '', message: '' }) }}
+                      className="text-sm font-bold text-navy hover:text-navy-dark transition-colors"
                     >
                       Kirim Formulir Baru
                     </button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="border-b border-[#e4e8f2] pb-5">
-                      <h3 className="text-xl font-bold text-[#1e2547] mb-1">Formulir Konsultasi Proyek</h3>
-                      <p className="text-xs text-[#4f5b7d]">Mohon isi detail di bawah ini agar kami dapat memetakan rencana proyek Anda.</p>
+                    <div className="border-b border-border pb-5">
+                      <h3 className="text-xl font-bold text-text-primary mb-1">Formulir Konsultasi Proyek</h3>
+                      <p className="text-xs text-text-tertiary">Mohon isi detail di bawah ini agar kami dapat memetakan rencana proyek Anda.</p>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block">Layanan yang Dibutuhkan *</label>
+                      <label className="text-[10px] font-black text-text-primary uppercase tracking-widest block">Layanan yang Dibutuhkan *</label>
                       <div className="flex flex-wrap gap-2">
                         {SERVICE_OPTIONS.map((opt) => (
                           <button
                             key={opt}
                             type="button"
                             onClick={() => setForm({ ...form, service: opt })}
-                            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all cursor-pointer ${
+                            className={`px-4 py-2.5 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
                               form.service === opt
-                                ? 'bg-[#2152cf] border-[#2152cf] text-white shadow-md'
-                                : 'bg-white border-[#e4e8f2] text-[#4f5b7d] hover:border-[#2152cf]'
+                                ? 'bg-navy border-navy text-white shadow-sm'
+                                : 'bg-surface border-border text-text-secondary hover:border-navy/40 hover:text-text-primary'
                             }`}
                           >
                             {opt}
@@ -219,8 +211,8 @@ export default function KontakPage() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label htmlFor="name" className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block">Nama Lengkap *</label>
+                      <div className="space-y-1.5">
+                        <label htmlFor="name" className="text-[10px] font-black text-text-primary uppercase tracking-widest block">Nama Lengkap *</label>
                         <input
                           id="name"
                           type="text"
@@ -228,38 +220,38 @@ export default function KontakPage() {
                           value={form.name}
                           onChange={(e) => setForm({ ...form, name: e.target.value })}
                           placeholder="Cth: Akmal Nugroho"
-                          className="w-full px-4 py-3 rounded-xl border border-[#e4e8f2] bg-[#f8f9fc] text-[#1e2547] text-sm focus:outline-none focus:border-[#2152cf] focus:ring-2 focus:ring-[#2152cf]/10 transition-all"
+                          className="w-full px-4 py-3 rounded-lg border border-border bg-surface-alt text-text-primary text-sm focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy-soft transition-all placeholder:text-text-muted"
                         />
                       </div>
                       
-                      <div className="space-y-2">
-                        <label htmlFor="phone" className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block">Nomor WhatsApp *</label>
+                      <div className="space-y-1.5">
+                        <label htmlFor="phone" className="text-[10px] font-black text-text-primary uppercase tracking-widest block">Nomor WhatsApp *</label>
                         <input
                           id="phone"
                           type="tel"
                           required
                           value={form.phone}
                           onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                          placeholder="Cth: 0857xxxxxxx"
-                          className="w-full px-4 py-3 rounded-xl border border-[#e4e8f2] bg-[#f8f9fc] text-[#1e2547] text-sm focus:outline-none focus:border-[#2152cf] focus:ring-2 focus:ring-[#2152cf]/10 transition-all"
+                          placeholder="Cth: 0851xxxxxxx"
+                          className="w-full px-4 py-3 rounded-lg border border-border bg-surface-alt text-text-primary text-sm focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy-soft transition-all placeholder:text-text-muted"
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block">Alamat Email</label>
+                    <div className="space-y-1.5">
+                      <label htmlFor="email" className="text-[10px] font-black text-text-primary uppercase tracking-widest block">Alamat Email</label>
                       <input
                         id="email"
                         type="email"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         placeholder="Cth: akmal@perusahaan.com"
-                        className="w-full px-4 py-3 rounded-xl border border-[#e4e8f2] bg-[#f8f9fc] text-[#1e2547] text-sm focus:outline-none focus:border-[#2152cf] focus:ring-2 focus:ring-[#2152cf]/10 transition-all"
+                        className="w-full px-4 py-3 rounded-lg border border-border bg-surface-alt text-text-primary text-sm focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy-soft transition-all placeholder:text-text-muted"
                       />
                     </div>
 
-                    <div className="space-y-2">
-                      <label htmlFor="message" className="text-xs font-bold text-[#1e2547] uppercase tracking-wider block">Gambaran Rencana Proyek *</label>
+                    <div className="space-y-1.5">
+                      <label htmlFor="message" className="text-[10px] font-black text-text-primary uppercase tracking-widest block">Gambaran Rencana Proyek *</label>
                       <textarea
                         id="message"
                         required
@@ -267,22 +259,25 @@ export default function KontakPage() {
                         value={form.message}
                         onChange={(e) => setForm({ ...form, message: e.target.value })}
                         placeholder="Ceritakan singkat produk digital yang ingin Anda buat, target rilis, dan estimasi dana jika ada..."
-                        className="w-full px-4 py-3 rounded-xl border border-[#e4e8f2] bg-[#f8f9fc] text-[#1e2547] text-sm focus:outline-none focus:border-[#2152cf] focus:ring-2 focus:ring-[#2152cf]/10 transition-all resize-none leading-relaxed"
+                        className="w-full px-4 py-3 rounded-lg border border-border bg-surface-alt text-text-primary text-sm focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy-soft transition-all resize-none leading-relaxed placeholder:text-text-muted"
                       />
                     </div>
 
                     <div className="pt-2">
-                      <Button
+                      <button
                         type="submit"
-                        variant="primary"
-                        size="lg"
-                        className="w-full justify-center rounded-2xl h-14 bg-[#2152cf] hover:bg-[#1a3fa3] text-white"
                         disabled={!form.service}
+                        className={`w-full flex items-center justify-center gap-2 font-bold px-8 py-4 rounded-lg text-sm transition-all ${
+                          form.service
+                            ? 'bg-navy text-white hover:bg-navy-dark shadow-lg shadow-navy/10 cursor-pointer'
+                            : 'bg-gray-100 text-text-tertiary cursor-not-allowed'
+                        }`}
                       >
+                        <Send className="w-4 h-4" strokeWidth={2} />
                         Kirim Formulir Konsultasi
-                      </Button>
+                      </button>
                       {!form.service && (
-                        <p className="text-xs text-red-500 mt-2 font-medium">* Mohon pilih Layanan yang Dibutuhkan di bagian atas formulir.</p>
+                        <p className="text-[10px] text-red-500 mt-2 font-medium">Pilih layanan yang dibutuhkan terlebih dahulu.</p>
                       )}
                     </div>
                   </form>
@@ -294,42 +289,56 @@ export default function KontakPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      {/* FAQ */}
+      <section className="py-20 md:py-28 bg-surface-alt border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-black text-[#2152cf] uppercase tracking-widest block mb-4">Butuh Penjelasan?</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#1e2547] tracking-tight">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-text-primary tracking-tight leading-tight">
               Pertanyaan Seputar Proses Kerja
             </h2>
-            <p className="text-sm text-[#4f5b7d] mt-3 leading-relaxed">
+            <p className="text-sm md:text-base text-text-secondary mt-4 leading-relaxed">
               Berikut rincian hal-hal mendasar yang sering ditanyakan oleh klien sebelum bekerja sama dengan kami.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
             {CONTACT_FAQ.map((faq, idx) => {
               const isOpen = activeFaq === idx
               return (
-                <div 
+                <motion.div
                   key={idx}
-                  className="bg-[#f8f9fc] border border-[#e4e8f2] rounded-3xl p-6 md:p-8 cursor-pointer transition-all duration-300 hover:border-[#2152cf]/30"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: idx * 0.08 }}
+                  className="bg-surface border border-border rounded-xl p-6 cursor-pointer transition-all duration-300 hover:shadow-md"
                   onClick={() => setActiveFaq(isOpen ? null : idx)}
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <h4 className="text-base font-bold text-[#1e2547] leading-snug">
+                    <h4 className="text-sm font-bold text-text-primary leading-snug">
                       {faq.question}
                     </h4>
-                    <span className={`w-6 h-6 rounded-full bg-[#eef1ff] text-[#2152cf] flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-                      <ChevronDown className="w-3.5 h-3.5" />
+                    <span className={`w-6 h-6 rounded-lg bg-navy-soft text-navy flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                      <ChevronDown className="w-3.5 h-3.5" strokeWidth={2.5} />
                     </span>
                   </div>
                   
-                  <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
-                    <p className="text-sm text-[#4f5b7d] leading-relaxed border-t border-[#e4e8f2] pt-4">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-sm text-text-secondary leading-relaxed border-t border-border pt-4 mt-4">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               )
             })}
           </div>
@@ -338,6 +347,3 @@ export default function KontakPage() {
     </main>
   )
 }
-*/
-
-

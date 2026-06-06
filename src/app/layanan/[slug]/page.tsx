@@ -1,10 +1,34 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
+import Link from 'next/link'
+import {
+  Laptop,
+  Building2,
+  ShoppingBag,
+  Database,
+  User,
+  Palette,
+  Smartphone,
+  Check,
+  ArrowLeft,
+  CheckCircle2,
+} from 'lucide-react'
+import Button from '@/components/ui/Button'
 import { SERVICES_DETAIL } from '@/lib/servicesData'
-import ComingSoon from '@/components/ui/ComingSoon'
+import { PRICING_CATEGORIES } from '@/lib/data'
 
 interface PageProps {
   params: Promise<{ slug: string }>
+}
+
+const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
+  Laptop,
+  Building2,
+  ShoppingBag,
+  Database,
+  User,
+  Palette,
+  Smartphone,
 }
 
 export function generateStaticParams() {
@@ -16,66 +40,78 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const service = SERVICES_DETAIL.find(s => s.id === slug)
-  
+
   if (!service) {
     return {
-      title: 'Layanan Tidak Ditemukan — Kalana Labs',
+      title: 'Layanan Tidak Ditemukan - Kalana Labs',
     }
   }
 
   return {
-    title: `${service.title} — Layanan Profesional Kalana Labs`,
-    description: service.subtitle,
+    title: `Jasa ${service.title} Purwokerto | Kalana Labs`,
+    description: `Jasa ${service.title.toLowerCase()} Purwokerto profesional oleh Kalana Labs. ${service.subtitle}. Konsultasi gratis hubungi kami sekarang.`,
     openGraph: {
-      title: `${service.title} — Layanan Profesional Kalana Labs`,
-      description: service.subtitle,
-    }
+      title: `Jasa ${service.title} Purwokerto | Kalana Labs`,
+      description: `Jasa ${service.title.toLowerCase()} Purwokerto profesional oleh Kalana Labs. ${service.subtitle}.`,
+      url: `https://kalanalabs.com/layanan/${slug}/`,
+      locale: 'id_ID',
+      type: 'website',
+    },
+    alternates: {
+      canonical: `https://kalanalabs.com/layanan/${slug}/`,
+    },
   }
 }
+
+const TIER_THEMES = [
+  {
+    card: 'bg-surface border border-border rounded-3xl',
+    topBorder: 'border-b border-border',
+    tierLabel: 'text-text-secondary',
+    tierLabelBg: 'bg-[#f1f3f9]',
+    nameColor: 'text-text-primary',
+    priceColor: 'text-text-primary',
+    priceSubColor: 'text-text-tertiary',
+    benefitText: 'text-text-secondary',
+    checkBg: 'bg-[#eef1ff]',
+    checkTick: 'text-navy',
+    buttonClass: 'border-[#1e2547] text-text-primary hover:bg-[#1e2547] hover:text-white',
+    hoverShadow: 'hover:shadow-lg hover:shadow-[#2152cf]/8',
+  },
+  {
+    card: 'bg-[#eef2ff] border-2 border-[#c7d3f8] rounded-3xl',
+    topBorder: 'border-b border-[#c7d3f8]',
+    tierLabel: 'text-navy',
+    tierLabelBg: 'bg-[#dce5fc]',
+    nameColor: 'text-text-primary',
+    priceColor: 'text-text-primary',
+    priceSubColor: 'text-[#6078d0]',
+    benefitText: 'text-[#2d3a6b]',
+    checkBg: 'bg-navy',
+    checkTick: 'text-white',
+    buttonClass: 'border-navy text-navy hover:bg-navy hover:text-white',
+    hoverShadow: 'hover:shadow-xl hover:shadow-[#2152cf]/15',
+  },
+  {
+    card: 'bg-[#1e2547] border border-[#1e2547] rounded-3xl',
+    topBorder: 'border-b border-white/10',
+    tierLabel: 'text-[#d9ff42]',
+    tierLabelBg: 'bg-white/10',
+    nameColor: 'text-white',
+    priceColor: 'text-white',
+    priceSubColor: 'text-white/50',
+    benefitText: 'text-white/70',
+    checkBg: 'bg-[#d9ff42]',
+    checkTick: 'text-text-primary',
+    buttonClass: 'border-white/30 text-white hover:bg-surface-elevated hover:text-text-primary',
+    hoverShadow: 'hover:shadow-2xl hover:shadow-[#2152cf]/20',
+  },
+]
 
 export default async function ServiceDetailPage({ params }: PageProps) {
   const { slug } = await params
   const service = SERVICES_DETAIL.find(s => s.id === slug)
-  
-  if (!service) {
-    notFound()
-  }
 
-  return <ComingSoon pageName={service.title} />
-}
-
-/* Original ServiceDetailPage content for future reference:
-import Link from 'next/link'
-import { 
-  Laptop, 
-  Building2, 
-  ShoppingBag, 
-  Database, 
-  User, 
-  Palette, 
-  Smartphone,
-  Check,
-  ArrowLeft,
-  CheckCircle2,
-  HelpCircle
-} from 'lucide-react'
-import Button from '@/components/ui/Button'
-import { PRICING_CATEGORIES } from '@/lib/data'
-
-const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
-  Laptop,
-  Building2,
-  ShoppingBag,
-  Database,
-  User,
-  Palette,
-  Smartphone
-}
-
-export default async function ServiceDetailPage({ params }: PageProps) {
-  const { slug } = await params
-  const service = SERVICES_DETAIL.find(s => s.id === slug)
-  
   if (!service) {
     notFound()
   }
@@ -84,33 +120,46 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const IconComponent = iconMap[service.iconName] || Laptop
 
   return (
-    <main className="bg-[#f8f9fc] min-h-screen">
-      <section 
-        className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-[#0d1230]"
-        style={{ background: 'linear-gradient(135deg, #0d1230 0%, #151d42 100%)' }}
+    <main className="bg-surface min-h-screen">
+      {/* ─── HERO ─── */}
+      <section
+        className="relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #3060c2 0%, #2255b2 50%, #163898 100%)' }}
       >
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
-          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-white/5 blur-3xl" />
+          <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-white/10" />
+          <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-white/8" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-navy opacity-20 blur-[120px]" />
+          <div
+            className="absolute inset-0 opacity-[0.06]"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(255,255,255,0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.15) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px',
+            }}
+          />
         </div>
 
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link 
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16 md:pt-24 md:pb-20">
+          <Link
             href="/layanan"
-            className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white mb-8 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Kembali ke Semua Layanan
           </Link>
 
-          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
-            <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-[#d9ff42] shrink-0">
-              <IconComponent className="w-8 h-8" strokeWidth={1.5} />
+          <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-10">
+            <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-[#d9ff42] shrink-0">
+              <IconComponent className="w-7 h-7" strokeWidth={1.5} />
             </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            <div className="max-w-3xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.05]">
                 {service.title}
               </h1>
-              <p className="text-white/80 text-lg md:text-xl mt-3 max-w-3xl leading-relaxed">
+              <p className="text-white/75 text-lg md:text-xl mt-4 leading-relaxed">
                 {service.subtitle}
               </p>
             </div>
@@ -118,19 +167,19 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-white border-b border-[#e4e8f2]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-            <div className="lg:col-span-4">
-              <h2 className="text-2xl font-bold text-[#1e2547] tracking-tight uppercase tracking-wider text-xs text-[#2152cf] mb-2">
-                Deskripsi Layanan
+      {/* ─── DESCRIPTION ─── */}
+      <section className="py-16 md:py-24 lg:py-28 bg-surface-alt relative overflow-hidden">
+        <div className="absolute top-1/4 -left-40 w-96 h-96 rounded-full bg-navy/5 blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-14">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight leading-tight">
+                Apa itu{' '}
+                <span className="font-script italic text-navy">{service.title}</span>?
               </h2>
-              <h3 className="text-3xl font-extrabold text-[#1e2547] tracking-tight leading-tight">
-                Apa itu {service.title}?
-              </h3>
             </div>
-            <div className="lg:col-span-8">
-              <p className="text-[#4f5b7d] text-base leading-relaxed whitespace-pre-line">
+            <div className="bg-surface border border-border rounded-3xl p-8 md:p-12 shadow-sm">
+              <p className="text-text-secondary text-base leading-relaxed whitespace-pre-line">
                 {service.description}
               </p>
             </div>
@@ -138,31 +187,33 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-[#f8f9fc] border-b border-[#e4e8f2]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold text-[#2152cf] uppercase tracking-widest block mb-3">Nilai Tambah</span>
-            <h2 className="text-3xl font-extrabold text-[#1e2547] tracking-tight">
-              Manfaat Utama Untuk Bisnis Anda
+      {/* ─── BENEFITS ─── */}
+      <section className="py-16 md:py-24 lg:py-28 bg-surface relative overflow-hidden">
+        <div className="absolute top-1/3 -right-40 w-96 h-96 rounded-full bg-[#d9ff42]/5 blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="max-w-2xl mb-14">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight leading-tight">
+              Manfaat Utama Untuk{' '}
+              <span className="font-script italic text-navy">Bisnis Anda</span>
             </h2>
-            <p className="text-sm text-[#4f5b7d] mt-2">
+            <p className="text-text-secondary text-base mt-4 leading-relaxed">
               Bagaimana layanan {service.title} kami dapat memberikan dampak nyata bagi performa bisnis Anda.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {service.benefits.map((benefit, idx) => (
-              <div 
+              <div
                 key={idx}
-                className="bg-white border border-[#e4e8f2] rounded-2xl p-7 shadow-sm transition-all duration-200 hover:border-[#2152cf]/30 hover:shadow-md"
+                className="bg-surface-alt border border-border rounded-3xl p-8 hover:bg-surface-elevated hover:shadow-md hover:border-navy/20 transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#2152cf]/5 flex items-center justify-center text-[#2152cf] mb-5">
+                <div className="w-10 h-10 rounded-2xl bg-navy/10 flex items-center justify-center text-navy mb-5">
                   <Check className="w-5 h-5" strokeWidth={2.5} />
                 </div>
-                <h3 className="text-lg font-bold text-[#1e2547] mb-2">
+                <h3 className="text-lg font-bold text-text-primary mb-2 tracking-tight">
                   {benefit.title}
                 </h3>
-                <p className="text-sm text-[#4f5b7d] leading-relaxed">
+                <p className="text-sm text-text-secondary leading-relaxed">
                   {benefit.description}
                 </p>
               </div>
@@ -171,87 +222,87 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-white border-b border-[#e4e8f2]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold text-[#2152cf] uppercase tracking-widest block mb-3">Implementasi & Fitur</span>
-            <h2 className="text-3xl font-extrabold text-[#1e2547] tracking-tight">
-              Kegunaan & Alur Fungsional
-            </h2>
-            <p className="text-sm text-[#4f5b7d] mt-2">
-              Beberapa bentuk penerapan dan fitur utama yang akan ditanamkan ke dalam produk digital Anda.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {service.useCases.map((useCase, idx) => (
-              <div 
-                key={idx}
-                className="flex items-start gap-4 p-2"
-              >
-                <div className="w-8 h-8 rounded-full bg-[#f1f3f9] flex items-center justify-center text-[#2152cf] shrink-0 font-bold text-sm mt-0.5">
-                  {idx + 1}
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#1e2547] mb-1.5">
-                    {useCase.title}
-                  </h3>
-                  <p className="text-sm text-[#4f5b7d] leading-relaxed">
-                    {useCase.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-20 bg-[#f8f9fc] border-b border-[#e4e8f2]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white border border-[#e4e8f2] rounded-3xl p-8 md:p-10 shadow-sm">
-            <h2 className="text-2xl font-extrabold text-[#1e2547] tracking-tight mb-6 text-center md:text-left">
-              Apakah Layanan Ini Cocok Untuk Anda?
-            </h2>
-            <div className="space-y-4">
-              {service.targetAudience.map((target, idx) => (
-                <div key={idx} className="flex items-start gap-3.5">
-                  <CheckCircle2 className="w-5 h-5 text-[#2152cf] shrink-0 mt-0.5" />
-                  <p className="text-[#4f5b7d] text-sm leading-relaxed">{target}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {pricingCategory && (
-        <section className="py-16 md:py-24 bg-white border-b border-[#e4e8f2]">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="text-xs font-bold text-[#2152cf] uppercase tracking-widest block mb-3">Rencana Investasi</span>
-              <h2 className="text-3xl font-extrabold text-[#1e2547] tracking-tight">
-                Pilihan Paket & Investasi
+      {/* ─── USE CASES ─── */}
+      <section className="py-16 md:py-24 lg:py-28 bg-surface-alt relative overflow-hidden">
+        <div className="absolute top-1/4 -left-40 w-96 h-96 rounded-full bg-navy/5 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-40 w-96 h-96 rounded-full bg-[#d9ff42]/5 blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-14">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight leading-tight">
+                Kegunaan &{' '}
+                <span className="font-script italic text-navy">Alur Fungsional</span>
               </h2>
-              <p className="text-sm text-[#4f5b7d] mt-2">
-                Harga transparan tanpa biaya tambahan tersembunyi. Silakan pilih opsi paket yang paling sesuai dengan kapasitas bisnis Anda.
+              <p className="text-text-secondary text-base mt-4 leading-relaxed max-w-2xl mx-auto">
+                Beberapa bentuk penerapan dan fitur utama yang akan ditanamkan ke dalam produk digital Anda.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-              {pricingCategory.packages.map((pkg, idx) => {
-                const isFeatured = pkg.bestValue
-                
-                const cardStyle = isFeatured
-                  ? 'bg-[#1e2547] border border-[#1e2547] text-white shadow-lg'
-                  : 'bg-white border border-[#e4e8f2] text-[#1e2547] shadow-sm'
-                
-                const badgeStyle = isFeatured
-                  ? 'bg-[#2152cf] text-white'
-                  : 'bg-[#f1f3f9] text-[#4f5b7d]'
+            <div className="relative">
+              <div className="absolute left-5 top-0 bottom-0 w-px bg-[#dce1f0]" aria-hidden />
+              <div className="space-y-8">
+                {service.useCases.map((useCase, idx) => (
+                  <div key={idx} className="relative pl-14">
+                    <div className="absolute left-3.5 top-0 w-3 h-3 rounded-full bg-navy border-2 border-white shadow-sm" />
+                    <div className="bg-surface border border-border rounded-2xl p-6 hover:shadow-sm hover:border-navy/20 transition-all duration-300">
+                      <h3 className="text-lg font-bold text-text-primary mb-1 tracking-tight">
+                        {useCase.title}
+                      </h3>
+                      <p className="text-sm text-text-secondary leading-relaxed">
+                        {useCase.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                const buttonStyle = isFeatured
-                  ? 'bg-[#2152cf] text-white hover:bg-[#1a3fa3] border-[#2152cf]'
-                  : 'border-[#1e2547] text-[#1e2547] hover:bg-[#1e2547] hover:text-white'
+      {/* ─── TARGET AUDIENCE ─── */}
+      <section className="py-16 md:py-20 lg:py-24 bg-surface relative overflow-hidden">
+        <div className="absolute top-1/3 -right-40 w-96 h-96 rounded-full bg-[#d9ff42]/5 blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-surface-alt border border-border rounded-3xl p-8 md:p-12">
+              <div className="max-w-2xl mx-auto">
+                <h2 className="text-2xl md:text-3xl font-bold text-text-primary tracking-tight mb-8 text-center">
+                  Apakah Layanan Ini{' '}
+                  <span className="font-script italic text-navy">Cocok</span> Untuk Anda?
+                </h2>
+                <div className="space-y-4">
+                  {service.targetAudience.map((target, idx) => (
+                    <div key={idx} className="flex items-start gap-3.5 bg-surface border border-border rounded-2xl p-4">
+                      <CheckCircle2 className="w-5 h-5 text-navy shrink-0 mt-0.5" strokeWidth={2} />
+                      <p className="text-text-secondary text-sm leading-relaxed">{target}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── PRICING ─── */}
+      {pricingCategory && (
+        <section className="py-16 md:py-24 lg:py-28 bg-surface-alt relative overflow-hidden">
+          <div className="absolute top-1/4 -left-40 w-96 h-96 rounded-full bg-navy/5 blur-3xl pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="text-center mb-14">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary tracking-tight leading-tight">
+                Pilihan Paket &{' '}
+                <span className="font-script italic text-navy">Harga</span>
+              </h2>
+              <p className="text-text-secondary text-base mt-4 max-w-2xl mx-auto">
+                Harga transparan tanpa biaya tambahan tersembunyi. Pilih opsi paket yang paling sesuai dengan kapasitas bisnis Anda.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch max-w-5xl mx-auto">
+              {pricingCategory.packages.map((pkg, idx) => {
+                const theme = TIER_THEMES[idx] ?? TIER_THEMES[2]
 
                 const waMessage = encodeURIComponent(
                   `Halo Kalana Labs, saya tertarik dengan paket berikut:\n\n` +
@@ -260,40 +311,52 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                   `Harga: Rp ${pkg.price} ${pkg.suffix}\n\n` +
                   `Mohon info selengkapnya untuk memulai proyek ini.`
                 )
-                const waUrl = `https://wa.me/6285707736885?text=${waMessage}`
+                const waUrl = `https://wa.me/6285196811722?text=${waMessage}`
 
                 return (
-                  <div 
+                  <div
                     key={pkg.name}
-                    className={`flex flex-col rounded-2xl p-7 relative transition-all duration-200 hover:-translate-y-1 ${cardStyle}`}
+                    className={`flex flex-col relative transition-all duration-300 group ${theme.card} ${theme.hoverShadow}`}
                   >
-                    {isFeatured && (
-                      <span className="absolute top-4 right-4 bg-[#d9ff42] text-[#1e2547] text-[8px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
-                        Populer
-                      </span>
+                    {pkg.bestValue && (
+                      <div className="absolute top-5 right-5 bg-[#d9ff42] text-text-primary text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow z-10">
+                        Best Value
+                      </div>
                     )}
 
-                    <div className="mb-6">
-                      <span className={`inline-block text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${badgeStyle}`}>
-                        Paket {pkg.name}
+                    <div className={`px-7 pt-8 pb-6 ${theme.topBorder}`}>
+                      <span className={`inline-block text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full mb-4 ${theme.tierLabel} ${theme.tierLabelBg}`}>
+                        Tier {idx + 1}
                       </span>
-                      <p className={`text-xs mt-3 leading-relaxed ${isFeatured ? 'text-white/60' : 'text-[#8a96b8]'}`}>
+
+                      <h4 className={`text-3xl font-black mb-1.5 ${theme.nameColor}`}>
+                        {pkg.name}
+                      </h4>
+                      <p className={`text-xs leading-relaxed pr-10 ${theme.priceSubColor}`}>
                         {pkg.subtitle}
                       </p>
-                      
-                      <div className="mt-5 flex items-baseline gap-1">
-                        <span className={`text-xs font-bold ${isFeatured ? 'text-white/50' : 'text-[#8a96b8]'}`}>Rp</span>
-                        <span className="text-4xl font-black tracking-tight">{pkg.price}</span>
-                        <span className={`text-xs font-semibold ${isFeatured ? 'text-white/50' : 'text-[#8a96b8]'}`}>{pkg.suffix}</span>
+
+                      <div className="mt-6 flex items-baseline gap-1.5">
+                        <span className={`text-base font-bold ${theme.priceSubColor}`}>Rp</span>
+                        <span className={`text-5xl font-black tracking-tight leading-none ${theme.priceColor}`}>
+                          {pkg.price}
+                        </span>
+                        <span className={`text-base font-semibold ${theme.priceSubColor}`}>
+                          {pkg.suffix}
+                        </span>
                       </div>
                     </div>
 
-                    <div className="flex-1 flex flex-col justify-between border-t border-[#e4e8f2]/10 pt-6">
-                      <ul className="space-y-3.5 mb-8">
-                        {pkg.benefits.map((benefit, bIdx) => (
-                          <li key={bIdx} className="flex items-start gap-3">
-                            <Check className={`w-4 h-4 shrink-0 mt-0.5 ${isFeatured ? 'text-[#d9ff42]' : 'text-[#2152cf]'}`} strokeWidth={2.5} />
-                            <span className={`text-xs leading-normal ${isFeatured ? 'text-white/80' : 'text-[#4f5b7d]'}`}>
+                    <div className="px-7 py-6 flex-1 flex flex-col">
+                      <ul className="flex flex-col gap-3 mb-8 flex-1">
+                        {pkg.benefits.map((benefit) => (
+                          <li key={benefit} className="flex items-start gap-3">
+                            <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${theme.checkBg}`}>
+                              <svg className={`w-2.5 h-2.5 ${theme.checkTick}`} width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden>
+                                <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                            </div>
+                            <span className={`text-sm leading-snug ${theme.benefitText}`}>
                               {benefit}
                             </span>
                           </li>
@@ -303,8 +366,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                       <Button
                         href={waUrl}
                         variant="outline"
-                        showArrow={false}
-                        className={`w-full py-2.5 text-xs justify-center rounded-full ${buttonStyle}`}
+                        className={`w-full mt-auto ${theme.buttonClass}`}
                       >
                         Pilih Paket
                       </Button>
@@ -317,24 +379,44 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </section>
       )}
 
-      <section className="py-20 bg-[#f8f9fc]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-[#1e2547] text-white rounded-3xl p-8 md:p-12 shadow-md relative overflow-hidden">
-            <div className="relative space-y-5 z-10 max-w-2xl mx-auto">
-              <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight">
-                Mulai Proyek {service.title} Anda Hari Ini
-              </h3>
-              <p className="text-sm text-white/70 leading-relaxed">
+      {/* ─── CTA ─── */}
+      <section
+        className="relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #0d1230 0%, #122070 60%, #0d1230 100%)' }}
+      >
+        <div className="absolute inset-0 pointer-events-none" aria-hidden>
+          <div
+            className="absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+              backgroundSize: '28px 28px',
+            }}
+          />
+          <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-navy opacity-20 blur-[120px] -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-navy opacity-15 blur-[100px] translate-y-1/3" />
+          <div className="absolute top-16 left-[30%] w-2 h-2 rounded-full bg-[#d9ff42]/50" />
+          <div className="absolute top-32 left-[28%] w-1 h-1 rounded-full bg-[#d9ff42]/30" />
+          <div className="absolute bottom-16 right-[35%] w-1.5 h-1.5 rounded-full bg-[#d9ff42]/40" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="py-20 md:py-24 text-center">
+            <div className="max-w-2xl mx-auto space-y-6">
+              <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-white leading-tight tracking-tight">
+                Mulai Proyek{' '}
+                <span className="font-script italic text-[#d9ff42]">{service.title}</span>{' '}
+                Anda Hari Ini
+              </h2>
+              <p className="text-white/60 text-base leading-relaxed max-w-xl mx-auto">
                 Kami siap mendampingi Anda merancang dan membangun produk digital berkualitas tinggi yang dapat disesuaikan sepenuhnya dengan proses bisnis Anda. Konsultasikan kebutuhan Anda gratis tanpa dipungut biaya.
               </p>
-              <div className="pt-4">
+              <div className="pt-2">
                 <Button
-                  href={`https://wa.me/6285707736885?text=${encodeURIComponent(service.waText)}`}
+                  href={`https://wa.me/6285196811722?text=${encodeURIComponent(service.waText)}`}
                   variant="accent"
                   size="lg"
-                  className="rounded-full shadow-lg"
                 >
-                  Hubungi Kami via WhatsApp
+                  Konsultasi Gratis
                 </Button>
               </div>
             </div>
@@ -344,5 +426,3 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     </main>
   )
 }
-*/
-

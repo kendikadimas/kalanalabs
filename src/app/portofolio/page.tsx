@@ -102,7 +102,7 @@ export default function PortofolioPage() {
           </p>
           <div className="pt-2">
             <Button
-              href="https://wa.me/6285707736885?text=Halo%20Kalana%20Labs%2C%20saya%20ingin%20membuat%20proyek%20baru."
+              href="https://wa.me/6285196811722?text=Halo%20Kalana%20Labs%2C%20saya%20ingin%20membuat%20proyek%20baru."
               variant="primary"
               size="lg"
               className="px-8 py-4 rounded-2xl shadow-lg shadow-[#2152cf]/10 inline-flex"

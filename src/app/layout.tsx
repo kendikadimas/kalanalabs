@@ -43,8 +43,8 @@ export const metadata: Metadata = {
     'software house purwokerto'
   ],
   icons: {
-    icon: '/logo-kalana.svg',
-    shortcut: '/logo-kalana.svg',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
     apple: '/logo-kalana.svg',
   },
   openGraph: {

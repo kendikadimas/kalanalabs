@@ -19,7 +19,7 @@ export default function SectionHeading({
   light = false,
   className = '',
 }: SectionHeadingProps) {
-  const textAlign = centered ? 'text-center items-center' : 'text-left items-start'
+  const textAlign = centered ? 'text-left md:text-center items-start md:items-center' : 'text-left items-start'
   const textColor = light ? 'text-white' : 'text-[#1e2547]'
   const subtitleColor = light ? 'text-white/70' : 'text-[#4f5b7d]'
 

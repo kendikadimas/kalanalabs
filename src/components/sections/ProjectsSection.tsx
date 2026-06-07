@@ -46,7 +46,7 @@ export default function ProjectsSection() {
       {/* Background decorations */}
       <div className="absolute top-1/2 -right-40 w-96 h-96 rounded-full bg-[#2152cf]/5 blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
         {/* Heading & Navigation controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
           <div className="max-w-2xl">
@@ -89,16 +89,22 @@ export default function ProjectsSection() {
         {/* Carousel Container */}
         <div
           ref={scrollContainerRef}
-          className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] -mx-4 px-4 sm:mx-0 sm:px-0"
+          className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] -mx-6 sm:mx-0"
         >
+          {/* Left spacer for mobile alignment */}
+          <div className="w-6 shrink-0 sm:hidden" />
+
           {PROJECTS.map((project) => (
             <div
               key={project.id}
-              className="w-[85vw] sm:w-[500px] shrink-0 snap-start snap-always"
+              className="w-[80vw] sm:w-[385px] shrink-0 snap-start snap-always scroll-ml-6 sm:scroll-ml-0"
             >
               <ProjectCard project={project} />
             </div>
           ))}
+
+          {/* Right spacer for mobile alignment */}
+          <div className="w-6 shrink-0 sm:hidden" />
         </div>
       </div>
     </section>

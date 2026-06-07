@@ -7,9 +7,9 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="group bg-white border border-[#e4e8f2] rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-[#2152cf]/10 hover:-translate-y-1">
+    <div className="group bg-white border-2 border-slate-200 border-b-[6px] border-b-slate-300 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg flex flex-col h-full">
       {/* Image container */}
-      <div className="aspect-[3/2] bg-[#0b0c10] flex items-center justify-center relative overflow-hidden">
+      <div className="aspect-[16/10] bg-[#0b0c10] flex items-center justify-center relative overflow-hidden border-b-2 border-slate-200">
         {project.image ? (
           <img
             src={project.image}
@@ -25,25 +25,27 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-4 sm:p-5 flex flex-col flex-grow">
         {/* Category tag */}
-        <span className="inline-block bg-[#d9ff42]/20 text-[#1e2547] text-xs font-semibold rounded-full px-3 py-1 mb-4">
-          {project.category}
-        </span>
+        <div className="mb-2.5">
+          <span className="inline-block bg-[#d9ff42] border border-[#c5e933] text-black text-[10px] font-extrabold rounded px-2 py-0.5 shadow-[1.5px_1.5px_0_rgba(0,0,0,0.08)]">
+            {project.category}
+          </span>
+        </div>
 
-        <h3 className="text-lg font-bold text-[#1e2547] mb-2 group-hover:text-[#2152cf] transition-colors duration-200">
+        <h3 className="text-lg font-extrabold text-slate-900 mb-1.5 group-hover:text-[#2152cf] transition-colors duration-200">
           {project.title}
         </h3>
-        <p className="text-[#4f5b7d] text-sm leading-relaxed mb-4">
+        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3 flex-grow">
           {project.description}
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-5">
+        <div className="flex flex-wrap gap-1.5 mb-3.5">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs bg-[#f1f3f9] text-[#4f5b7d] px-2.5 py-1 rounded-full font-medium"
+              className="text-[10px] bg-slate-50 border border-slate-200 text-slate-600 px-2 py-0.5 rounded font-semibold"
             >
               {tag}
             </span>
@@ -51,10 +53,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Link */}
-        <button className="flex items-center gap-1 text-[#2152cf] text-sm font-semibold hover:gap-2 transition-all duration-200 group/link cursor-pointer">
-          Lihat Detail
-          <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-        </button>
+        <div className="border-t border-slate-100 pt-3 mt-auto">
+          <button className="flex items-center gap-1 text-[#2152cf] text-xs sm:text-sm font-extrabold hover:gap-2 transition-all duration-200 group/link cursor-pointer">
+            Lihat Detail
+            <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+          </button>
+        </div>
       </div>
     </div>
   )

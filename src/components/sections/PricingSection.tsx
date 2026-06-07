@@ -5,55 +5,43 @@ import SectionHeading from '@/components/ui/SectionHeading'
 import Button from '@/components/ui/Button'
 import { PRICING_CATEGORIES } from '@/lib/data'
 
-// Progressive color themes: Tier 1 (lightest) → Tier 3 (most dominant)
+// Progressive 3D solid themes: Tier 1 (White) → Tier 2 (Neon Green) → Tier 3 (Deep Navy)
 const TIER_THEMES = [
   {
-    // Tier 1 — clean white, subtle
-    card: 'bg-white border border-[#e4e8f2]',
-    topBorder: 'border-b border-[#e4e8f2]',
-    tierLabel: 'text-[#4f5b7d]',
-    tierLabelBg: 'bg-[#f1f3f9]',
-    nameColor: 'text-[#1e2547]',
-    priceColor: 'text-[#1e2547]',
-    priceSubColor: 'text-[#8a96b8]',
-    benefitText: 'text-[#4f5b7d]',
-    checkBg: 'bg-[#eef1ff]',
-    checkTick: 'text-[#2152cf]',
-    buttonClass: 'border-[#1e2547] text-[#1e2547] hover:bg-[#1e2547] hover:text-white',
-    accentLine: 'bg-gradient-to-r from-[#2152cf] to-[#d9ff42]',
-    hoverShadow: 'hover:shadow-lg hover:shadow-[#2152cf]/8',
+    // Tier 1 — Solid White 3D
+    card: 'bg-white border-2 border-slate-200 border-b-[8px] border-b-slate-300 shadow-xl hover:scale-[1.02] transition-all duration-300',
+    topBorder: 'border-b-2 border-slate-100',
+    nameColor: 'text-slate-900',
+    priceColor: 'text-slate-900',
+    priceSubColor: 'text-slate-500',
+    benefitText: 'text-slate-700',
+    checkBg: 'bg-slate-100',
+    checkTick: 'text-slate-800',
+    buttonClass: 'border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white font-extrabold',
   },
   {
-    // Tier 2 — medium blue tint
-    card: 'bg-[#eef2ff] border-2 border-[#c7d3f8]',
-    topBorder: 'border-b border-[#c7d3f8]',
-    tierLabel: 'text-[#2152cf]',
-    tierLabelBg: 'bg-[#dce5fc]',
-    nameColor: 'text-[#1e2547]',
-    priceColor: 'text-[#1e2547]',
-    priceSubColor: 'text-[#6078d0]',
-    benefitText: 'text-[#2d3a6b]',
-    checkBg: 'bg-[#2152cf]',
-    checkTick: 'text-white',
-    buttonClass: 'border-[#2152cf] text-[#2152cf] hover:bg-[#2152cf] hover:text-white',
-    accentLine: 'bg-[#2152cf]',
-    hoverShadow: 'hover:shadow-xl hover:shadow-[#2152cf]/15',
+    // Tier 2 — Solid Neon Green 3D (Best Value)
+    card: 'bg-[#d9ff42] border-2 border-[#b8d932] border-b-[8px] border-b-[#8da61b] shadow-2xl hover:scale-[1.02] transition-all duration-300',
+    topBorder: 'border-b-2 border-[#b8d932]/40',
+    nameColor: 'text-[#0d1230]',
+    priceColor: 'text-[#0d1230]',
+    priceSubColor: 'text-[#0d1230]/70',
+    benefitText: 'text-[#0d1230]/90',
+    checkBg: 'bg-[#0d1230]',
+    checkTick: 'text-[#d9ff42]',
+    buttonClass: 'border-2 border-[#0d1230] text-[#0d1230] hover:bg-[#0d1230] hover:text-[#d9ff42] font-extrabold',
   },
   {
-    // Tier 3 — dominant navy, most branded
-    card: 'bg-[#1e2547] border border-[#1e2547]',
-    topBorder: 'border-b border-white/10',
-    tierLabel: 'text-[#d9ff42]',
-    tierLabelBg: 'bg-white/10',
+    // Tier 3 — Solid Deep Navy 3D
+    card: 'bg-[#122d78] border-2 border-[#1a3fa3]/30 border-b-[8px] border-b-[#0b1b47] shadow-xl hover:scale-[1.02] transition-all duration-300',
+    topBorder: 'border-b-2 border-[#1a3fa3]/30',
     nameColor: 'text-white',
     priceColor: 'text-white',
-    priceSubColor: 'text-white/50',
-    benefitText: 'text-white/70',
+    priceSubColor: 'text-white/60',
+    benefitText: 'text-white/80',
     checkBg: 'bg-[#d9ff42]',
-    checkTick: 'text-[#1e2547]',
-    buttonClass: 'border-white/30 text-white hover:bg-white hover:text-[#1e2547]',
-    accentLine: 'bg-[#d9ff42]',
-    hoverShadow: 'hover:shadow-2xl hover:shadow-[#2152cf]/20',
+    checkTick: 'text-[#0d1230]',
+    buttonClass: 'border-2 border-white text-white hover:bg-white hover:text-[#122d78] font-extrabold',
   },
 ]
 
@@ -65,7 +53,7 @@ export default function PricingSection() {
 
   return (
     <section id="harga" className="py-16 md:py-24 lg:py-28 bg-[#f8f9fc]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
 
         {/* Heading */}
         <div className="mb-14 md:mb-16">
@@ -78,16 +66,16 @@ export default function PricingSection() {
         </div>
 
         {/* Tab Bar */}
-        <div className="flex justify-center mb-10">
-          <div className="flex overflow-x-auto max-w-full gap-2 bg-white border border-[#e4e8f2] p-1.5 rounded-2xl shadow-sm md:flex-wrap md:justify-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex justify-center mb-10 w-full">
+          <div className="flex overflow-x-auto gap-3 pb-3 max-w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] -mx-6 px-4 sm:mx-0 sm:px-0 md:flex-wrap md:justify-center">
             {PRICING_CATEGORIES.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveTab(category.id)}
-                className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap cursor-pointer transition-all duration-200 ${
+                className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap cursor-pointer transition-all duration-200 border-2 ${
                   activeTab === category.id
-                    ? 'bg-[#2152cf] text-white shadow-md'
-                    : 'text-[#4f5b7d] hover:text-[#1e2547] hover:bg-[#f1f3f9]'
+                    ? 'bg-[#2152cf] border-[#1a3fa3] border-b-[5px] border-b-[#0f245c] text-white shadow-md -translate-y-[1px]'
+                    : 'bg-white border-slate-200 border-b-[5px] border-b-slate-300 text-[#4f5b7d] hover:text-[#1e2547] hover:bg-[#f1f3f9]'
                 }`}
               >
                 {category.name}
@@ -98,14 +86,20 @@ export default function PricingSection() {
 
         {/* Category subtitle */}
         {selectedCategory && (
-          <p className="text-center text-sm text-[#4f5b7d] mb-10">
+          <p className="text-left md:text-center text-sm font-semibold text-[#4f5b7d] mb-10">
             {selectedCategory.subtitle}
           </p>
         )}
 
-        {/* Cards — equal height via items-stretch */}
+        {/* Cards — horizontal carousel on mobile, 3-column grid on desktop */}
         {selectedCategory && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <div
+            key={activeTab}
+            className="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] -mx-6 md:grid md:grid-cols-3 md:gap-8 md:items-stretch md:mx-0 md:px-0"
+          >
+            {/* Left spacer for mobile alignment */}
+            <div className="w-4 shrink-0 snap-start md:hidden" />
+
             {selectedCategory.packages.map((pkg, idx) => {
               const theme = TIER_THEMES[idx] ?? TIER_THEMES[2]
 
@@ -121,27 +115,26 @@ export default function PricingSection() {
               return (
                 <div
                   key={pkg.name}
-                  className={`flex flex-col rounded-3xl overflow-hidden relative transition-all duration-300 group ${theme.card} ${theme.hoverShadow}`}
+                  className={`flex flex-col rounded-3xl overflow-hidden relative transition-all duration-300 group w-[82vw] sm:w-[350px] md:w-auto shrink-0 snap-start snap-always scroll-ml-4 md:scroll-ml-0 ${theme.card}`}
                 >
                   {/* Best Value badge */}
                   {pkg.bestValue && (
-                    <div className="absolute top-5 right-5 bg-[#d9ff42] text-[#1e2547] text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow z-10">
+                    <div className={`absolute top-5 right-5 text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow z-10 ${
+                      idx === 1
+                        ? 'bg-[#0d1230] text-[#d9ff42]'
+                        : 'bg-[#d9ff42] text-[#1e2547]'
+                    }`}>
                       Best Value
                     </div>
                   )}
 
                   {/* Card top section */}
                   <div className={`px-7 pt-8 pb-6 ${theme.topBorder}`}>
-                    {/* Tier label pill */}
-                    <span className={`inline-block text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full mb-4 ${theme.tierLabel} ${theme.tierLabelBg}`}>
-                      Tier {idx + 1}
-                    </span>
-
                     {/* Package name — bigger & bolder */}
                     <h4 className={`text-3xl font-black mb-1.5 ${theme.nameColor}`}>
                       {pkg.name}
                     </h4>
-                    <p className={`text-xs leading-relaxed pr-10 ${theme.priceSubColor}`}>
+                    <p className={`text-xs leading-relaxed pr-10 font-medium ${theme.priceSubColor}`}>
                       {pkg.subtitle}
                     </p>
 
@@ -167,7 +160,7 @@ export default function PricingSection() {
                               <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                           </div>
-                          <span className={`text-sm leading-snug ${theme.benefitText}`}>
+                          <span className={`text-sm font-semibold leading-snug ${theme.benefitText}`}>
                             {benefit}
                           </span>
                         </li>
@@ -182,12 +175,12 @@ export default function PricingSection() {
                       Pilih Paket
                     </Button>
                   </div>
-
-                  {/* Bottom accent */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-[3px] ${theme.accentLine} scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`} />
                 </div>
               )
             })}
+
+            {/* Right spacer for mobile alignment */}
+            <div className="w-4 shrink-0 snap-end md:hidden" />
           </div>
         )}
 

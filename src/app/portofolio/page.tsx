@@ -47,8 +47,8 @@ export default function PortofolioPage() {
             </div>
           </div>
 
-          {/* Projects Grid (2 columns for larger visual presence and sharper downscaling) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* Projects Grid (3 columns for a clean and compact visual presence) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {filteredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}

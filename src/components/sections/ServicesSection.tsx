@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button'
 export default function ServicesSection() {
   return (
     <section id="layanan" className="py-16 md:py-24 lg:py-28 bg-[#f8f9fc]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
         {/* Heading Area */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start mb-16">
           <div className="lg:col-span-8">
@@ -24,11 +24,11 @@ export default function ServicesSection() {
 
         {/* 3 Main Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Card 1: Web Development (Lime Gradient Background) */}
-          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-[#d9ff42] to-[#b4d622] p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+          {/* Card 1: Web Development (Lime Gradient Background) - 3D */}
+          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-[#d9ff42] to-[#b4d622] border-2 border-[#b4d622] border-b-[8px] border-b-[#8da61b] p-6 sm:p-8 relative overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300">
             {/* Top Info */}
             <div className="flex flex-col gap-3">
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#0d1230] tracking-tight">
+              <h3 className="text-xl sm:text-3xl font-bold text-[#0d1230] tracking-tight">
                 Pembuatan Website dan Sistem Informasi
               </h3>
               <p className="text-[#0d1230]/75 text-sm leading-relaxed">
@@ -42,12 +42,12 @@ export default function ServicesSection() {
                 Mulai dari <span className="text-base font-bold text-[#122d78]">Rp 299.000</span>
               </div>
               <Button
-                href="#harga"
+                href="/layanan"
                 variant="outline"
                 size="sm"
                 className="w-fit py-1.5 px-4 border-[#0d1230] text-[#0d1230] hover:bg-[#0d1230] hover:text-[#d9ff42]"
               >
-                Detail Layanan
+                Lihat Layanan
               </Button>
             </div>
 
@@ -70,11 +70,11 @@ export default function ServicesSection() {
             */}
           </div>
 
-          {/* Card 2: Mobile Apps (Blue-Navy Gradient Background) */}
-          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-[#2152cf] to-[#122d78] p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+          {/* Card 2: Mobile Apps (Blue-Navy Gradient Background) - 3D */}
+          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-[#2152cf] to-[#122d78] border-2 border-[#2152cf]/30 border-b-[8px] border-b-[#0b1b47] p-6 sm:p-8 relative overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300">
             {/* Top Info */}
             <div className="flex flex-col gap-3">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <h3 className="text-xl sm:text-3xl font-bold text-white tracking-tight">
                 Pembuatan Aplikasi Mobile
               </h3>
               <p className="text-white/80 text-sm leading-relaxed">
@@ -88,12 +88,12 @@ export default function ServicesSection() {
                 Mulai dari <span className="text-base font-bold text-[#d9ff42]">Rp 1.999.000</span>
               </div>
               <Button
-                href="#harga"
+                href="/layanan"
                 variant="outline"
                 size="sm"
                 className="w-fit py-1.5 px-4 border-white text-white hover:bg-white hover:text-[#122d78]"
               >
-                Detail Layanan
+                Lihat Layanan
               </Button>
             </div>
 
@@ -109,11 +109,11 @@ export default function ServicesSection() {
             */}
           </div>
 
-          {/* Card 3: UI/UX Design (White Gradient Background) */}
-          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-white to-[#f8f9fc] border border-[#e4e8f2] p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+          {/* Card 3: UI/UX Design (White Gradient Background) - 3D */}
+          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-white to-[#f8f9fc] border-2 border-slate-200 border-b-[8px] border-b-slate-300 p-6 sm:p-8 relative overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300">
             {/* Top Info */}
             <div className="flex flex-col gap-3">
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#1e2547] tracking-tight">
+              <h3 className="text-xl sm:text-3xl font-bold text-[#1e2547] tracking-tight">
                 Desain UI/UX
               </h3>
               <p className="text-[#4f5b7d] text-sm leading-relaxed">
@@ -127,12 +127,12 @@ export default function ServicesSection() {
                 Mulai dari <span className="text-base font-bold text-[#2152cf]">Rp 199.000</span>
               </div>
               <Button
-                href="#harga"
+                href="/layanan"
                 variant="outline"
                 size="sm"
                 className="w-fit py-1.5 px-4 border-[#1e2547] text-[#1e2547] hover:bg-[#1e2547] hover:text-white"
               >
-                Detail Layanan
+                Lihat Layanan
               </Button>
             </div>
 

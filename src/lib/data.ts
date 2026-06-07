@@ -103,10 +103,30 @@ export const PROJECTS: Project[] = [
 
 export const TESTIMONIALS: Testimonial[] = [
   {
+    id: 'adhi',
+    name: 'Adhi Wicaksono',
+    role: '',
+    company: 'Dapoer Niknik - dapoerniknik.netlify.app',
+    content:
+      "I've been using this service to my UMKM and it is very cool! The website is user friendly and the service quality to hear the instruction is very good job. This should be standard that every web developer had to maintain the customers need. Keep up the good work 👏 🏆",
+    rating: 5,
+    initials: 'AW',
+  },
+  {
+    id: 'ratih',
+    name: 'Ratih Dewi',
+    role: '',
+    company: 'Kopi Bintang Pringsewu - kopibintangpringsewu-official.com',
+    content:
+      'Sangat professional dan sesuai harapan. sebagai client saya puas dengan projectnya. Saya akan rekomendasikan ke teman saya yang butuh jasa website juga. Thankyou <3',
+    rating: 5,
+    initials: 'RD',
+  },
+  {
     id: 'akmal',
     name: 'Akmal Adhi Nugroho',
     role: 'Founder',
-    company: 'AngganaProject · angganaproject.com',
+    company: 'Anggana Project · angganaproject.com',
     content:
       'Mantap, Hasilnya memuaskan. Akhirnya punya website buat branding kami!',
     rating: 5,
@@ -137,36 +157,36 @@ export const TESTIMONIALS: Testimonial[] = [
 
 export const PROCESS_STEPS: ProcessStep[] = [
   {
-    id: 'discovery',
+    id: 'briefing',
     number: '01',
-    icon: 'Search',
-    title: 'Discovery & Briefing',
+    icon: 'MessageSquare',
+    title: 'Konsultasi & Briefing Kebutuhan',
     description:
-      'Kami mulai dengan memahami bisnis, tujuan, dan target pengguna Anda secara mendalam.',
+      'Sampaikan kebutuhan bisnis Anda kepada kami, mulai dari jenis platform yang ingin dibuat, fitur-fitur utama yang dibutuhkan, hingga target audiens yang ingin dicapai.',
   },
   {
-    id: 'planning',
+    id: 'recommendation',
     number: '02',
-    icon: 'PenTool',
-    title: 'Perencanaan & Desain',
+    icon: 'Lightbulb',
+    title: 'Rekomendasi Solusi & Paket',
     description:
-      'Tim kami merancang arsitektur sistem dan prototipe UI yang siap untuk divalidasi bersama.',
+      'Tim kami akan menganalisis kebutuhan Anda dan menyarankan jenis website/aplikasi serta paket investasi terbaik yang paling tepat guna dan efisien untuk bisnis Anda.',
   },
   {
-    id: 'development',
+    id: 'agreement',
     number: '03',
-    icon: 'Terminal',
-    title: 'Pengembangan & Testing',
+    icon: 'Handshake',
+    title: 'Deal & Pengisian Informasi',
     description:
-      'Kode dibangun dengan standar tinggi, diuji secara menyeluruh sebelum masuk ke produksi.',
+      'Setelah menyetujui proposal, Anda melakukan pembayaran Down Payment (DP) sebesar 50%. Selanjutnya, Anda mengisi data informasi lengkap serta menyerahkan aset (logo, teks, gambar) yang ingin ditampilkan.',
   },
   {
-    id: 'launch',
+    id: 'delivery',
     number: '04',
     icon: 'Rocket',
-    title: 'Launch & Dukungan',
+    title: 'Pengerjaan & Serah Terima',
     description:
-      'Kami mendampingi peluncuran dan memberikan dukungan pasca-launch agar bisnis Anda berjalan mulus.',
+      'Kami memproses pengerjaan dengan update berkala. Setelah proyek selesai diuji dan disetujui, Anda melakukan pelunasan sisa 50% sebelum website diserahterimakan seutuhnya.',
   },
 ]
 

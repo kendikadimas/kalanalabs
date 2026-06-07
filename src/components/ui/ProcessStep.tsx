@@ -1,16 +1,16 @@
 import {
-  Search,
-  PenTool,
-  Terminal,
+  MessageSquare,
+  Lightbulb,
+  Handshake,
   Rocket,
   LucideIcon,
 } from 'lucide-react'
 import type { ProcessStep } from '@/lib/types'
 
 const iconMap: Record<string, LucideIcon> = {
-  Search,
-  PenTool,
-  Terminal,
+  MessageSquare,
+  Lightbulb,
+  Handshake,
   Rocket,
 }
 
@@ -20,7 +20,7 @@ interface ProcessStepProps {
 }
 
 export default function ProcessStepCard({ step, isLast = false }: ProcessStepProps) {
-  const Icon = iconMap[step.icon] ?? Search
+  const Icon = iconMap[step.icon] ?? MessageSquare
 
   return (
     <div className="flex gap-6">

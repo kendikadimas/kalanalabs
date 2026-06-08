@@ -115,11 +115,11 @@ export default function PricingSection() {
               return (
                 <div
                   key={pkg.name}
-                  className={`flex flex-col rounded-3xl overflow-hidden relative transition-all duration-300 group w-[82vw] sm:w-[350px] md:w-auto shrink-0 snap-start snap-always scroll-ml-4 md:scroll-ml-0 ${theme.card}`}
+                  className={`flex flex-col rounded-2xl overflow-hidden relative transition-all duration-300 group w-[82vw] sm:w-[350px] md:w-auto shrink-0 snap-start snap-always scroll-ml-4 md:scroll-ml-0 ${theme.card}`}
                 >
                   {/* Best Value badge */}
                   {pkg.bestValue && (
-                    <div className={`absolute top-5 right-5 text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow z-10 ${
+                    <div className={`absolute top-5 right-5 text-[9px] font-black px-3 py-1 rounded-md uppercase tracking-widest shadow z-10 ${
                       idx === 1
                         ? 'bg-[#0d1230] text-[#d9ff42]'
                         : 'bg-[#d9ff42] text-[#1e2547]'
@@ -170,7 +170,7 @@ export default function PricingSection() {
                     <Button
                       href={waUrl}
                       variant="outline"
-                      className={`w-full mt-auto ${theme.buttonClass}`}
+                      className={`w-full mt-auto rounded-xl ${theme.buttonClass}`}
                     >
                       Pilih Paket
                     </Button>

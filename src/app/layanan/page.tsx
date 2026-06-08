@@ -23,6 +23,7 @@ import {
   Home,
   MapPin,
   Settings,
+  Star,
   Gem,
   Rocket,
   Laptop,
@@ -31,8 +32,8 @@ import {
 import Button from '@/components/ui/Button'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Link from 'next/link'
-import { SERVICES_DETAIL } from '@/lib/servicesData'
 import { PRICING_CATEGORIES } from '@/lib/data'
+import PageHeader from '@/components/ui/PageHeader'
 
 const webSubcategories = [
   {
@@ -196,10 +197,145 @@ const itemVariants = {
   },
 }
 
+const cardThemes: Record<string, {
+  cardClass: string
+  textColor: string
+  subtextColor: string
+  titleColor: string
+  priceColor: string
+  techBadgeClass: string
+  dividerClass: string
+  innerPanelClass: string
+  checkIconClass: string
+  checkBgClass: string
+  buttonPrimaryVariant: 'primary' | 'outline' | 'accent'
+  buttonPrimaryClass: string
+  buttonOutlineVariant: 'primary' | 'outline' | 'accent'
+  buttonOutlineClass: string
+}> = {
+  'landing-page': {
+    cardClass: 'bg-[#d9ff42] border-2 border-[#b4d622] border-b-[8px] border-b-[#8da61b] text-[#0d1230]',
+    textColor: 'text-[#0d1230]/80',
+    subtextColor: 'text-[#0d1230]/60',
+    titleColor: 'text-[#0d1230]',
+    priceColor: 'text-[#122d78]',
+    techBadgeClass: 'text-[#122d78] bg-[#122d78]/10 border border-[#122d78]/25',
+    dividerClass: 'border-[#0d1230]/10',
+    innerPanelClass: 'bg-white/30 border border-[#0d1230]/15',
+    checkIconClass: 'text-[#122d78]',
+    checkBgClass: 'bg-[#122d78]/10',
+    buttonPrimaryVariant: 'primary',
+    buttonPrimaryClass: 'bg-[#0d1230] text-[#d9ff42] hover:bg-[#1e2547] border-[#0d1230]',
+    buttonOutlineVariant: 'outline',
+    buttonOutlineClass: 'border-[#0d1230] text-[#0d1230] hover:bg-[#0d1230] hover:text-[#d9ff42]',
+  },
+  'company-profile': {
+    cardClass: 'bg-[#122d78] border-2 border-[#2152cf]/30 border-b-[8px] border-b-[#0b1b47] text-white',
+    textColor: 'text-white/80',
+    subtextColor: 'text-white/60',
+    titleColor: 'text-white',
+    priceColor: 'text-[#d9ff42]',
+    techBadgeClass: 'text-[#d9ff42] bg-[#d9ff42]/10 border border-[#d9ff42]/20',
+    dividerClass: 'border-white/10',
+    innerPanelClass: 'bg-white/10 border border-white/15',
+    checkIconClass: 'text-[#d9ff42]',
+    checkBgClass: 'bg-[#d9ff42]/15',
+    buttonPrimaryVariant: 'accent',
+    buttonPrimaryClass: '',
+    buttonOutlineVariant: 'outline',
+    buttonOutlineClass: 'border-white text-white hover:bg-white hover:text-[#122d78] hover:border-white',
+  },
+  'ecommerce': {
+    cardClass: 'bg-white border-2 border-slate-200 border-b-[8px] border-b-slate-300 text-text-primary',
+    textColor: 'text-text-secondary',
+    subtextColor: 'text-text-tertiary',
+    titleColor: 'text-text-primary',
+    priceColor: 'text-navy',
+    techBadgeClass: 'text-navy bg-navy/5 border border-navy/15',
+    dividerClass: 'border-border/60',
+    innerPanelClass: 'bg-surface-alt border border-border/80',
+    checkIconClass: 'text-navy',
+    checkBgClass: 'bg-navy/5',
+    buttonPrimaryVariant: 'primary',
+    buttonPrimaryClass: '',
+    buttonOutlineVariant: 'outline',
+    buttonOutlineClass: 'border-[#0d1230] text-[#0d1230] hover:bg-[#0d1230] hover:text-white',
+  },
+  'sistem-informasi': {
+    cardClass: 'bg-[#2152cf] border-2 border-[#2152cf]/40 border-b-[8px] border-b-[#143282] text-white',
+    textColor: 'text-white/80',
+    subtextColor: 'text-white/60',
+    titleColor: 'text-white',
+    priceColor: 'text-[#d9ff42]',
+    techBadgeClass: 'text-[#d9ff42] bg-[#d9ff42]/10 border border-[#d9ff42]/20',
+    dividerClass: 'border-white/10',
+    innerPanelClass: 'bg-white/10 border border-white/15',
+    checkIconClass: 'text-[#d9ff42]',
+    checkBgClass: 'bg-[#d9ff42]/15',
+    buttonPrimaryVariant: 'accent',
+    buttonPrimaryClass: '',
+    buttonOutlineVariant: 'outline',
+    buttonOutlineClass: 'border-white text-white hover:bg-white hover:text-[#2152cf] hover:border-white',
+  },
+  'website-portofolio': {
+    cardClass: 'bg-white border-2 border-slate-200 border-b-[8px] border-b-slate-300 text-text-primary',
+    textColor: 'text-text-secondary',
+    subtextColor: 'text-text-tertiary',
+    titleColor: 'text-text-primary',
+    priceColor: 'text-[#2152cf]',
+    techBadgeClass: 'text-navy bg-navy/5 border border-navy/15',
+    dividerClass: 'border-border/60',
+    innerPanelClass: 'bg-surface-alt border border-border/80',
+    checkIconClass: 'text-[#2152cf]',
+    checkBgClass: 'bg-navy/5',
+    buttonPrimaryVariant: 'primary',
+    buttonPrimaryClass: '',
+    buttonOutlineVariant: 'outline',
+    buttonOutlineClass: 'border-[#0d1230] text-[#0d1230] hover:bg-[#0d1230] hover:text-white',
+  },
+}
+
+const plannerTierThemes = [
+  {
+    // Tier 1 — Solid White 3D
+    selected: 'bg-white border-2 border-slate-200 border-b-[6px] border-b-slate-300 text-text-primary shadow-md -translate-y-[2px]',
+    unselected: 'bg-white border border-slate-200 hover:border-slate-300 text-text-secondary opacity-80 hover:opacity-100 hover:-translate-y-[1px] shadow-sm',
+    nameColor: 'text-slate-900',
+    priceColor: 'text-[#2152cf]',
+    checkTick: 'text-[#2152cf]',
+    checkBg: 'bg-[#2152cf]/10',
+    divider: 'border-slate-100',
+    benefitText: 'text-slate-600',
+  },
+  {
+    // Tier 2 — Solid Neon Green 3D (Best Value)
+    selected: 'bg-[#d9ff42] border-2 border-[#b4d622] border-b-[6px] border-b-[#8da61b] text-[#0d1230] shadow-lg -translate-y-[2px]',
+    unselected: 'bg-white border border-slate-200 hover:border-slate-300 text-text-secondary opacity-80 hover:opacity-100 hover:-translate-y-[1px] shadow-sm',
+    nameColor: 'text-[#0d1230]',
+    priceColor: 'text-[#122d78]',
+    checkTick: 'text-[#d9ff42]',
+    checkBg: 'bg-[#0d1230]',
+    divider: 'border-[#b4d622]/40',
+    benefitText: 'text-[#0d1230]/85',
+  },
+  {
+    // Tier 3 — Solid Deep Navy 3D
+    selected: 'bg-[#122d78] border-2 border-[#2152cf]/30 border-b-[6px] border-b-[#0b1b47] text-white shadow-lg -translate-y-[2px]',
+    unselected: 'bg-white border border-slate-200 hover:border-slate-300 text-text-secondary opacity-80 hover:opacity-100 hover:-translate-y-[1px] shadow-sm',
+    nameColor: 'text-white',
+    priceColor: 'text-[#d9ff42]',
+    checkTick: 'text-[#0d1230]',
+    checkBg: 'bg-[#d9ff42]',
+    divider: 'border-white/10',
+    benefitText: 'text-white/70',
+  },
+]
+
 export default function LayananPage() {
   // Navigation active tab
   const [activeWebTab, setActiveWebTab] = useState('landing-page')
   const activeWeb = webSubcategories.find(sub => sub.id === activeWebTab) || webSubcategories[0]
+  const theme = cardThemes['company-profile']
 
   // Mobile App active feature preview state
   const [mobileActiveTab, setMobileActiveTab] = useState<'feed' | 'notification' | 'map' | 'store' | 'status'>('feed')
@@ -209,6 +345,9 @@ export default function LayananPage() {
   const [calcPackageIdx, setCalcPackageIdx] = useState(0)
   const [calcAddons, setCalcAddons] = useState<string[]>([])
 
+  // FAQ state
+  const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0)
+
   // Parse package price from PRICING_CATEGORIES format to number
   const parseTierPrice = (price: string, suffix: string): number => {
     const num = parseInt(price.replace(/\./g, ''), 10)
@@ -217,19 +356,7 @@ export default function LayananPage() {
     return num
   }
 
-  // Service carousel state
-  const [carouselIdx, setCarouselIdx] = useState(0)
-  const [slideDir, setSlideDir] = useState<'left' | 'right'>('right')
-  const activeService = SERVICES_DETAIL[carouselIdx]
 
-  const prevSlide = () => {
-    setSlideDir('left')
-    setCarouselIdx((carouselIdx - 1 + SERVICES_DETAIL.length) % SERVICES_DETAIL.length)
-  }
-  const nextSlide = () => {
-    setSlideDir('right')
-    setCarouselIdx((carouselIdx + 1) % SERVICES_DETAIL.length)
-  }
 
   // Find selected base service & matching pricing category
   const selectedBase = calculatorBaseServices.find(s => s.id === calcBaseId) || calculatorBaseServices[0]
@@ -284,135 +411,17 @@ export default function LayananPage() {
 
   return (
     <main className="bg-surface min-h-screen text-text-primary">
-      {/* ─── HERO & KATEGORI SECTION (UNIFIED ABOVE-THE-FOLD VIEWPORT) ─── */}
-      <section
-        className="relative h-[100dvh] flex flex-col justify-between overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #111639 0%, #1b2a66 50%, #0e1433 100%)' }}
-      >
-        {/* Background layer */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/4 -left-40 w-[500px] h-[500px] rounded-full bg-navy/10 blur-[120px]" />
-          <div className="absolute bottom-1/3 -right-40 w-[400px] h-[400px] rounded-full bg-accent/[0.03] blur-[100px]" />
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 md:pt-40 pb-8 flex flex-col lg:flex-row items-center justify-between flex-1 gap-12 lg:gap-16 z-10 w-full">
-          
-          {/* Left Column: Copywriting */}
-          <div className="text-center lg:text-left flex flex-col items-center lg:items-start max-w-xl space-y-6">
-            <h1 className="text-4xl sm:text-5xl md:text-[3.2rem] lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
-              Transformasi Ide Digital Anda Menjadi{' '}
-              <span className="font-script text-[#d9ff42] italic text-[1.05em] tracking-normal inline-block select-none">
-                Kenyataan
-              </span>
-            </h1>
-            
-            <p className="text-white/60 text-sm sm:text-base leading-relaxed max-w-lg">
-              Landing page, aplikasi mobile, hingga UI/UX — kami wujudkan ekosistem digital terintegrasi untuk mempercepat pertumbuhan bisnis Anda.
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-              <Button
-                href="#kalkulator-anggaran"
-                variant="accent"
-                size="lg"
-                className="shadow-lg shadow-accent/20 hover:scale-102 transition-transform duration-200"
-              >
-                Hitung Estimasi Biaya
-              </Button>
-              <Button
-                href="#kategori-layanan"
-                variant="outline"
-                size="lg"
-                className="border-white/20 text-white hover:bg-white/10 hover:text-white"
-                showArrow={false}
-              >
-                Pelajari Layanan
-              </Button>
-            </div>
-          </div>
-
-          {/* Right Column: Animated Service Carousel */}
-          <div className="relative w-full max-w-[400px] hidden lg:block mt-14">
-            <div className="relative overflow-hidden rounded-lg border border-white/10 bg-slate-800 shadow-lg">
-              <div className="relative">
-                <AnimatePresence mode="wait" custom={slideDir}>
-                  <motion.div
-                    key={carouselIdx}
-                    custom={slideDir}
-                    initial={{ x: slideDir === 'right' ? 80 : -80, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: slideDir === 'right' ? -80 : 80, opacity: 0 }}
-                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                    className="p-6 md:p-7"
-                  >
-                    <div className="flex items-start justify-between gap-4 mb-5">
-                      <h3 className="text-lg font-black text-white tracking-tight leading-snug">
-                        {activeService.title}
-                      </h3>
-                    </div>
-                    <p className="text-sm text-white/70 leading-relaxed mb-6">
-                      {activeService.subtitle}
-                    </p>
-                    <div className="text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-4">
-                      Mulai dari{' '}
-                      <span className="text-accent font-black">{activeService.priceRange.replace('Mulai dari ', '')}</span>
-                    </div>
-                    <Link
-                      href={`/layanan/${activeService.id}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-navy hover:bg-navy-dark px-4 py-2.5 rounded-xl transition-colors w-full justify-center"
-                    >
-                      Lihat Detail
-                      <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} />
-                    </Link>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-
-            {/* Navigation */}
-            <div className="flex items-center justify-between mt-4">
-              <button
-                onClick={prevSlide}
-                className="w-8 h-8 flex items-center justify-center border border-white/10 rounded-lg hover:bg-white/10 transition-colors text-white/50 hover:text-white"
-                aria-label="Previous service"
-              >
-                <ChevronLeft className="w-4 h-4" strokeWidth={2} />
-              </button>
-
-              <div className="flex items-center gap-1.5">
-                {SERVICES_DETAIL.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => {
-                      setSlideDir(i > carouselIdx ? 'right' : 'left')
-                      setCarouselIdx(i)
-                    }}
-                    className={`transition-all duration-300 ${
-                      i === carouselIdx ? 'w-8 h-1.5 bg-accent rounded-full' : 'w-2 h-1.5 bg-white/20 rounded-full hover:bg-white/40'
-                    }`}
-                    aria-label={`Go to service ${i + 1}`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={nextSlide}
-                className="w-8 h-8 flex items-center justify-center border border-white/10 rounded-lg hover:bg-white/10 transition-colors text-white/50 hover:text-white"
-                aria-label="Next service"
-              >
-                <ChevronRight className="w-4 h-4" strokeWidth={2} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        title="Solusi &"
+        accentWord="Layanan"
+        description="Landing page, aplikasi mobile, hingga UI/UX — kami wujudkan ekosistem digital terintegrasi untuk mempercepat pertumbuhan bisnis Anda."
+      />
       {/* ─── PEMBUATAN WEBSITE & SISTEM INFORMASI ─── */}
-      <section id="layanan-web" className="py-20 md:py-28 bg-surface relative overflow-hidden border-b border-border">
+      <section id="layanan-web" className="py-16 md:py-24 bg-surface relative overflow-hidden border-b border-border">
         <div className="absolute top-1/3 -right-40 w-96 h-96 rounded-full bg-navy/5 blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="mb-12 max-w-3xl">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8 relative">
+          <div className="mb-8 max-w-3xl">
             <SectionHeading
               title="Pembuatan Website & "
               titleHighlight="Sistem Informasi"
@@ -420,95 +429,113 @@ export default function LayananPage() {
             />
           </div>
 
-          {/* Tab Selector */}
-          <div className="bg-surface-alt border border-border rounded-lg p-1 inline-flex flex-wrap shadow-sm animate-fade-in mb-10">
-            {webSubcategories.map((sub) => (
-              <button
-                key={sub.id}
-                onClick={() => setActiveWebTab(sub.id)}
-                className={`px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap cursor-pointer transition-all duration-200 ${
-                  activeWebTab === sub.id
-                    ? 'bg-navy text-white shadow-sm'
-                    : 'text-text-secondary hover:text-text-primary hover:bg-surface-elevated'
-                }`}
-              >
-                {sub.title}
-              </button>
-            ))}
+          {/* Tab Selector with premium horizontal overflow scroll on mobile */}
+          <div className="w-full overflow-x-auto flex-nowrap scrollbar-none -mx-6 px-6 mb-8">
+            <div className="bg-surface-alt border border-border rounded-xl p-1 inline-flex flex-row md:flex-wrap gap-1 shadow-sm animate-fade-in">
+              {webSubcategories.map((sub) => (
+                <button
+                  key={sub.id}
+                  onClick={() => setActiveWebTab(sub.id)}
+                  className={`px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap cursor-pointer transition-all duration-200 ${
+                    activeWebTab === sub.id
+                      ? 'bg-navy text-white shadow-sm'
+                      : 'text-text-secondary hover:text-text-primary hover:bg-surface-elevated'
+                  }`}
+                >
+                  {sub.title}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Active Service Detail - Rich Card Layout */}
+          {/* Active Service Detail - Premium Unified Card Layout */}
           <motion.div
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12"
             key={activeWeb.id}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
+            className="rounded-2xl p-6 md:p-8 lg:p-10 shadow-[0_25px_60px_-15px_rgba(11,27,71,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] relative overflow-hidden bg-[#122d78] border-2 border-[#2152cf]/30 border-b-[8px] border-b-[#0b1b47]"
           >
-            {/* LEFT: Service Info */}
-            <div className="lg:col-span-7 space-y-5">
-              <div className="space-y-4">
-                <h3 className="text-3xl font-black text-text-primary tracking-tight">
-                  {activeWeb.title}
-                </h3>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  {activeWeb.description}
-                </p>
-              </div>
-
-              <p className="text-sm">
-                <span className="text-text-tertiary">Mulai dari </span>
-                <span className="font-bold text-navy">{activeWeb.priceRange.replace('Mulai dari ', '')}</span>
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border">
-                <Button
-                  href={`https://wa.me/6285196811722?text=${encodeURIComponent(activeWeb.waText)}`}
-                  variant="primary"
-                  className="flex-1 justify-center py-3.5 rounded-full text-xs"
-                >
-                  Mulai Diskusi Proyek
-                </Button>
-                <Button
-                  href={`/layanan/${activeWeb.id}`}
-                  variant="outline"
-                  className="justify-center py-3.5 text-xs font-bold"
-                >
-                  Detail Halaman Layanan
-                </Button>
-              </div>
-            </div>
-
-            {/* RIGHT: Features Card */}
-            <div className="lg:col-span-5">
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                className="bg-white border border-[#e4e8f2] rounded-xl p-6 md:p-8 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
-              >
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-navy/40 to-navy" />
-                <div className="space-y-5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch relative z-10">
+              {/* LEFT: Service Info */}
+              <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+                <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-navy/5 flex items-center justify-center text-navy">
-                      <CheckCircle2 className="w-5 h-5" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-text-primary">Fitur & Fasilitas Standar</h4>
-                      <p className="text-[10px] text-text-tertiary">Semua sudah termasuk dalam paket</p>
-                    </div>
+                    <div className="w-1.5 h-6 rounded-full bg-[#d9ff42] shrink-0" />
+                    <h3 className="text-xl md:text-2xl font-black text-white tracking-tight">{activeWeb.title}</h3>
                   </div>
-                  <ul className="space-y-3">
-                    {activeWeb.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-4 h-4 text-navy shrink-0 mt-0.5" strokeWidth={2.5} />
-                        <span className="text-xs text-text-secondary leading-snug">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-sm md:text-base text-white/80 leading-relaxed pl-4.5">
+                    {activeWeb.description}
+                  </p>
                 </div>
-              </motion.div>
+
+                {/* Pricing & Budget Sim Panel (Solid Medium Navy Card) */}
+                <div className="bg-[#1e3480] border border-[#2d4cb0] rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-[0_8px_30px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.15)]">
+                  <div className="space-y-1">
+                    <span className="text-[10px] text-white/50 uppercase tracking-wider block font-bold">Investasi Mulai Dari</span>
+                    <span className="text-2xl font-black text-[#d9ff42]">{activeWeb.priceRange.replace('Mulai dari ', '')}</span>
+                  </div>
+                  <div className="flex flex-col items-start sm:items-end justify-center space-y-1.5">
+                    <span className="text-[10px] text-white/50 uppercase tracking-wider block font-bold">Simulasi Biaya & Kustomisasi</span>
+                    <a
+                      href="#kalkulator-anggaran"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        document.getElementById('kalkulator-anggaran')?.scrollIntoView({ behavior: 'smooth' })
+                        setCalcBaseId(activeWeb.id)
+                      }}
+                      className="inline-flex items-center gap-1.5 text-[10px] font-black text-[#d9ff42] hover:text-[#c4e63b] transition-colors uppercase tracking-wider group bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-[#d9ff42]/20 hover:border-[#d9ff42]/40"
+                    >
+                      <span>Detail Simulasi</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-6 mt-6 border-t border-white/10">
+                  <Button
+                    href={`https://wa.me/6285196811722?text=${encodeURIComponent(activeWeb.waText)}`}
+                    variant="accent"
+                    className="flex-1 justify-center py-3 rounded-xl text-xs shadow-md"
+                  >
+                    Mulai Diskusi Proyek
+                  </Button>
+                  <Button
+                    href={`/layanan/${activeWeb.id}`}
+                    variant="outline"
+                    className="justify-center py-3 rounded-xl text-xs font-bold border-white text-white hover:bg-white hover:text-[#122d78] hover:border-white"
+                  >
+                    Detail Halaman Layanan
+                  </Button>
+                </div>
+              </div>
+
+              {/* RIGHT: Features Card (Solid Medium Navy Card) */}
+              <div className="lg:col-span-5">
+                <div className="bg-[#1e3480] border border-[#2d4cb0] rounded-2xl p-6 flex flex-col justify-between h-full shadow-[0_8px_30px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.15)]">
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-2.5 pb-4 border-b border-white/10">
+                      <CheckCircle2 className="w-5 h-5 text-[#d9ff42] shrink-0" strokeWidth={1.5} />
+                      <div>
+                        <h4 className="text-xs font-bold text-white tracking-tight">Fitur & Layanan Standar</h4>
+                        <p className="text-[9px] text-white/40">Sudah termasuk dalam paket investasi</p>
+                      </div>
+                    </div>
+                    
+                    <ul className="space-y-3">
+                      {activeWeb.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-2.5">
+                          <div className="w-4 h-4 rounded-full bg-[#d9ff42]/10 flex items-center justify-center text-[#d9ff42] shrink-0 mt-0.5">
+                            <Check className="w-2.5 h-2.5" strokeWidth={3} />
+                          </div>
+                          <span className="text-xs text-white/80 leading-normal">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -519,7 +546,7 @@ export default function LayananPage() {
         <div className="absolute top-1/4 -left-40 w-96 h-96 rounded-full bg-navy/5 blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 -right-40 w-96 h-96 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
             <div className="lg:col-span-7 space-y-4">
               <h2 className="text-3xl md:text-5xl font-black text-text-primary tracking-tight leading-tight">
@@ -538,114 +565,104 @@ export default function LayananPage() {
             </div>
           </div>
 
-          {/* Figma UI Workspace Visual Mockup */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mb-12 animate-fade-in">
-            
-            {/* Step 1: Riset & Analisis */}
+          {/* UI/UX Process Steps - Asymmetric 2-col layout (taste-skill compliant) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12 animate-fade-in">
+
+            {/* Step 1: Riset & Analisis - Wide card, solid Navy */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0 }}
-              className="bg-white border border-[#e4e8f2] rounded-xl p-8 flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden"
+              className="rounded-2xl p-6 md:p-8 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden bg-[#122d78] border-2 border-[#2152cf]/30 border-b-[8px] border-b-[#0b1b47] shadow-[0_20px_50px_rgba(11,27,71,0.25),inset_0_1px_1px_rgba(255,255,255,0.15)]"
             >
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-navy/40 to-navy" />
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-extrabold text-navy bg-navy/5 border border-navy/20 px-2.5 py-1 rounded-full uppercase tracking-wider">Riset & Mapping</span>
-                </div>
+              <div className="space-y-5">
                 <div className="space-y-2">
-                  <h4 className="text-lg font-bold text-text-primary">Riset & Journey Map</h4>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    Kami melakukan riset perilaku pengguna melalui user interview, memetakan User Persona, serta membuat User Journey Map untuk meminimalkan friksi navigasi.
+                  <h4 className="text-lg font-bold text-white">1. Analisis Kebutuhan & Alur Pengguna</h4>
+                  <p className="text-xs text-white/80 leading-relaxed">
+                    Kami memetakan cara kerja bisnis Anda dan menganalisis perilaku pelanggan secara riil. Langkah awal ini memastikan struktur navigasi produk terasa logis dan minim hambatan sebelum masuk ke tahap visual.
                   </p>
                 </div>
-
-                {/* Mock Visual: Sticky Notes Board */}
-                <div className="bg-gray-50 border border-border rounded-lg p-4 flex gap-2">
-                  <div className="flex-1 bg-[#d9ff42]/20 border border-[#d9ff42]/30 rounded-lg p-2.5 text-[9px]">
-                    <span className="font-bold block mb-1">Pain Point #1</span>
-                    Proses checkout terlalu rumit.
+                {/* Insight cards - solid medium navy */}
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="bg-[#1e3480] border border-[#2d4cb0] rounded-xl p-3 shadow-[0_8px_30px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.15)]">
+                    <span className="text-[10px] font-bold text-[#d9ff42] block mb-1">Temuan Masalah</span>
+                    <p className="text-[11px] text-white/95 leading-snug">Formulir pendaftaran yang terlalu panjang menurunkan tingkat konversi hingga 40%.</p>
                   </div>
-                  <div className="flex-1 bg-navy/10 border border-navy/20 rounded-lg p-2.5 text-[9px]">
-                    <span className="font-bold text-navy block mb-1">Needs</span>
-                    Akses menu satu ketukan.
+                  <div className="bg-[#1e3480] border border-[#2d4cb0] rounded-xl p-3 shadow-[0_8px_30px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.15)]">
+                    <span className="text-[10px] font-bold text-[#d9ff42] block mb-1">Solusi Alur</span>
+                    <p className="text-[11px] text-white/95 leading-snug">Mengimplementasikan social login satu-klik dan membagi form menjadi 2 tahap ringkas.</p>
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Step 2: Desain & Prototipe */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="bg-white border border-[#e4e8f2] rounded-xl p-8 flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden"
-            >
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-navy/40 to-navy" />
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-extrabold text-navy bg-navy/5 border border-navy/20 px-2.5 py-1 rounded-full uppercase tracking-wider">Desain & Prototipe</span>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-lg font-bold text-text-primary">Desain High-Fidelity & Wireframe</h4>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    Mewujudkan wireframe kasar menjadi desain visual interaktif beresolusi tinggi di Figma yang siap divalidasi dan diuji langsung oleh pengguna (Usability Testing).
-                  </p>
-                </div>
-
-                {/* Mock Visual: Figma canvas nodes */}
-                  <div className="bg-[#0d1230] text-white/90 border border-[#1e2547] rounded-lg p-4 flex justify-between items-center">
+            {/* Right column: Steps 2 & 3 stacked */}
+            <div className="flex flex-col gap-6">
+              {/* Step 2: Desain & Prototipe - Solid Lime/Neon */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="rounded-2xl p-6 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex-1 bg-[#d9ff42] border-2 border-[#b4d622] border-b-[8px] border-b-[#8da61b] shadow-[0_20px_50px_rgba(141,166,27,0.15),inset_0_1px_1px_rgba(255,255,255,0.4)]"
+              >
+                <div className="space-y-4">
+                  <div className="space-y-1.5">
+                    <h4 className="text-base font-bold text-[#0d1230]">2. Visual Mockup & Prototipe Interaktif</h4>
+                    <p className="text-xs text-[#0d1230]/85 leading-relaxed">
+                      Kami merancang layout visual resolusi tinggi (high-fidelity) di Figma sesuai identitas brand Anda. Prototipe dibuat interaktif agar Anda bisa mencoba klik menu dan tombol secara langsung.
+                    </p>
+                  </div>
+                  {/* Figma file reference - solid white card */}
+                  <div className="bg-white border border-[#b4d622] rounded-xl p-3 flex justify-between items-center shadow-[0_8px_30px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.8)]">
                     <div className="flex items-center gap-2">
-                      <Smartphone className="w-4 h-4" strokeWidth={1.5} />
+                      <Smartphone className="w-3.5 h-3.5 text-[#122d78]" strokeWidth={1.5} />
                       <div className="text-[9px]">
-                        <span className="font-bold block leading-none">Home_Screen.fig</span>
-                        <span className="text-white/45 text-[7px]">Frame · Mobile UI</span>
+                        <span className="font-bold block leading-none text-[#0d1230]">Kalana_Checkout_Flow_v2.fig</span>
+                        <span className="text-[#0d1230]/50 text-[7px] block mt-0.5">Figma Prototype</span>
                       </div>
                     </div>
-                  <div className="w-14 h-6 rounded bg-[#2152cf] flex items-center justify-center text-[8px] font-bold border border-white/20 select-none">
-                    Clickable
+                    <div className="w-16 h-6 rounded-md bg-[#122d78] text-[#d9ff42] flex items-center justify-center text-[8px] font-bold border border-white/10 select-none">
+                      Interaktif
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            {/* Step 3: Handoff ke Developer */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="bg-white border border-[#e4e8f2] rounded-xl p-8 flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden"
-            >
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-navy/40 to-navy" />
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-extrabold text-navy bg-navy/5 border border-navy/20 px-2.5 py-1 rounded-full uppercase tracking-wider">Handoff & Dokumentasi</span>
+              {/* Step 3: Handoff ke Developer - Solid White */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="rounded-2xl p-6 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex-1 bg-white border-2 border-slate-200 border-b-[8px] border-b-slate-300 shadow-[0_20px_50px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.8)]"
+              >
+                <div className="space-y-4">
+                  <div className="space-y-1.5">
+                    <h4 className="text-base font-bold text-text-primary">3. Handoff & Spesifikasi Teknis</h4>
+                    <p className="text-xs text-text-secondary leading-relaxed">
+                      Aset visual diserahkan lengkap dengan pustaka komponen UI, panduan gaya (style tokens), serta tata letak responsif agar proses pengembangan kode oleh tim programmer berjalan mulus dan presisi.
+                    </p>
+                  </div>
+                  {/* Token example - solid light panel */}
+                  <div className="bg-surface-alt border border-slate-200 rounded-xl p-3 flex items-center gap-3 shadow-sm">
+                    <div className="w-8 h-8 rounded-lg bg-navy flex-shrink-0" />
+                    <div>
+                      <p className="text-[10px] font-black text-navy leading-none">color-brand-primary</p>
+                      <p className="text-[9px] text-text-tertiary font-mono mt-0.5">#2152cf</p>
+                    </div>
+                    <div className="ml-auto text-[9px] text-text-tertiary font-mono bg-white border border-border px-2 py-1 rounded-lg">
+                      border-radius: 12px
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <h4 className="text-lg font-bold text-text-primary">Design System & Code Handover</h4>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    Menyerahkan *Design System* terstruktur (style token, auto-layout, pustaka komponen) untuk mempermudah developer melakukan translasi ke basis kode.
-                  </p>
-                </div>
-
-                {/* Mock Visual: CSS Properties Box */}
-                <div className="bg-gray-50 border border-border rounded-lg p-4 text-[9px] font-mono text-text-secondary space-y-1">
-                  <p className="text-text-tertiary">{'.btn-primary {'}</p>
-                  <p className="pl-3">background: <span className="text-navy font-bold">#2152cf</span>;</p>
-                  <p className="pl-3">border-radius: 9999px;</p>
-                  <p className="pl-3">box-shadow: 0 4px 6px -1px rgba(33, 82, 207, 0.25);</p>
-                  <p className="text-text-tertiary">{'}'}</p>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
 
           {/* Cost CTA banner for UI/UX */}
           <div className="bg-gradient-to-br from-navy to-navy-darker rounded-xl p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-2xl">
-            <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '15px 15px' }} />
             
             <div className="flex items-start gap-5 relative z-10">
               <div className="w-14 h-14 rounded-lg bg-white/10 flex items-center justify-center text-[#d9ff42] shrink-0 border border-white/10 shadow-inner">
@@ -662,14 +679,14 @@ export default function LayananPage() {
             <div className="flex gap-3 shrink-0 relative z-10 w-full sm:w-auto">
               <Link
                 href="/layanan/ui-ux-design"
-                className="flex-1 sm:flex-initial text-center items-center gap-1.5 text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-3 rounded-full transition-colors"
+                className="flex-1 sm:flex-initial text-center items-center gap-1.5 text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-3 rounded-xl transition-colors"
               >
                 Paket Layanan
               </Link>
               <Button
                 href="https://wa.me/6285196811722?text=Halo%20Kalana%20Labs%2C%20saya%20tertarik%20dengan%20jasa%20desain%20UI%2FUX%20untuk%20produk%20digital%20saya."
                 variant="accent"
-                className="flex-1 sm:flex-initial px-5 py-3 text-xs font-bold"
+                className="flex-1 sm:flex-initial px-5 py-3 rounded-xl text-xs font-bold"
               >
                 Konsultasi Gratis
               </Button>
@@ -682,7 +699,7 @@ export default function LayananPage() {
       <section id="layanan-mobile" className="py-20 md:py-28 bg-surface relative overflow-hidden border-b border-border">
         <div className="absolute top-1/4 -right-40 w-96 h-96 rounded-full bg-[#d9ff42]/5 blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8 relative">
           <div className="mb-14 max-w-3xl space-y-4">
             <SectionHeading
               title="Pembuatan Aplikasi "
@@ -691,234 +708,282 @@ export default function LayananPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* LEFT SIDE: Interactive feature toggles */}
-            <div className="lg:col-span-7 flex flex-col gap-4">
-              {[
-                { id: 'feed', title: 'Cross-Platform Engine', desc: 'Satu basis kode Flutter atau React Native untuk Android dan iOS. Menghemat 50% biaya riset dan waktu pengerjaan.' },
-                { id: 'notification', title: 'Pemberitahuan Instan (Push Notification)', desc: 'Mengirim notifikasi promo, info, dan update instan langsung ke HP pengguna bahkan saat aplikasi ditutup.' },
-                { id: 'map', title: 'Akses Hardware & GPS Real-time', desc: 'Integrasi penuh dengan sensor perangkat keras: pelacakan peta lokasi (GPS), kamera scan QR, dan biometrik.' },
-                { id: 'store', title: 'Publikasi Google Play & App Store', desc: 'Kami mengawal rilis aplikasi kustom Anda hingga lolos peninjauan tim Google Play Store dan Apple App Store.' },
-                { id: 'status', title: 'Sistem Maintenance & Keamanan data', desc: 'Pemantauan API, database, server hosting, penanganan bug, dan pembaruan framework OS secara berkala.' },
-              ].map((item, idx) => (
-                <button
-                  key={item.id}
-                  onClick={() => setMobileActiveTab(item.id as any)}
-                  className={`text-left p-5 rounded-lg border transition-all duration-300 flex items-start gap-4 ${
-                    mobileActiveTab === item.id
-                      ? 'bg-navy/5 border-navy shadow-md'
-                      : 'bg-surface border-border hover:border-navy/30 hover:bg-surface-alt'
-                  }`}
-                >
-                  <span className={`w-7 h-7 rounded-xl font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 ${
-                    mobileActiveTab === item.id ? 'bg-navy text-white' : 'bg-surface-muted text-text-secondary'
-                  }`}>
-                    {idx + 1}
-                  </span>
-                  
-                  <div>
-                    <h4 className="text-sm font-bold text-text-primary tracking-tight leading-snug">{item.title}</h4>
-                    <p className="text-xs text-text-secondary leading-relaxed mt-1">{item.desc}</p>
-                  </div>
-                </button>
-              ))}
+          {/* Mobile App Unified Card */}
+          <div className="rounded-2xl p-6 md:p-8 lg:p-10 shadow-[0_25px_60px_-15px_rgba(11,27,71,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] relative overflow-hidden bg-[#122d78] border-2 border-[#2152cf]/30 border-b-[8px] border-b-[#0b1b47]">
+            {/* Ambient subtle card glow */}
+            <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
 
-              <div className="pt-4 border-t border-border mt-4">
-                <Button href="/layanan/mobile-app" variant="outline" size="lg" className="w-fit text-xs font-bold">
-                  Detail Layanan Mobile App →
-                </Button>
-              </div>
-            </div>
-
-            {/* RIGHT SIDE: Interactive HTML/CSS Smartphone Simulator */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative">
-                {/* Outer Smartphone Frame */}
-                <div className="w-[280px] h-[550px] border-[10px] border-gray-900 bg-gray-950 rounded-[44px] shadow-2xl relative overflow-hidden flex flex-col justify-between p-2">
-                  
-                  {/* Dynamic Island Notch */}
-                  <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-24 h-5 bg-gray-900 rounded-full z-20 flex items-center justify-between px-3 select-none">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-camera bg-black/60" />
-                  </div>
-
-                  {/* Top Status Bar mock */}
-                  <div className="flex justify-between items-center px-4 pt-4 pb-2 text-[8px] font-bold text-white/80 z-10 select-none">
-                    <span>09:41 AM</span>
-                    <div className="flex gap-1">
-                      <span>LTE</span>
-                      <span>100%</span>
-                    </div>
-                  </div>
-
-                  {/* Simulator Screen Container */}
-                  <div className="flex-1 bg-[#f8f9fc] rounded-[32px] overflow-hidden p-4 flex flex-col justify-between relative text-text-primary text-[10px]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+              
+              {/* LEFT SIDE: Interactive feature toggles */}
+              <div className="lg:col-span-7 flex flex-col gap-4">
+                {[
+                  { id: 'feed', title: 'Cross-Platform Engine', desc: 'Satu basis kode untuk Android & iOS demi efisiensi biaya dan waktu pengembangan tanpa mengorbankan performa native.' },
+                  { id: 'notification', title: 'Pemberitahuan Instan (Push Notification)', desc: 'Kirim pesan promosi atau update transaksi instan langsung ke layar HP pengguna bahkan saat aplikasi sedang ditutup.' },
+                  { id: 'map', title: 'Akses Hardware & GPS Real-time', desc: 'Integrasi penuh dengan sensor perangkat keras seperti GPS untuk pelacakan lokasi, kamera scan QR, dan biometrik.' },
+                  { id: 'store', title: 'Publikasi Google Play & App Store', desc: 'Pendampingan penuh dari penyiapan materi rilis hingga persetujuan peninjauan di Google Play Store dan Apple App Store.' },
+                  { id: 'status', title: 'Sistem Maintenance & Keamanan', desc: 'Pemantauan berkala, pemeliharaan database/server API, penanganan bug, serta pembaruan kompatibilitas framework OS.' },
+                ].map((item, idx) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setMobileActiveTab(item.id as any)}
+                    className={`text-left p-4.5 rounded-xl border transition-all duration-300 flex items-start gap-4 cursor-pointer ${
+                      mobileActiveTab === item.id
+                        ? 'bg-[#1e3480] border-[#2d4cb0] shadow-[0_8px_30px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.15)] text-white'
+                        : 'bg-[#122d78]/40 border-white/10 hover:border-white/20 text-white/80 hover:text-white'
+                    }`}
+                  >
+                    <span className={`w-7 h-7 rounded-xl font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 ${
+                      mobileActiveTab === item.id ? 'bg-[#d9ff42] text-[#0d1230]' : 'bg-white/10 text-white/50'
+                    }`}>
+                      {idx + 1}
+                    </span>
                     
-                    {/* Screen Content 1: Home Feed UI */}
-                    {mobileActiveTab === 'feed' && (
-                      <div className="space-y-3 font-sans h-full flex flex-col justify-between py-2">
-                        <div className="space-y-1">
-                          <div className="flex justify-between items-center">
-                            <span className="font-black text-xs text-navy uppercase">Explore</span>
-                            <Bell className="w-3.5 h-3.5 text-text-secondary" strokeWidth={2} />
-                          </div>
-                          <div className="w-full bg-gray-200/60 border border-gray-300/40 rounded-lg p-2 text-text-tertiary">
-                            Cari Layanan...
-                          </div>
-                        </div>
-
-                        {/* List items feed */}
-                        <div className="flex-1 flex flex-col gap-2 mt-2">
-                          {[
-                            { name: 'Riset UI/UX', icon: Palette, price: 'Figma Dev' },
-                            { name: 'Web Corporate', icon: Monitor, price: 'SEO On' },
-                          ].map(app => {
-                            const AppIcon = app.icon
-                            return (
-                            <div key={app.name} className="bg-white border border-border rounded-xl p-2.5 flex items-center justify-between shadow-sm">
-                              <div className="flex items-center gap-2">
-                                <AppIcon className="w-4 h-4 text-navy" strokeWidth={1.5} />
-                                <div>
-                                  <span className="font-bold text-[#0d1230] block text-[9px] leading-tight">{app.name}</span>
-                                  <span className="text-text-tertiary text-[7px] leading-none">Kalana Labs</span>
-                                </div>
-                              </div>
-                              <span className="text-[8px] font-bold text-navy">{app.price}</span>
-                            </div>
-                            )
-                          })}
-                        </div>
-
-                        <div className="text-center text-[7px] text-text-tertiary mt-auto">Powered by Flutter Engine</div>
-                      </div>
-                    )}
-
-                    {/* Screen Content 2: Push Notifications Screen */}
-                    {mobileActiveTab === 'notification' && (
-                      <div className="space-y-3 font-sans h-full justify-start pt-6">
-                        <span className="text-[8px] font-black text-text-tertiary block text-center mb-2">HARI INI</span>
-                        
-                        {/* iOS-Style Push Notification banners */}
-                          <div className="bg-white/80 border border-border backdrop-blur-md rounded-lg p-3 shadow-md space-y-1 animate-fade-in">
-                          <div className="flex justify-between items-center text-[7px] text-text-tertiary">
-                            <span className="font-bold text-navy flex items-center gap-1"><MessageSquare className="w-3 h-3" strokeWidth={2} /> CHAT SUPPORT</span>
-                            <span>Baru saja</span>
-                          </div>
-                          <p className="font-bold text-[9px] text-[#0d1230] leading-snug">Riset UI/UX Selesai!</p>
-                          <p className="text-[8px] text-text-secondary leading-normal">Hai, kerangka figma untuk project Anda telah selesai. Klik untuk lihat.</p>
-                        </div>
-
-                        <div className="bg-white/80 border border-border backdrop-blur-md rounded-lg p-3 shadow-md space-y-1 animate-fade-in animation-delay-200">
-                          <div className="flex justify-between items-center text-[7px] text-text-tertiary">
-                            <span className="font-bold text-navy flex items-center gap-1"><Rocket className="w-3 h-3" strokeWidth={2} /> DEPLOYMENT</span>
-                            <span>3 menit lalu</span>
-                          </div>
-                          <p className="font-bold text-[9px] text-[#0d1230] leading-snug">Server Deployment: Sukses</p>
-                          <p className="text-[8px] text-text-secondary leading-normal">Website E-Commerce sudah ter-publish ke server produksi.</p>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Screen Content 3: Live Map Beacon */}
-                    {mobileActiveTab === 'map' && (
-                      <div className="h-full relative overflow-hidden rounded-xl border border-border flex flex-col justify-end bg-blue-100">
-                        {/* Mock Map graphics */}
-                        <div className="absolute inset-0 bg-cover bg-center opacity-80" style={{ backgroundImage: 'radial-gradient(circle, #e2e8f0 10%, transparent 10.5%), radial-gradient(circle, #e2e8f0 10%, transparent 10.5%)', backgroundSize: '15px 15px', backgroundPosition: '0 0, 7.5px 7.5px' }}>
-                          {/* Map roads mock */}
-                          <div className="absolute top-1/2 left-0 right-0 h-4 bg-white border-y border-gray-300" />
-                          <div className="absolute left-1/3 top-0 bottom-0 w-4 bg-white border-x border-gray-300" />
-                          
-                          {/* Pulse Beacon */}
-                          <div className="absolute top-[40%] left-[30%] -translate-x-1/2 -translate-y-1/2 z-10">
-                            <span className="w-6 h-6 rounded-full bg-navy/30 animate-ping absolute -top-1.5 -left-1.5 block" />
-                            <span className="w-3 h-3 rounded-full bg-navy border-2 border-white shadow-md block" />
-                          </div>
-                        </div>
-
-                        <div className="relative z-10 bg-white/95 border-t border-border p-2.5 rounded-t-xl text-[8px] space-y-1 shadow-md">
-                          <p className="font-black text-navy text-[9px]">LOKASI REAL-TIME</p>
-                          <p className="text-text-secondary font-medium">Lat: -7.4244 · Lng: 109.2302</p>
-                          <p className="text-text-tertiary truncate">Purwokerto, Jawa Tengah</p>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Screen Content 4: App Store Detail Page */}
-                    {mobileActiveTab === 'store' && (
-                      <div className="space-y-3 font-sans h-full pt-4 text-center">
-                        <div className="w-11 h-11 bg-navy text-white rounded-lg flex items-center justify-center mx-auto shadow-md">
-                          <Gem className="w-5 h-5" strokeWidth={1.5} />
-                        </div>
-                        <div>
-                          <h5 className="font-black text-[11px] text-[#0d1230] leading-tight font-logo">Kalana Mobile</h5>
-                          <p className="text-[8px] text-text-tertiary">Productivity & Business App</p>
-                        </div>
-
-                          <div className="flex justify-center gap-6 border-y border-gray-100 py-1.5 text-[8px] font-bold text-text-secondary">
-                          <div>
-                            {/* <div className="flex items-center justify-center gap-0.5">
-                              {[1,2,3,4,5].map(s => (
-                                <Star key={s} className="w-3 h-3 text-yellow-500 fill-yellow-500" strokeWidth={1.5} />
-                              ))}
-                            </div> */}
-                            <span className="mt-0.5 block">4.9 (38 rating)</span>
-                          </div>
-                          <div className="border-l border-gray-100" />
-                          <div>
-                            <span className="text-text-primary font-black block text-[10px]">10K+</span>
-                            <span>Unduh</span>
-                          </div>
-                        </div>
-
-                        <button className="w-full bg-navy text-white text-[9px] font-bold py-2 rounded-xl shadow-lg shadow-navy/20">
-                          PASANG / INSTALL
-                        </button>
-                      </div>
-                    )}
-
-                    {/* Screen Content 5: Maintenance Logs dashboard */}
-                    {mobileActiveTab === 'status' && (
-                      <div className="space-y-3 font-sans h-full pt-4">
-                        <div className="flex justify-between items-center bg-green-500/10 border border-green-500/20 text-green-700 rounded-lg p-2 font-bold text-[8px]">
-                          <span>SYSTEM STATUS: ONLINE</span>
-                          <span className="w-2 h-2 rounded-full bg-green-500 block animate-pulse" />
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-2 text-[8px] text-text-secondary font-mono">
-                          <div className="bg-white border border-border rounded-lg p-2 text-center">
-                            <span className="text-text-tertiary text-[7px] block">CPU USE</span>
-                            <span className="font-bold text-text-primary block mt-0.5">14.8%</span>
-                          </div>
-                          <div className="bg-white border border-border rounded-lg p-2 text-center">
-                            <span className="text-text-tertiary text-[7px] block">DATABASE</span>
-                            <span className="font-bold text-[#0d1230] block mt-0.5">OK (0.2ms)</span>
-                          </div>
-                        </div>
-
-                        {/* Monitor Logs */}
-                        <div className="bg-[#1e2547] text-white/80 border border-[#1e2547] rounded-xl p-2.5 text-[7px] font-mono h-20 overflow-y-auto [&::-webkit-scrollbar]:hidden">
-                          <p className="text-white/40">[LOG 09:40:02] API fetch success</p>
-                          <p className="text-white/40">[LOG 09:40:15] Memory clean: OK</p>
-                          <p className="text-green-300 font-bold">[LOG 09:41:00] Backup created</p>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Navigation bar mock inside simulator */}
-                    <div className="flex justify-between items-center border-t border-gray-150 pt-2 text-[8px] text-text-tertiary font-bold text-center mt-auto bg-white/50 backdrop-blur-md rounded-b-xl px-3">
-                      <Home className={`w-3.5 h-3.5 ${mobileActiveTab === 'feed' ? 'text-navy' : ''}`} strokeWidth={2} />
-                      <MapPin className={`w-3.5 h-3.5 ${mobileActiveTab === 'map' ? 'text-navy' : ''}`} strokeWidth={2} />
-                      <Settings className={`w-3.5 h-3.5 ${mobileActiveTab === 'status' ? 'text-navy' : ''}`} strokeWidth={2} />
+                    <div>
+                      <h4 className={`text-sm font-bold tracking-tight leading-snug ${mobileActiveTab === item.id ? 'text-[#d9ff42]' : 'text-white'}`}>{item.title}</h4>
+                      <p className={`text-xs leading-relaxed mt-1 ${mobileActiveTab === item.id ? 'text-white/90' : 'text-white/50'}`}>{item.desc}</p>
                     </div>
+                  </button>
+                ))}
+
+                {/* Pricing & Budget Sim Panel (Solid Medium Navy Card) */}
+                <div className="bg-[#1e3480] border border-[#2d4cb0] rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-[0_8px_30px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.15)] mt-4">
+                  <div className="space-y-1">
+                    <span className="text-[10px] text-white/50 uppercase tracking-wider block font-bold">Investasi Mulai Dari</span>
+                    <span className="text-2xl font-black text-[#d9ff42]">Rp 9.999.000</span>
+                  </div>
+                  <div className="flex flex-col items-start sm:items-end justify-center space-y-1.5">
+                    <span className="text-[10px] text-white/50 uppercase tracking-wider block font-bold">Simulasi Biaya & Kustomisasi</span>
+                    <a
+                      href="#kalkulator-anggaran"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        document.getElementById('kalkulator-anggaran')?.scrollIntoView({ behavior: 'smooth' })
+                        setCalcBaseId('mobile-app')
+                      }}
+                      className="inline-flex items-center gap-1.5 text-[10px] font-black text-[#d9ff42] hover:text-[#c4e63b] transition-colors uppercase tracking-wider group bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-[#d9ff42]/20 hover:border-[#d9ff42]/40"
+                    >
+                      <span>Detail Simulasi</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </a>
                   </div>
                 </div>
 
-                {/* Simulated Glow decoration */}
-                <div className="absolute inset-0 pointer-events-none rounded-[44px] shadow-inner border border-white/10" />
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-5 mt-5 border-t border-white/10">
+                  <Button
+                    href="https://wa.me/6285196811722?text=Halo%20Kalana%20Labs%2C%20saya%20tertarik%20mencari%20jasa%20pembuatan%20Aplikasi%20Mobile%20Android%20%2F%20iOS."
+                    variant="accent"
+                    className="flex-1 justify-center py-3 rounded-xl text-xs shadow-md"
+                  >
+                    Mulai Diskusi Proyek
+                  </Button>
+                  <Button
+                    href="/layanan/mobile-app"
+                    variant="outline"
+                    className="justify-center py-3 rounded-xl text-xs font-bold border-white text-white hover:bg-white hover:text-[#122d78] hover:border-white"
+                  >
+                    Detail Halaman Layanan
+                  </Button>
+                </div>
               </div>
-            </div>
 
+              {/* RIGHT SIDE: Interactive HTML/CSS Smartphone Simulator */}
+              <div className="lg:col-span-5 flex justify-center items-center">
+                <div className="relative">
+                  {/* Outer Smartphone Frame */}
+                  <div className="w-[280px] h-[550px] border-[10px] border-gray-900 bg-gray-950 rounded-[44px] shadow-2xl relative overflow-hidden flex flex-col justify-between p-2">
+                    
+                    {/* Dynamic Island Notch */}
+                    <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-24 h-5 bg-gray-900 rounded-full z-20 flex items-center justify-between px-3 select-none">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-camera bg-black/60" />
+                    </div>
+
+                    {/* Top Status Bar mock */}
+                    <div className="flex justify-between items-center px-4 pt-4 pb-2 text-[8px] font-bold text-white/80 z-10 select-none">
+                      <span>09:41 AM</span>
+                      <div className="flex gap-1">
+                        <span>LTE</span>
+                        <span>100%</span>
+                      </div>
+                    </div>
+
+                    {/* Simulator Screen Container */}
+                    <div className="flex-1 bg-[#f8f9fc] rounded-[32px] overflow-hidden p-4 flex flex-col justify-between relative text-text-primary text-[10px]">
+                      
+                      {/* Screen Content 1: Home Feed UI */}
+                      {mobileActiveTab === 'feed' && (
+                        <div className="space-y-3 font-sans h-full flex flex-col justify-between py-2">
+                          <div className="space-y-1">
+                            <div className="flex justify-between items-center">
+                              <span className="font-black text-xs text-navy uppercase">Explore</span>
+                              <Bell className="w-3.5 h-3.5 text-text-secondary" strokeWidth={2} />
+                            </div>
+                            <div className="w-full bg-gray-200/60 border border-gray-300/40 rounded-lg p-2 text-text-tertiary">
+                              Cari Layanan...
+                            </div>
+                          </div>
+
+                          {/* List items feed */}
+                          <div className="flex-1 flex flex-col gap-2 mt-2">
+                            {[
+                              { name: 'Riset UI/UX', icon: Palette, price: 'Figma Dev' },
+                              { name: 'Web Corporate', icon: Monitor, price: 'SEO On' },
+                            ].map(app => {
+                              const AppIcon = app.icon
+                              return (
+                              <div key={app.name} className="bg-white border border-border rounded-xl p-2.5 flex items-center justify-between shadow-sm">
+                                <div className="flex items-center gap-2">
+                                  <AppIcon className="w-4 h-4 text-navy" strokeWidth={1.5} />
+                                  <div>
+                                    <span className="font-bold text-[#0d1230] block text-[9px] leading-tight">{app.name}</span>
+                                    <span className="text-text-tertiary text-[7px] leading-none">Kalana Labs</span>
+                                  </div>
+                                </div>
+                                <span className="text-[8px] font-bold text-navy">{app.price}</span>
+                              </div>
+                              )
+                            })}
+                          </div>
+
+                          <div className="text-center text-[7px] text-text-tertiary mt-auto">Powered by Flutter Engine</div>
+                        </div>
+                      )}
+
+                      {/* Screen Content 2: Push Notifications Screen */}
+                      {mobileActiveTab === 'notification' && (
+                        <div className="space-y-3 font-sans h-full justify-start pt-6">
+                          <span className="text-[8px] font-black text-text-tertiary block text-center mb-2">HARI INI</span>
+                          
+                          {/* iOS-Style Push Notification banners */}
+                            <div className="bg-white/80 border border-border backdrop-blur-md rounded-lg p-3 shadow-md space-y-1 animate-fade-in">
+                            <div className="flex justify-between items-center text-[7px] text-text-tertiary">
+                              <span className="font-bold text-navy flex items-center gap-1"><MessageSquare className="w-3 h-3" strokeWidth={2} /> CHAT SUPPORT</span>
+                              <span>Baru saja</span>
+                            </div>
+                            <p className="font-bold text-[9px] text-[#0d1230] leading-snug">Riset UI/UX Selesai!</p>
+                            <p className="text-[8px] text-text-secondary leading-normal">Hai, kerangka figma untuk project Anda telah selesai. Klik untuk lihat.</p>
+                          </div>
+
+                          <div className="bg-white/80 border border-border backdrop-blur-md rounded-lg p-3 shadow-md space-y-1 animate-fade-in animation-delay-200">
+                            <div className="flex justify-between items-center text-[7px] text-text-tertiary">
+                              <span className="font-bold text-navy flex items-center gap-1"><Rocket className="w-3 h-3" strokeWidth={2} /> DEPLOYMENT</span>
+                              <span>3 menit lalu</span>
+                            </div>
+                            <p className="font-bold text-[9px] text-[#0d1230] leading-snug">Server Deployment: Sukses</p>
+                            <p className="text-[8px] text-text-secondary leading-normal">Website E-Commerce sudah ter-publish ke server produksi.</p>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Screen Content 3: Live Map Beacon */}
+                      {mobileActiveTab === 'map' && (
+                        <div className="h-full relative overflow-hidden rounded-xl border border-border flex flex-col justify-end bg-blue-100">
+                          {/* Mock Map graphics */}
+                          <div className="absolute inset-0 bg-cover bg-center opacity-80" style={{ backgroundImage: 'radial-gradient(circle, #e2e8f0 10%, transparent 10.5%), radial-gradient(circle, #e2e8f0 10%, transparent 10.5%)', backgroundSize: '15px 15px', backgroundPosition: '0 0, 7.5px 7.5px' }}>
+                            {/* Map roads mock */}
+                            <div className="absolute top-1/2 left-0 right-0 h-4 bg-white border-y border-gray-300" />
+                            <div className="absolute left-1/3 top-0 bottom-0 w-4 bg-white border-x border-gray-300" />
+                            
+                            {/* Pulse Beacon */}
+                            <div className="absolute top-[40%] left-[30%] -translate-x-1/2 -translate-y-1/2 z-10">
+                              <span className="w-6 h-6 rounded-full bg-navy/30 animate-ping absolute -top-1.5 -left-1.5 block" />
+                              <span className="w-3 h-3 rounded-full bg-navy border-2 border-white shadow-md block" />
+                            </div>
+                          </div>
+
+                          <div className="relative z-10 bg-white/95 border-t border-border p-2.5 rounded-t-xl text-[8px] space-y-1 shadow-md">
+                            <p className="font-black text-navy text-[9px]">LOKASI REAL-TIME</p>
+                            <p className="text-text-secondary font-medium">Lat: -7.4244 · Lng: 109.2302</p>
+                            <p className="text-text-tertiary truncate">Purwokerto, Jawa Tengah</p>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Screen Content 4: App Store Detail Page */}
+                      {mobileActiveTab === 'store' && (
+                        <div className="space-y-3 font-sans h-full pt-4 text-center">
+                          <div className="w-11 h-11 bg-navy text-white rounded-lg flex items-center justify-center mx-auto shadow-md">
+                            <Gem className="w-5 h-5" strokeWidth={1.5} />
+                          </div>
+                          <div>
+                            <h5 className="font-black text-[11px] text-[#0d1230] leading-tight font-logo">Kalana Mobile</h5>
+                            <p className="text-[8px] text-text-tertiary">Productivity & Business App</p>
+                          </div>
+
+                          <div className="flex justify-center gap-6 border-y border-gray-100 py-1.5 text-[8px] font-bold text-text-secondary">
+                            <div>
+                              <div className="flex items-center justify-center gap-0.5 mb-0.5">
+                                {[1, 2, 3, 4, 5].map(s => (
+                                  <Star key={s} className="w-2 h-2 text-yellow-500 fill-yellow-500" strokeWidth={1.5} />
+                                ))}
+                              </div>
+                              <span className="block">4.9 (38 rating)</span>
+                            </div>
+                            <div className="border-l border-gray-100" />
+                            <div>
+                              <span className="text-text-primary font-black block text-[10px]">10K+</span>
+                              <span>Unduh</span>
+                            </div>
+                          </div>
+
+                          <button className="w-full bg-navy text-white text-[9px] font-bold py-2 rounded-xl shadow-lg shadow-navy/20">
+                            PASANG / INSTALL
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Screen Content 5: Client-facing Security & Hosting Status */}
+                      {mobileActiveTab === 'status' && (
+                        <div className="space-y-2.5 font-sans h-full pt-3">
+                          <div className="flex justify-between items-center bg-green-500/10 border border-green-500/20 text-green-700 rounded-lg p-2 font-bold text-[8px]">
+                            <span>Layanan Aktif</span>
+                            <span className="w-2 h-2 rounded-full bg-green-500 block" />
+                          </div>
+
+                          {/* Client-facing security metrics, not devtool data */}
+                          {[
+                            { label: 'SSL Sertifikat', value: 'Aktif', ok: true },
+                            { label: 'Backup Mingguan', value: 'Berhasil', ok: true },
+                            { label: 'Proteksi DDoS', value: 'Aktif', ok: true },
+                            { label: 'Uptime Server', value: '99.9%', ok: true },
+                          ].map((item) => (
+                            <div key={item.label} className="bg-white border border-border rounded-lg px-2.5 py-2 flex items-center justify-between">
+                              <span className="text-[8px] text-text-secondary font-medium">{item.label}</span>
+                              <span className={`text-[8px] font-bold ${item.ok ? 'text-green-600' : 'text-red-500'}`}>{item.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Interactive clickable navigation bar inside simulator */}
+                      <div className="flex justify-between items-center border-t border-gray-200/50 pt-2 pb-1 text-[8px] text-text-tertiary font-bold text-center mt-auto bg-white/70 backdrop-blur-md rounded-b-[24px] px-4 w-full select-none z-10">
+                        <button onClick={() => setMobileActiveTab('feed')} className={`p-1 cursor-pointer transition-colors ${mobileActiveTab === 'feed' ? 'text-navy scale-110' : 'text-text-tertiary hover:text-text-primary'}`} aria-label="Simulator Home">
+                          <Home className="w-3.5 h-3.5" strokeWidth={2.5} />
+                        </button>
+                        <button onClick={() => setMobileActiveTab('notification')} className={`p-1 cursor-pointer transition-colors ${mobileActiveTab === 'notification' ? 'text-navy scale-110' : 'text-text-tertiary hover:text-text-primary'}`} aria-label="Simulator Notifications">
+                          <Bell className="w-3.5 h-3.5" strokeWidth={2.5} />
+                        </button>
+                        <button onClick={() => setMobileActiveTab('map')} className={`p-1 cursor-pointer transition-colors ${mobileActiveTab === 'map' ? 'text-navy scale-110' : 'text-text-tertiary hover:text-text-primary'}`} aria-label="Simulator Map">
+                          <MapPin className="w-3.5 h-3.5" strokeWidth={2.5} />
+                        </button>
+                        <button onClick={() => setMobileActiveTab('store')} className={`p-1 cursor-pointer transition-colors ${mobileActiveTab === 'store' ? 'text-navy scale-110' : 'text-text-tertiary hover:text-text-primary'}`} aria-label="Simulator App Store">
+                          <ShoppingBag className="w-3.5 h-3.5" strokeWidth={2.5} />
+                        </button>
+                        <button onClick={() => setMobileActiveTab('status')} className={`p-1 cursor-pointer transition-colors ${mobileActiveTab === 'status' ? 'text-navy scale-110' : 'text-text-tertiary hover:text-text-primary'}`} aria-label="Simulator Status">
+                          <Settings className="w-3.5 h-3.5" strokeWidth={2.5} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Simulated Glow decoration */}
+                  <div className="absolute inset-0 pointer-events-none rounded-[44px] shadow-inner border border-white/10" />
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>
@@ -972,7 +1037,7 @@ export default function LayananPage() {
         <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full bg-navy/5 blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/3 -left-40 w-[400px] h-[400px] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8 relative">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <SectionHeading
               centered
@@ -994,7 +1059,7 @@ export default function LayananPage() {
                   <span className="text-[10px] font-black text-navy uppercase tracking-widest">Pilih Jenis Proyek Utama</span>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {calculatorBaseServices.map(service => {
                     const isSelected = calcBaseId === service.id
                     return (
@@ -1008,28 +1073,25 @@ export default function LayananPage() {
                             return addon && addon.compatibleWith.includes(service.id)
                           }))
                         }}
-                        className={`text-left px-4 py-3 rounded-xl border transition-all duration-200 relative ${
+                        className={`text-left px-4 py-3 rounded-xl border-2 transition-all duration-200 cursor-pointer ${
                           isSelected
-                            ? 'bg-navy text-white border-navy shadow-md shadow-navy/10'
-                            : 'bg-white border-[#e4e8f2] hover:border-navy/30'
+                            ? 'bg-[#2152cf] border-[#1a3fa3] border-b-[5px] border-b-[#0f245c] text-white shadow-md -translate-y-[1px]'
+                            : 'bg-white border-slate-200 border-b-[5px] border-b-slate-300 text-[#4f5b7d] hover:text-[#1e2547] hover:bg-[#f1f3f9] hover:-translate-y-[1px]'
                         }`}
                       >
                         <div className="flex items-center justify-between gap-2">
-                          <span className="text-xs font-bold truncate leading-tight">{service.name}</span>
+                          <span className="text-xs font-bold truncate leading-none">{service.name}</span>
                           <div className="flex items-center gap-2 shrink-0">
-                            <span className={`text-[9px] font-medium ${isSelected ? 'text-white/60' : 'text-text-tertiary'}`}>
+                            <span className={`text-[9px] font-bold ${isSelected ? 'text-white/80' : 'text-[#4f5b7d]'}`}>
                               Rp{service.price.toLocaleString('id-ID')}
                             </span>
                             {isSelected && (
-                              <span className="w-4 h-4 rounded-full bg-accent text-[#0d1230] flex items-center justify-center text-[7px] font-black">
+                              <span className="w-3.5 h-3.5 rounded-full bg-accent text-[#0d1230] flex items-center justify-center text-[7px] font-black">
                                 ✓
                               </span>
                             )}
                           </div>
                         </div>
-                        {isSelected && (
-                          <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-accent/60 to-accent rounded-full" />
-                        )}
                       </button>
                     )
                   })}
@@ -1043,64 +1105,61 @@ export default function LayananPage() {
                     <span className="w-5 h-5 rounded-full bg-navy text-white flex items-center justify-center text-[8px] font-black">1b</span>
                     <span className="text-[9px] font-bold text-navy uppercase tracking-widest">Pilih Paket & Lihat Benefit</span>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     {pricingCategory.packages.map((pkg, idx) => {
                       const isPkgSelected = calcPackageIdx === idx
                       const pkgPrice = parseTierPrice(pkg.price, pkg.suffix)
+                      const cardTheme = plannerTierThemes[idx] ?? plannerTierThemes[2]
                       return (
                         <button
                           key={pkg.name}
                           onClick={() => setCalcPackageIdx(idx)}
-                          className={`text-left p-4 rounded-xl border-2 transition-all duration-200 relative overflow-hidden flex flex-col ${
-                            isPkgSelected
-                              ? 'bg-navy text-white border-navy shadow-md shadow-navy/10'
-                              : 'bg-white border-[#e4e8f2] hover:border-navy/40 hover:shadow-sm'
+                          className={`text-left p-4 rounded-xl border-2 transition-all duration-200 relative overflow-hidden flex flex-col cursor-pointer ${
+                            isPkgSelected ? cardTheme.selected : cardTheme.unselected
                           }`}
                         >
                           {/* Best Value badge */}
                           {pkg.bestValue && (
-                            <span className={`absolute top-2 right-2 text-[7px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider z-10 ${
-                              isPkgSelected ? 'bg-accent text-navy' : 'bg-accent/20 text-navy'
+                            <span className={`absolute top-2 right-2 text-[7px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider z-10 ${
+                              isPkgSelected
+                                ? (idx === 1 ? 'bg-[#0d1230] text-[#d9ff42]' : 'bg-[#d9ff42] text-[#0d1230]')
+                                : 'bg-[#d9ff42] text-[#0d1230] border border-slate-200'
                             }`}>
                               Best Value
                             </span>
                           )}
                           {/* Package Name & Price */}
-                          <div className="flex items-start justify-between gap-2 mb-2">
+                          <div className="flex items-start justify-between gap-2 mb-2 w-full">
                             <div>
                               <div className="flex items-center gap-1.5">
-                                <span className="text-sm font-black leading-tight">{pkg.name}</span>
+                                <span className={`text-sm font-black leading-tight ${isPkgSelected ? cardTheme.nameColor : 'text-slate-800'}`}>{pkg.name}</span>
                                 {isPkgSelected && (
-                                  <span className="w-3.5 h-3.5 rounded-full bg-accent text-navy flex items-center justify-center text-[6px] font-black shrink-0">
+                                  <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[6px] font-black shrink-0 ${cardTheme.checkBg} ${cardTheme.checkTick}`}>
                                     ✓
                                   </span>
                                 )}
                               </div>
-                              <span className={`text-[9px] leading-tight block mt-0.5 ${isPkgSelected ? 'text-white/60' : 'text-text-tertiary'}`}>
+                              <span className={`text-[9px] leading-tight block mt-0.5 ${isPkgSelected ? (idx === 0 ? 'text-slate-500' : idx === 1 ? 'text-[#0d1230]/70' : 'text-white/60') : 'text-slate-400'}`}>
                                 {pkg.subtitle}
                               </span>
                             </div>
-                            <span className={`text-xs font-black shrink-0 mt-0.5 ${isPkgSelected ? 'text-accent' : 'text-navy'}`}>
+                            <span className={`text-xs font-black shrink-0 mt-0.5 ${isPkgSelected ? cardTheme.priceColor : 'text-slate-900'}`}>
                               Rp{pkgPrice.toLocaleString('id-ID')}
                             </span>
                           </div>
                           {/* Divider */}
-                          <div className={`h-px my-1.5 ${isPkgSelected ? 'bg-white/10' : 'bg-[#e4e8f2]'}`} />
+                          <div className={`w-full h-px my-1.5 ${isPkgSelected ? cardTheme.divider : 'bg-slate-100'}`} />
                           {/* Benefits */}
-                          <ul className="space-y-1 flex-1">
+                          <ul className="space-y-1 flex-1 w-full">
                             {pkg.benefits.map((benefit, bi) => (
                               <li key={bi} className="flex items-start gap-1.5">
-                                <Check className={`w-2.5 h-2.5 mt-0.5 shrink-0 ${isPkgSelected ? 'text-accent' : 'text-navy'}`} strokeWidth={3} />
-                                <span className={`text-[9px] leading-snug ${isPkgSelected ? 'text-white/70' : 'text-text-secondary'}`}>
+                                <Check className={`w-2.5 h-2.5 mt-0.5 shrink-0 ${isPkgSelected ? cardTheme.priceColor : 'text-slate-400'}`} strokeWidth={3} />
+                                <span className={`text-[9px] leading-snug ${isPkgSelected ? cardTheme.benefitText : 'text-slate-500'}`}>
                                   {benefit}
                                 </span>
                               </li>
                             ))}
                           </ul>
-                          {/* Selected accent bar */}
-                          {isPkgSelected && (
-                            <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-accent/60 to-accent rounded-full" />
-                          )}
                         </button>
                       )
                     })}
@@ -1120,7 +1179,7 @@ export default function LayananPage() {
                   )}
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {relevantAddons.length > 0 ? (
                     relevantAddons.map(addon => {
                       const isChecked = calcAddons.includes(addon.id)
@@ -1129,27 +1188,24 @@ export default function LayananPage() {
                         <button
                           key={addon.id}
                           onClick={() => handleToggleAddon(addon.id)}
-                          className={`text-left p-3.5 rounded-lg border transition-all duration-200 flex items-center gap-3.5 relative overflow-hidden ${
+                          className={`text-left p-3 rounded-xl border-2 transition-all duration-200 flex items-center gap-3.5 relative overflow-hidden cursor-pointer ${
                             isChecked
-                              ? 'bg-white border-navy/40 shadow-sm'
-                              : 'bg-white border-[#e4e8f2] hover:border-navy/20 hover:shadow-sm'
+                              ? 'bg-[#1e3480] text-white border-[#2d4cb0] border-b-[5px] border-b-[#142660] shadow-md -translate-y-[1px]'
+                              : 'bg-white border-slate-200 border-b-[5px] border-b-slate-300 text-text-secondary hover:text-text-primary hover:bg-[#f1f3f9] hover:-translate-y-[1px]'
                           }`}
                         >
-                          {isChecked && (
-                            <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-navy" />
-                          )}
                           <div className={`w-5 h-5 rounded-lg border-2 flex items-center justify-center shrink-0 transition-all duration-200 ${
-                            isChecked ? 'bg-navy border-navy text-white' : 'border-gray-300'
+                            isChecked ? 'bg-[#d9ff42] border-[#d9ff42] text-[#0d1230] scale-105 shadow-sm' : 'border-gray-300 bg-white'
                           }`}>
-                            {isChecked && <Check className="w-3 h-3" strokeWidth={3} />}
+                            {isChecked && <Check className="w-3 h-3" strokeWidth={3.5} />}
                           </div>
                           
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-text-primary leading-tight">{addon.name}</p>
+                            <p className={`text-xs font-bold leading-tight transition-colors duration-200 ${isChecked ? 'text-[#d9ff42]' : 'text-text-primary'}`}>{addon.name}</p>
                             <div className="flex items-center gap-2 mt-1.5">
-                              <span className="text-[10px] font-semibold text-navy">+Rp {addon.price.toLocaleString('id-ID')}</span>
-                              <span className="text-[8px] text-text-tertiary">|</span>
-                              <span className="text-[10px] text-text-tertiary">+{addon.days} Hari</span>
+                              <span className={`text-[10px] font-bold ${isChecked ? 'text-white' : 'text-navy'}`}>+Rp {addon.price.toLocaleString('id-ID')}</span>
+                              <span className={`text-[8px] ${isChecked ? 'text-white/30' : 'text-text-tertiary'}`}>|</span>
+                              <span className={`text-[10px] ${isChecked ? 'text-white/70' : 'text-text-tertiary'}`}>+{addon.days} Hari</span>
                             </div>
                           </div>
                         </button>
@@ -1174,7 +1230,7 @@ export default function LayananPage() {
               
               <div className="space-y-6 relative z-10">
                 <div className="flex items-center justify-between">
-                  <span className="text-[9px] font-black text-accent bg-white/5 border border-white/10 px-3 py-1.5 rounded-full uppercase tracking-widest">
+                  <span className="text-[9px] font-black text-accent bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg uppercase tracking-widest">
                     Ringkasan
                   </span>
                 </div>
@@ -1249,7 +1305,7 @@ export default function LayananPage() {
                 <Button
                   href={formatWhatsAppUrl()}
                   variant="accent"
-                  className="w-full justify-center py-3.5 rounded-full shadow-lg shadow-accent/15 active:scale-[0.98] transition-transform font-bold text-xs"
+                  className="w-full justify-center py-3.5 rounded-xl shadow-lg shadow-accent/15 active:scale-[0.98] transition-transform font-bold text-xs"
                 >
                   Ajukan Penawaran via WA
                 </Button>
@@ -1265,7 +1321,7 @@ export default function LayananPage() {
       <section className="py-20 md:py-28 bg-surface-alt relative overflow-hidden">
         <div className="absolute top-1/4 -left-40 w-96 h-96 rounded-full bg-navy/5 blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8 relative">
           <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
             <SectionHeading
               centered
@@ -1275,30 +1331,63 @@ export default function LayananPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              {[
-                { q: 'Apakah ada garansi revisi setelah website selesai?', a: 'Ya, seluruh paket layanan kami sudah dilengkapi garansi masa pemeliharaan (maintenance) gratis selama 30 hingga 90 hari setelah serah terima source code.' },
-                { q: 'Bagaimana alur pembayaran proyek?', a: 'Pembayaran terbagi menjadi dua tahap: Down Payment (DP) 50% di awal setelah penandatanganan proposal kerjasama, dan pelunasan 50% setelah proyek selesai diuji dan disetujui.' },
-                { q: 'Apakah saya mendapatkan source code penuh?', a: 'Tentu. Seluruh aset desain Figma dan source code repositori (Next.js/React/Laravel) diserahkan sepenuhnya kepada Anda pasca-pelunasan.' },
-                { q: 'Dapatkah saya memesan fitur custom tersendiri?', a: 'Tentu saja. Anda dapat menggunakan Cost Planner di atas untuk menyusun estimasi fitur awal, atau mengontak analis kami langsung jika menginginkan integrasi database enterprise kustom.' },
-              ].map((faq, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: i * 0.08 }}
-                  className="bg-white border border-[#e4e8f2] rounded-xl p-6 md:p-8 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden"
-                >
-                  <div className="absolute top-0 left-0 w-1 h-full bg-navy/20 rounded-r" />
-                  <h4 className="text-base font-bold text-[#0d1230] leading-snug">
-                    {faq.q}
-                  </h4>
-                  <p className="text-xs text-text-secondary leading-relaxed mt-3 pl-4 border-l-2 border-navy/10">
-                    {faq.a}
-                  </p>
-                </motion.div>
-              ))}
+          <div className="max-w-3xl mx-auto flex flex-col divide-y divide-[#e4e8f2]">
+            {[
+              { q: 'Apakah ada garansi revisi setelah website selesai?', a: 'Ya, seluruh paket layanan kami sudah dilengkapi garansi masa pemeliharaan (maintenance) gratis selama 30 hingga 90 hari setelah serah terima source code.' },
+              { q: 'Bagaimana alur pembayaran proyek?', a: 'Pembayaran terbagi menjadi dua tahap: Down Payment (DP) 50% di awal setelah penandatanganan proposal kerjasama, dan pelunasan 50% setelah proyek selesai diuji dan disetujui.' },
+              { q: 'Apakah saya mendapatkan source code penuh?', a: 'Tentu. Seluruh aset desain Figma dan source code repositori (Next.js/React/Laravel) diserahkan sepenuhnya kepada Anda pasca-pelunasan.' },
+              { q: 'Dapatkah saya memesan fitur custom tersendiri?', a: 'Tentu saja. Anda dapat menggunakan Cost Planner di atas untuk menyusun estimasi fitur awal, atau mengontak analis kami langsung jika menginginkan integrasi database enterprise kustom.' },
+            ].map((faq, i) => {
+              const isOpen = openFaqIdx === i
+              return (
+                <div key={i} className="group">
+                  <button
+                    onClick={() => setOpenFaqIdx(isOpen ? null : i)}
+                    className="w-full flex items-start justify-between gap-4 py-6 text-left cursor-pointer"
+                  >
+                    <div className="flex items-start gap-4">
+                      <span className="flex-shrink-0 w-7 h-7 rounded-lg bg-white border border-[#e4e8f2] text-[#4f5b7d] text-xs font-bold flex items-center justify-center mt-0.5 group-hover:bg-[#2152cf] group-hover:text-white transition-all duration-200">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className={`text-base font-semibold leading-snug transition-colors duration-200 ${isOpen ? 'text-[#2152cf]' : 'text-[#1e2547] group-hover:text-[#2152cf]'}`}>
+                        {faq.q}
+                      </span>
+                    </div>
+
+                    <div className={`flex-shrink-0 w-7 h-7 rounded-lg border-2 flex items-center justify-center transition-all duration-300 mt-0.5 ${
+                      isOpen
+                        ? 'bg-[#2152cf] border-[#2152cf]'
+                        : 'border-slate-200 bg-white group-hover:border-[#2152cf]'
+                    }`}>
+                      <svg
+                        className={`w-3 h-3 transition-all duration-300 ${isOpen ? 'rotate-45 text-white' : 'text-[#4f5b7d] group-hover:text-[#2152cf]'}`}
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        aria-hidden
+                      >
+                        <path d="M6 2v8M2 6h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <div className="pb-6 pl-11 pr-2">
+                      <div className="bg-white border border-slate-100 rounded-xl px-6 py-5 shadow-sm">
+                        <p className="text-sm text-text-secondary leading-relaxed">
+                          {faq.a}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -1313,64 +1402,35 @@ export default function LayananPage() {
           <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-navy opacity-15 blur-[100px] translate-y-1/3" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-            <div className="max-w-xl space-y-6">
-              <h2 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight">
-                Siap Meluncurkan Proyek Impian{' '}
-                <span className="font-script italic text-[#d9ff42]">Anda?</span>
-              </h2>
-              <p className="text-white/60 text-sm md:text-base leading-relaxed">
-                Konsultasikan ide produk digital Anda dengan tim ahli kami secara gratis. Kami akan memberikan skema arsitektur dan estimasi budget terbaik untuk bisnis Anda.
-              </p>
-              
-              <div className="flex flex-wrap gap-3">
-                <Button
-                  href="https://wa.me/6285196811722?text=Halo%20Kalana%20Labs%2C%20saya%20ingin%20berkonsultasi%20mengenai%20kebutuhan%20teknologi%20bisnis%20saya."
-                  variant="accent"
-                  size="lg"
-                  className="shadow-lg shadow-accent/20"
-                >
-                  Konsultasi Sekarang (Gratis)
-                </Button>
-                <Button
-                  href="/"
-                  variant="outline"
-                  size="lg"
-                  className="border-white/20 text-white hover:bg-white/10"
-                  showArrow={false}
-                >
-                  Kembali ke Beranda
-                </Button>
-              </div>
-            </div>
-
-            {/* Visual preview dashboard widget */}
-            <div className="hidden lg:block w-full max-w-[400px] bg-white/[0.03] border border-white/10 rounded-xl p-6 backdrop-blur-md space-y-4">
-              <div className="flex justify-between items-center text-[10px] font-bold text-white/50 border-b border-white/5 pb-3">
-                <span>PROJECT MANAGER DASHBOARD</span>
-                <span className="text-[#d9ff42] font-black">ACTIVE</span>
-              </div>
-              
-              <div className="space-y-3.5">
-                {[
-                  { name: 'Wireframing UI/UX', prog: 100, status: 'Selesai', color: 'bg-green-500' },
-                  { name: 'Front-end Development', prog: 85, status: 'Review', color: 'bg-blue-500' },
-                  { name: 'Integration & Testing', prog: 40, status: 'Pengerjaan', color: 'bg-yellow-500' },
-                ].map(proj => (
-                  <div key={proj.name} className="space-y-1.5 text-xs text-white/80">
-                    <div className="flex justify-between font-bold text-[11px]">
-                      <span>{proj.name}</span>
-                      <span className="text-white/50">{proj.prog}%</span>
-                    </div>
-                    {/* progress line */}
-                    <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                      <div className={`h-full ${proj.color}`} style={{ width: `${proj.prog}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className="relative max-w-4xl mx-auto px-6 sm:px-8 text-center space-y-8">
+          <div className="max-w-2xl mx-auto space-y-4">
+            <h2 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight">
+              Siap Meluncurkan Proyek Impian{' '}
+              <span className="font-script italic text-[#d9ff42]">Anda?</span>
+            </h2>
+            <p className="text-white/70 text-sm md:text-base leading-relaxed">
+              Konsultasikan ide produk digital Anda dengan tim ahli kami secara gratis. Kami akan memberikan skema arsitektur dan estimasi budget terbaik untuk bisnis Anda.
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button
+              href="https://wa.me/6285196811722?text=Halo%20Kalana%20Labs%2C%20saya%20ingin%20berkonsultasi%20mengenai%20kebutuhan%20teknologi%20bisnis%20saya."
+              variant="accent"
+              size="lg"
+              className="shadow-lg shadow-accent/20 rounded-xl"
+            >
+              Konsultasi Sekarang (Gratis)
+            </Button>
+            <Button
+              href="/"
+              variant="outline"
+              size="lg"
+              className="border-white/20 text-white hover:bg-white/10 rounded-xl"
+              showArrow={false}
+            >
+              Kembali ke Beranda
+            </Button>
           </div>
         </div>
       </section>

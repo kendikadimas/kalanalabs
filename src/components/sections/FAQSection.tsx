@@ -18,7 +18,7 @@ export default function FAQSection() {
           {/* Left: Sticky heading + CTA */}
           <div className="lg:col-span-4 lg:sticky lg:top-28">
             <SectionHeading
-              label="FAQ"
+              label=""
               title="Ada yang Ingin "
               titleHighlight="Ditanyakan?"
               subtitle="Pertanyaan yang paling sering kami terima dari calon klien. Tidak menemukan jawaban yang Anda cari? Langsung hubungi kami."

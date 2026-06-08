@@ -25,7 +25,7 @@ export default function ServicesSection() {
         {/* 3 Main Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Card 1: Web Development (Lime Gradient Background) - 3D */}
-          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-[#d9ff42] to-[#b4d622] border-2 border-[#b4d622] border-b-[8px] border-b-[#8da61b] p-6 sm:p-8 relative overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300">
+          <div className="flex flex-col justify-between h-full rounded-2xl bg-gradient-to-br from-[#d9ff42] to-[#b4d622] border-2 border-[#b4d622] border-b-[8px] border-b-[#8da61b] p-6 sm:p-8 relative overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300">
             {/* Top Info */}
             <div className="flex flex-col gap-3">
               <h3 className="text-xl sm:text-3xl font-bold text-[#0d1230] tracking-tight">
@@ -45,7 +45,7 @@ export default function ServicesSection() {
                 href="/layanan"
                 variant="outline"
                 size="sm"
-                className="w-fit py-1.5 px-4 border-[#0d1230] text-[#0d1230] hover:bg-[#0d1230] hover:text-[#d9ff42]"
+                className="w-fit py-1.5 px-4 rounded-xl border-[#0d1230] text-[#0d1230] hover:bg-[#0d1230] hover:text-[#d9ff42]"
               >
                 Lihat Layanan
               </Button>
@@ -71,14 +71,14 @@ export default function ServicesSection() {
           </div>
 
           {/* Card 2: Mobile Apps (Blue-Navy Gradient Background) - 3D */}
-          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-[#2152cf] to-[#122d78] border-2 border-[#2152cf]/30 border-b-[8px] border-b-[#0b1b47] p-6 sm:p-8 relative overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300">
+          <div className="flex flex-col justify-between h-full rounded-2xl bg-gradient-to-br from-[#2152cf] to-[#122d78] border-2 border-[#2152cf]/30 border-b-[8px] border-b-[#0b1b47] p-6 sm:p-8 relative overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300">
             {/* Top Info */}
             <div className="flex flex-col gap-3">
               <h3 className="text-xl sm:text-3xl font-bold text-white tracking-tight">
                 Pembuatan Aplikasi Mobile
               </h3>
               <p className="text-white/80 text-sm leading-relaxed">
-                Pembuatan aplikasi mobile untuk Android dan iOS untuk berbagai keperluan bisnis
+                Pembuatan aplikasi mobile untuk Android dan iOS untuk various keperluan bisnis
               </p>
             </div>
 
@@ -91,7 +91,7 @@ export default function ServicesSection() {
                 href="/layanan"
                 variant="outline"
                 size="sm"
-                className="w-fit py-1.5 px-4 border-white text-white hover:bg-white hover:text-[#122d78]"
+                className="w-fit py-1.5 px-4 rounded-xl border-white text-white hover:bg-white hover:text-[#122d78]"
               >
                 Lihat Layanan
               </Button>
@@ -110,7 +110,7 @@ export default function ServicesSection() {
           </div>
 
           {/* Card 3: UI/UX Design (White Gradient Background) - 3D */}
-          <div className="flex flex-col justify-between h-full rounded-3xl bg-gradient-to-br from-white to-[#f8f9fc] border-2 border-slate-200 border-b-[8px] border-b-slate-300 p-6 sm:p-8 relative overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300">
+          <div className="flex flex-col justify-between h-full rounded-2xl bg-gradient-to-br from-white to-[#f8f9fc] border-2 border-slate-200 border-b-[8px] border-b-slate-300 p-6 sm:p-8 relative overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300">
             {/* Top Info */}
             <div className="flex flex-col gap-3">
               <h3 className="text-xl sm:text-3xl font-bold text-[#1e2547] tracking-tight">
@@ -130,7 +130,7 @@ export default function ServicesSection() {
                 href="/layanan"
                 variant="outline"
                 size="sm"
-                className="w-fit py-1.5 px-4 border-[#1e2547] text-[#1e2547] hover:bg-[#1e2547] hover:text-white"
+                className="w-fit py-1.5 px-4 rounded-xl border-[#1e2547] text-[#1e2547] hover:bg-[#1e2547] hover:text-white"
               >
                 Lihat Layanan
               </Button>

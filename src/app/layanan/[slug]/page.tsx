@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 const TIER_THEMES = [
   {
-    card: 'bg-surface border border-border rounded-3xl',
+    card: 'bg-surface border border-border rounded-2xl',
     topBorder: 'border-b border-border',
     tierLabel: 'text-text-secondary',
     tierLabelBg: 'bg-[#f1f3f9]',
@@ -79,7 +79,7 @@ const TIER_THEMES = [
     hoverShadow: 'hover:shadow-lg hover:shadow-[#2152cf]/8',
   },
   {
-    card: 'bg-[#eef2ff] border-2 border-[#c7d3f8] rounded-3xl',
+    card: 'bg-[#eef2ff] border-2 border-[#c7d3f8] rounded-2xl',
     topBorder: 'border-b border-[#c7d3f8]',
     tierLabel: 'text-navy',
     tierLabelBg: 'bg-[#dce5fc]',
@@ -93,7 +93,7 @@ const TIER_THEMES = [
     hoverShadow: 'hover:shadow-xl hover:shadow-[#2152cf]/15',
   },
   {
-    card: 'bg-[#1e2547] border border-[#1e2547] rounded-3xl',
+    card: 'bg-[#1e2547] border border-[#1e2547] rounded-2xl',
     topBorder: 'border-b border-white/10',
     tierLabel: 'text-[#d9ff42]',
     tierLabelBg: 'bg-white/10',
@@ -178,7 +178,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 <span className="font-script italic text-navy">{service.title}</span>?
               </h2>
             </div>
-            <div className="bg-surface border border-border rounded-3xl p-8 md:p-12 shadow-sm">
+            <div className="bg-surface border border-border rounded-2xl p-8 md:p-12 shadow-sm">
               <p className="text-text-secondary text-base leading-relaxed whitespace-pre-line">
                 {service.description}
               </p>
@@ -205,7 +205,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             {service.benefits.map((benefit, idx) => (
               <div
                 key={idx}
-                className="bg-surface-alt border border-border rounded-3xl p-8 hover:bg-surface-elevated hover:shadow-md hover:border-navy/20 transition-all duration-300"
+                className="bg-surface-alt border border-border rounded-2xl p-8 hover:bg-surface-elevated hover:shadow-md hover:border-navy/20 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-2xl bg-navy/10 flex items-center justify-center text-navy mb-5">
                   <Check className="w-5 h-5" strokeWidth={2.5} />
@@ -265,7 +265,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <div className="absolute top-1/3 -right-40 w-96 h-96 rounded-full bg-[#d9ff42]/5 blur-3xl pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-surface-alt border border-border rounded-3xl p-8 md:p-12">
+            <div className="bg-surface-alt border border-border rounded-2xl p-8 md:p-12">
               <div className="max-w-2xl mx-auto">
                 <h2 className="text-2xl md:text-3xl font-bold text-text-primary tracking-tight mb-8 text-center">
                   Apakah Layanan Ini{' '}
@@ -319,16 +319,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                     className={`flex flex-col relative transition-all duration-300 group ${theme.card} ${theme.hoverShadow}`}
                   >
                     {pkg.bestValue && (
-                      <div className="absolute top-5 right-5 bg-[#d9ff42] text-text-primary text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow z-10">
+                      <div className="absolute top-5 right-5 bg-[#d9ff42] text-text-primary text-[9px] font-black px-3 py-1 rounded-md uppercase tracking-widest shadow z-10">
                         Best Value
                       </div>
                     )}
 
                     <div className={`px-7 pt-8 pb-6 ${theme.topBorder}`}>
-                      <span className={`inline-block text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full mb-4 ${theme.tierLabel} ${theme.tierLabelBg}`}>
-                        Tier {idx + 1}
-                      </span>
-
                       <h4 className={`text-3xl font-black mb-1.5 ${theme.nameColor}`}>
                         {pkg.name}
                       </h4>
@@ -366,7 +362,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                       <Button
                         href={waUrl}
                         variant="outline"
-                        className={`w-full mt-auto ${theme.buttonClass}`}
+                        className={`w-full mt-auto rounded-xl ${theme.buttonClass}`}
                       >
                         Pilih Paket
                       </Button>
